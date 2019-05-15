@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotechRewards", "DotechRewards\DotechRewards.csproj", "{47C2D624-1493-47D0-A2E5-8DC4FFB2B93C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47C2D624-1493-47D0-A2E5-8DC4FFB2B93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C2D624-1493-47D0-A2E5-8DC4FFB2B93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C2D624-1493-47D0-A2E5-8DC4FFB2B93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C2D624-1493-47D0-A2E5-8DC4FFB2B93C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C57BB92-2FCE-4033-ABD9-2FFD4841A881}
+	EndGlobalSection
+EndGlobal
