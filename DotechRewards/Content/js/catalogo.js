@@ -58,14 +58,14 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
+    
     $('#Foto_Prd').change(function () {
         var file = document.getElementById("Foto_Prd"); 
         var width = file.clientWidth;
         var height = file.clientHeight;
         console.log('el ancho es : ' + width + '   la altura es:' + height);
-        if (width != 1290) {
-            if (width != 1290) {
+       // if (width != 358) {
+            if (width != 358) {
                 console.log("Error ancho");
                 Swal.fire(
                     'Error en imagen',
@@ -78,9 +78,9 @@
                 $('#previewImg').attr('src', '');
                 return false;
             }
-        }
-        if (height != 210) {
-            if (height != 210) {
+        //}
+        //if (height != 30) {
+            if (height != 30) {
                 console.log("Error alto");
                 Swal.fire(
                     'Error en imagen',
@@ -91,10 +91,60 @@
                 $('#previewImg').attr('src', '');
                 return false;
             }
-        }
+        //}
     });
 
-    
+    $('#btnGuardarPrd').click(function () {
+        //cachar todos los campos.
+        //validar si son nulos.
+        //mostrar mensaje en caso de.}
+        var productName = $('#nombre').val();
+        var productDesc = $('#descripcion').val();
+        var productPoints = $('#puntos').val();
+        var productImage = $('#Foto_Prd').val();
+        if (productName == '') {
+            Swal.fire(
+                'Error en nombre de producto.',
+                'Es necesario especificar un nombre para el producto que intenta registrar.',
+                'warning'
+            ).then((result) => {
+                $('#nombre').focus();      //poner autofocus a este campo
+            })
+            return false;
+        }
+        else if (productDesc == '') {
+            Swal.fire(
+                'Error en descripción de producto.',
+                'Es necesario especificar una descripción para el producto que intenta registrar.',
+                'warning'
+            ).then((result) => {
+                $('#descripcion').focus();
+            })
+            return false;
+        }
+        else if (productPoints <= 0) {
+            Swal.fire(
+                'Error en cantidad de puntos.',
+                'Es necesario especificar una cantidad mayor a 0.',
+                'warning'
+            ).then((result) => {
+                $('#puntos').focus();
+            })
+            return false;
+        }
+        else if (productImage = '') {
 
+            Swal.fire(
+                'Error en imagen de producto.',
+                'Se.',
+                'warning'
+            ).then((result) => {
+                $('#puntos').focus();
+            })
+            return false;
+        }
+       // alert(productName + productDesc + productPoints +productImage);
+    });
+    
 });
 
