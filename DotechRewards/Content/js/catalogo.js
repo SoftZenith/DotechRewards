@@ -24,7 +24,7 @@
                     .done(function (data) {
                         Swal.fire(
                             'Eliminado',
-                            'El producot ha sido eliminado correctamente',
+                            'El producto ha sido eliminado correctamente',
                             'success'
                         ).then((result) => {
                             location.reload();
