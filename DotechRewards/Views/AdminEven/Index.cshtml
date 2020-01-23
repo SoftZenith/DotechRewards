@@ -1,0 +1,249 @@
+﻿@using DotechRewards.Models;
+@model DotechRewards.Models.Evento
+@{
+    ViewBag.Title = "AdminEven";
+    string user = "";
+    int adminFlg = -1;
+    AdminModel admin = null;
+    try{
+        user = HttpContext.Current.Session["nombre"].ToString();
+        adminFlg = Convert.ToInt32(HttpContext.Current.Session["admin"].ToString());
+        admin = new AdminModel();
+        admin.getEventos();
+    }catch (Exception ex)
+    {
+        { Response.Redirect("~/"); }
+    }finally
+    {
+        if (adminFlg != 1) {
+            { Response.Redirect("~/Usuario"); }
+        }
+    }
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Content/js/eventos.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,800,300' rel='stylesheet' type='text/css'>
+<link href="~/Content/css/card.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<nav class="navbar navbar-light bg-light justify-content-between" style="padding: 0px;">
+    <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top" alt="" style="margin:0px;">
+    <ul class="nav navbar-nav navbar-fixed-top" style="font-weight:normal;">
+        <li><a style="font-size: 20px; margin-right: 18px;">@user</a></li>
+        <div class="d-flex justify-content-end" style="margin-left: -120px;">
+            <li><a href="@Url.Action("Index","Usuario")" style="margin-right:30px;">Cambiar a vista de usuario</a></li>
+            <a href="@Url.Action("LogOff","Home")"><span style="color: red; font-size: 18px; margin-right: 18px;"> Salir</span></a>
+        </div>
+    </ul>
+</nav>
+
+<div class="row justify-content-center" style="margin: 5px">
+    <div class="col-md-2 menu-conteiner">
+        <nav class="navbar bg-light navbar-light" style="margin-left: -18px; margin-right: 22px; margin-top: -5px;">
+            <ul class="navbar-nav" style="margin-left: -18px; margin-right: 22px; margin-top: -5px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminUsr" style="padding-left:20px; padding-right: 27px; padding-top: 25px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-user">&nbsp&nbspUsuario</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="AdminEven" style="padding-left:20px; padding-right: 27px; padding-top: 20px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-birthday-cake">&nbsp&nbspEventos</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminCat" style="padding-left:20px; padding-right: 17px; padding-top: 20px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-shopping-cart">&nbspCatálogos</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminPrin" style="padding-left:20px; padding-right: 17px; padding-top: 20px; padding-bottom: 24px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-tasks">&nbspAsistencia</i></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+    <div class="col-md-10">
+        <div class="row justify-content-start" style="margin: 5px">
+            <div class="col-md-12">
+                <div class="row justify-content-start" style="margin: 5px">
+                    <div class="col-md-2">
+                        <h3 style="margin-left: 90px;">Evento: </h3>
+                    </div>
+                    <div class="col-md-3" style="margin-left:20px;">
+                        <input type="text" class="form-control" onkeyup="myFunction()" id="myInput">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin: 5px">
+            <div class="col-md-12">
+                <table class="table table-sm" style="margin-left: 30px;" id="myTable">
+                    <thead style="display: block;">
+                        <tr>
+                            <th scope="col" width="290px" style="text-align: center">Evento</th>
+                            <th scope="col" width="390px" style="text-align: center">Lugar</th>
+                            <th scope="col" width="140px" style="text-align: center">Fecha</th>
+                            <th scope="col" width="80px" style="text-align: center">Asistentes</th>
+                            <th scope="col" width="70px" style="text-align: center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display: block; height: 368px; overflow-y: auto; overflow-x: hidden;">
+                        @foreach (Evento evento in admin.eventos)
+                        {
+                            <tr>
+                                <td width="300px" style="text-align: center">@evento.nombre</td>
+                                <td width="390px" style="text-align: center">@evento.lugar</td>
+                                <td width="130px" style="text-align: center">@evento.fecha</td>
+                                <td width="130px" style="text-align: center">@evento.asistentes</td>
+                                <td width="80px" style="text-align: end">
+                                    <div class="row">
+                                        <button type="button" class="btnEditE" data-id="@evento.idEvento" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
+                                                data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen" 
+                                                data-urle="@evento.url" data-toggle="modal" data-target="#exampleModal">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btnDelE" data-id="@evento.idEvento">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row justify-content-start" style="margin: 5px">
+            <div class="col-md-12">
+
+                @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+                {
+                <div class="row justify-content-start" style="margin: 10px">
+                    <div class="col-md-4">
+                        @Html.TextBox("Lista_asis", "", new { @class = "form-control-file", type = "file", id = "Lista_asis" })
+                    </div>
+                    <div class="col-md-4" style="margin-left:0px;">
+                        <button type="submit">Subir lista</button>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="float: right;">
+                            <button id="btnAddE" class="btn btn-link add-button" data-toggle="modal" data-target="#EventModal">
+                                <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                }
+                </div>
+        </div>
+
+    </div>
+    <footer></footer>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="EventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--//@@using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+    {-->
+            <div class="modal-body">
+                @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
+                <div class="row justify-content-start" style="margin: 5px;">
+                    <div class="col-md-3">
+                        <h5 style="margin-left: 11px;">Nombre evento: </h5>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text", @style = "margin-left: 3px;" })
+                    </div>
+                    <div class="col-md-1">
+                        <h5 style="margin-left: 0px;">Puntos: </h5>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number", @style = "margin-left: 10px;", @min = "0" })
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="row justify-content-center" style="margin: 5px">
+                        <div class="col-md-3" style="margin-right: 0px;">
+                            <h5 style="margin-right: 60px;">Lugar: </h5>
+                        </div>
+                        <div class="col-md-3" style="margin-left: -85px;">
+                            @Html.TextBoxFor(m => m.lugar, new { id = "lugar", @class = "form-control", @type = "text", @style = "margin-left:25px;" })
+                        </div>
+                        <div class="col-md-2">
+                            <h5 style="margin-left:15px;">Fecha: </h5>
+                        </div>
+                        <div class="col-md-4" style="margin-left: 10px;">
+                            @Html.TextBoxFor(m => m.fecha, new { id = "fecha", @class = "form-control", @type = "date" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="col-md-4">
+                        <h5>Necesita confirmación: </h5>
+                    </div>
+                    <div class="col-md-2" style="margin-left: -10px; margin-top: 3px;">
+                        @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @type = "checkbox" })
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Cantidad de personas: </h5>
+                    </div>
+                    <div class="col-sm-2" style="margin-left: 0px;">
+                        @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @type = "number", disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="col-md-4">
+                        <h5>Link confirmación: </h5>
+                    </div>
+                    <div class="col-md-2" style="margin-left: -10px; margin-top: 3px;">
+                        @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @type = "checkbox" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="col-md-2">
+                        <h5>Imagen: </h5>
+                    </div>
+                    <div class="col-md-6" style="margin-left: -20px;">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
+                            @Html.TextBox("Foto_Camp", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Camp" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="previewImg" src="" alt="Preview de la imagen" height="50" width="240" style="margin-left: -13px;" />
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="col-md-3">
+                        <h5>0 confirmado(s)</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <a id="downloadLista" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+            <!--}-->
+        </div>
+    </div>
+</div>
+<!-- /Modal -->

@@ -1,0 +1,244 @@
+﻿@using DotechRewards.Models
+@model Usuario
+@{
+    ViewBag.Title = "Usuario";
+    var user = "";
+    var idUsr = "";
+    int adminFlg = -1;
+    AdminModel admin = null;
+    UsuarioModel bannerP = null;
+    try
+    {
+        user = HttpContext.Current.Session["nombre"].ToString();
+        idUsr = HttpContext.Current.Session["user"].ToString();
+        adminFlg = Convert.ToInt32(HttpContext.Current.Session["admin"].ToString());
+        admin = new AdminModel();
+        bannerP = new UsuarioModel();
+        admin.getUsuarios();
+        bannerP.getHistorialUsuario(idUsr);
+        bannerP.getTotalPuntos(idUsr);
+    }
+    catch (Exception ex)
+    {
+        { Response.Redirect("~/"); }
+    }
+    finally {
+        if (adminFlg != 1) {
+            { Response.Redirect("~/Usuario"); }
+        }
+    }
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/Content/js/Usuario.js"></script>
+<script src="~/Content/js/adminUsr.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,800,300' rel='stylesheet' type='text/css'>
+<link href="~/Content/css/card.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<nav class="navbar navbar-light bg-light justify-content-between" style="padding: 0px;">
+    <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top" alt="" style="margin:0px;">
+    <ul class="nav navbar-nav navbar-fixed-top" style="font-weight:normal;">
+        <li><a style="font-size: 20px; margin-right: 18px;">@user</a></li>
+        <!--<li><a href="#">Cambiar contraseña</a></li>-->
+        <div class="d-flex justify-content-end" style="margin-left: -120px;">
+            <a href="@Url.Action("LogOff","Home")"><span style="color: red; font-size: 18px; margin-right: 18px;"> Salir</span></a>
+        </div>
+    </ul>
+</nav>
+
+<div class="row justify-content-center" style="margin: 5px">
+    <div class="col-md-2 menu-conteiner">
+        <nav class="navbar bg-light navbar-light" style="margin-left: -18px; margin-right: 22px; margin-top: -5px;">
+            <ul class="navbar-nav" style="margin-left: -18px; margin-right: 22px; margin-top: -5px;">
+                <li class="nav-item">
+                    <a class="nav-link active" href="AdminUsr" style="padding-left:20px; padding-right: 27px; padding-top: 25px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-user">&nbsp&nbspUsuario</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminEven" style="padding-left:20px; padding-right: 27px; padding-top: 20px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-birthday-cake">&nbsp&nbspEventos</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminCat" style="padding-left:20px; padding-right: 17px; padding-top: 20px; padding-bottom: 20px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-shopping-cart">&nbspCatálogos</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminPrin" style="padding-left:20px; padding-right: 17px; padding-top: 20px; padding-bottom: 24px; font-size: 28px; border-style: solid; border-width: 0px 1px 1px 1px;"><i class="fas fa-tasks">&nbspAsistencia</i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-10">
+        <div class="row justify-content-center" style="margin: 5px">
+            <div class="col-md-12">
+                <div class="row justify-content-center" style="margin: 5px">
+                    <div class="col-md-2">
+                        <h3 style="margin-left: 50px;">Usuario: </h3>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="myInput" onkeyup="myFunction()">
+                    </div>
+                    <div class="col-md-3">
+                        <h3>Puesto/asignación: </h3>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="myInput2" onkeyup="myFunction2()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin: 5px">
+            <div class="col-md-12">
+                <table class="table table-sm" id="myTable">
+                    <thead style="display: block;">
+                        <tr>
+                            <th scope="col" width="200px" style="text-align: center">Usuario</th>
+                            <th scope="col" width="390px" style="text-align: center">Puesto/asignación</th>
+                            <th scope="col" width="160px" style="text-align: center">Fecha entrada</th>
+                            <th scope="col" width="140px" style="text-align: center">Cumpleaños</th>
+                            <th scope="col" width="125px" style="text-align: center">Puntos</th>
+                            <th scope="col" width="100px" style="text-align: end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="display: block; height: 330px; overflow-y: auto; overflow-x: hidden;">
+
+                        @foreach (Usuario usr in admin.usuarios){
+                            <tr>
+                                <td width="200px" style="text-align: center">@usr.usuario</td>
+                                <td width="360px" style="text-align: center">@usr.puesto</td>
+                                <td width="150px" style="text-align: center">@usr.fecha_entrada</td>
+                                <td width="140px" style="text-align: center">@usr.cumpleaños</td>
+                                <td width="140px" style="text-align: center">@usr.puntos</td>
+                                <td width="80px" style="text-align: end">
+                                    <div class="row">
+                                        <button type="button" class="btnEditU" data-id="@usr.idUsuario" 
+                                                data-nombre="@usr.nombre" data-usuario="@usr.usuario" data-puesto="@usr.puesto" data-entrada="@usr.fecha_entrada" 
+                                                data-cumple="@usr.cumpleaños" 
+                                                data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btnDelU" data-id="@usr.idUsuario"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="float: right;">
+            <button id="btnAddU" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <footer></footer>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form action="/AdminUsr/AddUsuario" method="post" >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle de usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center" style="margin: 5px">
+                        @Html.TextBoxFor(m => m.idUsuario, new { @type = "hidden", @class = "form-control", @id = "idUsuarioModal", style = "margin-left: 15px;" })
+                        <div class="col-md-4">
+                            <h5 style="margin-left: 41px;">Nombre completo: </h5>
+                        </div>
+                        <div class="col-md-8">
+                            <!--<input type="text" class="form-control" id="nombreModal" style="margin-left: 15px;">-->
+                            @Html.TextBoxFor(m => m.nombre, new { @type = "text", @class = "form-control", @id = "nombreModal", style = "margin-left: 15px;" })
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin: 5px">
+                        <div class="col-md-4">
+                            <h5 style="margin-left: 41px;">Usuario: </h5>
+                        </div>
+                        <div class="col-md-8">
+                            <!--<input type="text" class="form-control" id="usuarioModal" style="margin-left: 15px;">-->
+                            @Html.TextBoxFor(m => m.usuario, new { @type = "text", @class = "form-control", @id = "usuarioModal", style = "margin-left: 15px;" })
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin: 5px">
+                        <div class="col-md-4">
+                            <h5 style="margin-left: 41px;">Puesto/Asginación: </h5>
+                        </div>
+                        <div class="col-md-8">
+                            <!--<input type="text" class="form-control" id="puesto_asign" style="margin-left: 15px;">-->
+                            @Html.TextBoxFor(m => m.puesto, new { @type = "text", @class = "form-control", @id = "puesto_asign", style = "margin-left: 15px;" })
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin: 5px">
+                        <div class="row justify-content-center" style="margin: 5px">
+                            <div class="col-md-3">
+                                <h5>Fecha Entrada:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <!--<input type="date" class="form-control" id="fecha_entrada">-->
+                                @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date" })
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Cumpleaños: </h5>
+                            </div>
+                            <div class="col-md-3">
+                                <!--<input type="date" class="form-control" id="fecha_cumple">-->
+                                @Html.TextBoxFor(m => m.cumpleaños, new { @class = "form-control", @id = "fecha_cumple", @type = "date" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin: 5px">
+                        <table class="table table-sm" id="historialTable">
+                            <thead style="display: block;">
+                                <tr>
+                                    <th scope="col" width="100px" style="text-align: center">Fecha</th>
+                                    <th scope="col" width="500px" style="text-align: center">Actividad</th>
+                                    <th scope="col" width="100px" style="text-align: center">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody style="display: block; height: 120px; overflow-y: auto; overflow-x: hidden;">
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-2">
+                            <h5>Descripcion:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="descripcion" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <h5>puntos: </h5>
+                        </div>
+                        <div class="col-md-2">
+                            <input id="puntos" type="number" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <button id="btnAsignar" type="button" class="btn btn-primary">Asignar</button>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="btnCobrar" type="button" class="btn btn-danger" style="margin-left: -30px;">Cobrar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Modal -->

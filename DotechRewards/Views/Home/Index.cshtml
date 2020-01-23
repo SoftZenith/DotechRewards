@@ -1,31 +1,45 @@
-﻿@{
+﻿@model DotechRewards.Models.UsuarioModel
+
+@{
     ViewBag.Title = "Home Page";
+    string contrasena = "";
 }
+<html>
+<head>
+    <script src="~/Content/js/home.js"></script>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="~/Content/images/login_reward.png" id="icon" alt="User Icon" width="60" height="125" style="margin-top:30px; margin-bottom: 20px;" />
+                </div>
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "Login" }))
+                {
+                    <div class="input-group mb-5">
+                        @Html.TextBoxFor(m => m.usuario, new { id = "usuario", @placeholder = "Usuario", @class = "form-control form-control-lg", @maxlength="25", @style="text-align: right; border-radius: 5px; background-color: white; border: 1px solid gray;" })
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2" style="margin-top:5px; margin-right:3px; height:95%;">@@dotech.com.mx</span>
+                        </div>
+                    </div>
+                    @Html.TextBoxFor(m => m.contrasena, new { id = "contrasena", @placeholder = "Contraseña", @class = "form-control form-control-lg", @maxlength="16",@type = "password", @style = "margin-left: 5px; width: 98%; text-align:center; margin-top:-30px; border: 1px solid gray; height: 53px; font-size:1.03rem" })
+                    <button type="submit" class="btn btn-success" onclick="btnLogin()" style="margin-top:15px; margin-bottom:15px; width: 150px;"> Entrar </button>
+                }
+                <!-- Olvidar contraseña -->
+                <div id="formFooter" style="padding: 5px;">
+                    <a id="OlvideCon" class="underlineHover" href="#" onclick="olvideContrasena()">¿Olvidaste tu contraseña?</a>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+            </div>
+        </div>
+    </body>
+</html>
