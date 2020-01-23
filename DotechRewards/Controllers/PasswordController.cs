@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotechRewards.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,8 +26,8 @@ namespace DotechRewards.Controllers
         [HttpPost]
         public ActionResult ChangePassword(string password, string uuid)
         {
-
-            return null;
+            PasswordModel.ResetPassword(uuid, password);
+            return RedirectToAction("Index", "Home");
         }
 
     }

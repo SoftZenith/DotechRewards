@@ -2,13 +2,20 @@
 
     $("form").submit(function (event) {
         if ($('#idPassword').val() == "") {
-            alert("Error poner un password");
+            //swal("Error", "Ingresa tu nueva contraseña", "error");
+            alert("Ingresa tu nueva contraseña");
+            event.preventDefault();
             return;
         }
         if ($('#idPassword').val().length < 6) {
-            alert("ERror en tamaño de password");
+            //swal("Error", "Ingresa una contraseña de al menos 6 caracteres", "error");
+            alert("Ingresa una contraseña de al menos 6 caracteres")
+            event.preventDefault();
             return;
         }
+
+
+
     });
 
 });
