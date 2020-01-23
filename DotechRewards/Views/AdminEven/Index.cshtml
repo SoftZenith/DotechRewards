@@ -100,7 +100,7 @@
                                     <div class="row">
                                         <button type="button" class="btnEditE" data-id="@evento.idEvento" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
                                                 data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen" 
-                                                data-urle="@evento.url" data-toggle="modal" data-target="#exampleModal">
+                                                data-urle="@evento.url" data-toggle="modal" data-target="#EventModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                         <button type="button" class="btnDelE" data-id="@evento.idEvento">
@@ -118,8 +118,8 @@
         <div class="row justify-content-start" style="margin: 5px">
             <div class="col-md-12">
 
-                @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
-                {
+                <!--@@using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+                {-->
                 <div class="row justify-content-start" style="margin: 10px">
                     <div class="col-md-4">
                         @Html.TextBox("Lista_asis", "", new { @class = "form-control-file", type = "file", id = "Lista_asis" })
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                }
+                <!--}-->
                 </div>
         </div>
 
@@ -153,8 +153,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <!--//@@using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
-    {-->
+            @using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+            {
             <div class="modal-body">
                 @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
                 <div class="row justify-content-start" style="margin: 5px;">
@@ -242,7 +242,7 @@
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
-            <!--}-->
+            }
         </div>
     </div>
 </div>
