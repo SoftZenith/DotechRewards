@@ -99,6 +99,8 @@
         $.post("/AdminEven/SubirLista");
     });
 
+    
+
     $('#Foto_Camp').change(function () {
         var fileName = document.getElementById("Foto_Camp").value; //c:fakepath/imagen.jpg
         var idxDot = fileName.lastIndexOf(".") + 1;
@@ -110,7 +112,8 @@
 
         if (extFile == "jpg") {
 
-            var Fotofile = document.querySelector('input[type=file]').files[0];
+            //var Fotofile = document.querySelector('input[type=file]').files[0];
+            var Fotofile = $("*:file")[1].files[0];
             var nombreEspacio = Fotofile.name;
             var reader = new FileReader();
             reader.readAsDataURL(Fotofile);
@@ -151,6 +154,7 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
+                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
                         }
                     }
@@ -163,6 +167,7 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
+                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
                         }
                     }
