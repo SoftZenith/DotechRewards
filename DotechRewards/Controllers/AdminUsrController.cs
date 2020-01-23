@@ -1,4 +1,5 @@
 ﻿using DotechRewards.Models;
+using System;
 using System.Web.Mvc;
 
 namespace DotechRewards.Controllers
@@ -27,6 +28,11 @@ namespace DotechRewards.Controllers
         [HttpPost]
         public ActionResult AsignarPuntos(string nUsuario, string descripcion, int puntos) {
             int idUsuario = AdminModel.getIdusuario(nUsuario);
+            try {
+                idUsuario = Convert.ToInt32(nUsuario);
+            } catch (Exception ex) { 
+            
+            }
             AdminModel.AsignarPuntos(idUsuario, 0, descripcion, puntos);
             return null;
         }
@@ -35,6 +41,13 @@ namespace DotechRewards.Controllers
         public ActionResult AsignarPuntosE(string nUsuario, int idEvento, int puntos)
         {
             int idUsuario = AdminModel.getIdusuario(nUsuario);
+            try
+            {
+                idUsuario = Convert.ToInt32(nUsuario);
+            }
+            catch (Exception ex) { 
+                
+            }
             AdminModel.AsignarPuntos(idUsuario, idEvento,"", puntos);
             return null;
         }

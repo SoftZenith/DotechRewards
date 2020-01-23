@@ -16,8 +16,7 @@ namespace DotechRewards.Controllers
         [HttpPost]
         public ActionResult AddProducto(Producto productoPos) {
             String imagen = "";
-            try
-            {
+            try{
                     HttpPostedFileBase file = Request.Files[0];
                     file = Request.Files[0];
                     string ruta = Server.MapPath("~/Content/images/");
@@ -25,8 +24,7 @@ namespace DotechRewards.Controllers
                     file.SaveAs(ruta);
 
                     imagen = file.FileName.Substring(0, file.FileName.Length);
-            }
-            catch (Exception ex) {
+            }catch (Exception ex) {
                 imagen = productoPos.imagen;
             }
             AdminModel model = new AdminModel();

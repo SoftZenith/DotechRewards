@@ -72,8 +72,8 @@
     });
 
     $('#btnAsignar').click(function () {
-
-        $.post("/AdminUsr/AsignarPuntos", { idUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
+        var idUSur = $('#idUsuarioModal').val();
+        $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
                 //Llenar tabla historial
                 $.post("/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
