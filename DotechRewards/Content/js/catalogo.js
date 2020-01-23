@@ -59,5 +59,42 @@
         }
     }
 
+    $('#Foto_Prd').change(function () {
+        var file = document.getElementById("Foto_Prd"); 
+        var width = file.clientWidth;
+        var height = file.clientHeight;
+        console.log('el ancho es : ' + width + '   la altura es:' + height);
+        if (width != 1290) {
+            if (width != 1290) {
+                console.log("Error ancho");
+                Swal.fire(
+                    'Error en imagen',
+                    'La imagen debe tener un ancho de 1290 pixeles.',
+                    'warning'
+                ).then((result) => {
+                    $('#previewImg').attr('src', '');
+                })
+                $('#Foto_Prd').val('');
+                $('#previewImg').attr('src', '');
+                return false;
+            }
+        }
+        if (height != 210) {
+            if (height != 210) {
+                console.log("Error alto");
+                Swal.fire(
+                    'Error en imagen',
+                    'La imagen debe tener un alto de 350 pixeles.',
+                    'warning'
+                );
+                $('#Foto_Prd').val('');
+                $('#previewImg').attr('src', '');
+                return false;
+            }
+        }
+    });
+
+    
+
 });
 

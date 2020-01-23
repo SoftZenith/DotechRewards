@@ -100,7 +100,6 @@
     });
 
     $('#Foto_Camp').change(function () {
-
         var fileName = document.getElementById("Foto_Camp").value; //c:fakepath/imagen.jpg
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase(); //jpg
