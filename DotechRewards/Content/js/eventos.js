@@ -3,7 +3,7 @@
         $('#confirmacionEven').prop('checked', false);
         $('#confirmacionLink').prop('checked', false);
         $('#cantidadPersonas').prop('disabled', true);
-
+        
         $('#idEventoM').val($(this).data('id'));
         $('#edtFoto').val($(this).data('image'));
         $('#previewImg').attr('src', 'Content/images/'+$(this).data('image'));
@@ -13,10 +13,13 @@
         $('#urlConfirmacion').val($(this).data('urle'));
         if ($(this).data('urle')) {
             $('#confirmacionLink').prop('checked', true);
+            $('#confirmacionEven').prop('checked', $(this).data('confirmacion').toLowerCase() === 'true');
         } else {
-            $('#confirmacionEven').prop('checked', true);
+            $('#confirmacionEven').prop('checked', $(this).data('confirmacion').toLowerCase() === 'true');
+            console.log($(this).data('confirmacion').toLowerCase() === 'true');
             $('#cantidadPersonas').prop('disabled', false);
         }
+
         $('#cantidadPersonas').val($(this).data('asistentes'));
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');

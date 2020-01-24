@@ -78,7 +78,7 @@ namespace DotechRewards.Models
                     eventos = new List<Evento>();
                     while (reader.Read())
                     {
-                        eventos.Add(new Evento(
+                        /*eventos.Add(new Evento(
                                 Convert.ToInt16(reader["idActividad"].ToString()),
                                 reader["nombre"].ToString(),
                                 reader["lugar"].ToString(),
@@ -87,7 +87,18 @@ namespace DotechRewards.Models
                                 reader["imagen"].ToString(),
                                 Convert.ToInt16(reader["puntos"].ToString()),
                                 reader["url"].ToString()
-                            ));
+                            ));*/
+                        eventos.Add(new Evento() { 
+                            idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
+                            nombre = reader["nombre"].ToString(),
+                            lugar = reader["lugar"].ToString(),
+                            fecha = reader["fecha"].ToString().Substring(0, 10),
+                            asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
+                            imagen = reader["imagen"].ToString(),
+                            puntos = Convert.ToInt16(reader["puntos"].ToString()),
+                            url = reader["url"].ToString(),
+                            confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false
+                        });
                     }
 
                 }
@@ -492,6 +503,8 @@ namespace DotechRewards.Models
             this.imagen = imagen;
             this.puntos = puntos;
         }
+
+        
 
         public Evento(int idEvento, string nombre, string lugar, string fecha, int asistentes, string imagen, int puntos, string url)
         {
