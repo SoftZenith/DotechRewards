@@ -102,12 +102,12 @@
                     }
                     var height = this.height;
                     var width = this.width;
-                    if (width != 290) {
-                        if (width != 290) {
+                    if (width != 250) {
+                        if (width != 250) {
                             console.log("Error ancho");
                             Swal.fire(
                                 'Error en imagen',
-                                'La imagen debe tener un ancho de 1290 pixeles.',
+                                'La imagen debe tener un ancho de 250 pixeles.',
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
@@ -115,12 +115,12 @@
                             return false;
                         }
                     }
-                    if (height != 100) {
-                        if (height != 100) {
+                    if (height != 130) {
+                        if (height != 130) {
                             console.log("Error alto");
                             Swal.fire(
                                 'Error en imagen',
-                                'La imagen debe tener un alto de 350 pixeles.',
+                                'La imagen debe tener un alto de 130 pixeles.',
                                 'warning'
                             );
                             $('#Foto_Camp').val('');

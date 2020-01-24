@@ -163,7 +163,7 @@
                             console.log("Error alto");
                             Swal.fire(
                                 'Error en imagen',
-                                'La imagen debe tener un alto de 350 pixeles.',
+                                'La imagen debe tener un alto de 210 pixeles.',
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
