@@ -60,38 +60,91 @@
     }
     
     $('#Foto_Prd').change(function () {
-        var file = document.getElementById("Foto_Prd"); 
-        var width = file.clientWidth;
-        var height = file.clientHeight;
-        console.log('el ancho es : ' + width + '   la altura es:' + height);
-       // if (width != 358) {
-            if (width != 358) {
-                console.log("Error ancho");
-                Swal.fire(
-                    'Error en imagen',
-                    'La imagen debe tener un ancho de 1290 pixeles.',
-                    'warning'
-                ).then((result) => {
-                    $('#previewImg').attr('src', '');
-                })
-                $('#Foto_Prd').val('');
-                $('#previewImg').attr('src', '');
-                return false;
+
+        var fileName = document.getElementById("Foto_Prd").value; //c:fakepath/imagen.jpg
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase(); //jpg
+
+        var $i = $('#Foto_Prd'), input = $i[0];
+
+        
+
+        if (extFile == "jpg") {
+            var Fotofile = $("*:file")[1].files[0];
+            var nombreEspacio = Fotofile.name;
+            var reader = new FileReader();
+            reader.readAsDataURL(Fotofile);
+
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                image.onload = function () {
+
+                    nombreEspacio = nombreEspacio.substr(0, nombreEspacio.length - 4); //Obtener nombre sin extension .jpg
+
+                    if (nombreEspacio[nombreEspacio.length - 1] == " ") {
+                        Swal.fire(
+                            'Error en imagen',
+                            'La imagen no pueden contener espacios al final de su nombre.',
+                            'warning'
+                        );
+                        $('#Foto_Camp').val('');
+                        return false;
+                    }
+                    if (nombreEspacio[0] == " ") {
+                        Swal.fire(
+                            'Error en imagen',
+                            'La imagen no pueden contener espacios al inicio de su nombre.',
+                            'warning'
+                        );
+                        $('#Foto_Camp').val('');
+                        return false;
+                    }
+                    var height = this.height;
+                    var width = this.width;
+                    if (width != 290) {
+                        if (width != 290) {
+                            console.log("Error ancho");
+                            Swal.fire(
+                                'Error en imagen',
+                                'La imagen debe tener un ancho de 1290 pixeles.',
+                                'warning'
+                            );
+                            $('#Foto_Camp').val('');
+                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            return false;
+                        }
+                    }
+                    if (height != 100) {
+                        if (height != 100) {
+                            console.log("Error alto");
+                            Swal.fire(
+                                'Error en imagen',
+                                'La imagen debe tener un alto de 350 pixeles.',
+                                'warning'
+                            );
+                            $('#Foto_Camp').val('');
+                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            return false;
+                        }
+                    }
+                    console.log("Buena Imagen");
+                    readURL(this);
+                };
             }
-        //}
-        //if (height != 30) {
-            if (height != 30) {
-                console.log("Error alto");
-                Swal.fire(
-                    'Error en imagen',
-                    'La imagen debe tener un alto de 350 pixeles.',
-                    'warning'
-                );
-                $('#Foto_Prd').val('');
-                $('#previewImg').attr('src', '');
-                return false;
-            }
-        //}
+
+        } else {
+            console.log("Error formato");
+            Swal.fire(
+                'Error en imagen',
+                'Solo se permiten archivos de imágenes en formato JPG.',
+                'warning'
+            );
+            $('#Foto_Camp').val('');
+            return false;
+        }
+        
+        
     });
 
     $('#btnGuardarPrd').click(function () {
