@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using DotechRewards.Models;
+using DotechRewards.Util;
 using System;
 using System.Data;
 using System.IO;
@@ -91,7 +92,7 @@ namespace DotechRewards.Controllers
                 nombreArchivo = file.FileName.Substring(0, file.FileName.Length);
 
                 //Leer archivo desde Model
-                AdminEvenModel.leerListaAsistencia(nombreArchivo);
+                Retorno retorno = AdminEvenModel.leerListaAsistencia(ruta);
                 return RedirectToAction("Index");
             }
             catch (Exception ex) {

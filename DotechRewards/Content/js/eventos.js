@@ -3,7 +3,7 @@
         $('#confirmacionEven').prop('checked', false);
         $('#confirmacionLink').prop('checked', false);
         $('#cantidadPersonas').prop('disabled', true);
-        
+        $('#h5confirmados').html($(this).data('confirmados') + ' confirmado(s)');
         $('#idEventoM').val($(this).data('id'));
         $('#edtFoto').val($(this).data('image'));
         $('#previewImg').attr('src', 'Content/images/'+$(this).data('image'));

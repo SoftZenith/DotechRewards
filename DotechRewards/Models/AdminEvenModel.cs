@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DotechRewards.Util;
 using DotechRewards.Util.Database;
 using System;
 using System.Data;
@@ -42,10 +43,10 @@ namespace DotechRewards.Models
 
         }
 
-        public static bool leerListaAsistencia(string nombreArchivo) {
+        public static Retorno leerListaAsistencia(string nombreArchivo) {
 
             string fileName = @"C:\Users\BHN_R\source\repos\DotechRewards\DotechRewards\Content\Listas\" + nombreArchivo;
-            using (var excelWorkbook = new XLWorkbook(fileName))
+            using (var excelWorkbook = new XLWorkbook(nombreArchivo))
             {
                 var nonEmptyDataRows = excelWorkbook.Worksheet(1).RowsUsed();
 
@@ -54,21 +55,41 @@ namespace DotechRewards.Models
                     //for row number check
                     if (dataRow.RowNumber() > 1)
                     {
-                        int idUsuario = Convert.ToInt32(dataRow.Cell(1).Value);
-                        int idEvento = Convert.ToInt32(dataRow.Cell(2).Value);
-                        string nombre = dataRow.Cell(3).Value.ToString();
-                        string evento = dataRow.Cell(4).Value.ToString();
-                        int puntos = Convert.ToInt32(dataRow.Cell(5).Value);
-                        string lugar = dataRow.Cell(6).Value.ToString();
-                        int confirmacion = Convert.ToInt32(dataRow.Cell(7).Value);
-                        int personas = Convert.ToInt32(dataRow.Cell(8).Value);
-                        int asistencia = Convert.ToInt32(dataRow.Cell(9).Value);
-                        AdminModel.AsignarPuntos(idUsuario, idEvento, "", puntos);
+                        try {
+                            int idUsuario = Convert.ToInt32(dataRow.Cell(1).Value);
+                            int idEvento = Convert.ToInt32(dataRow.Cell(2).Value);
+                            string nombre = dataRow.Cell(3).Value.ToString();
+                            string evento = dataRow.Cell(4).Value.ToString();
+                            int puntos = Convert.ToInt32(dataRow.Cell(5).Value);
+                            string lugar = dataRow.Cell(6).Value.ToString();
+                            int confirmacion = Convert.ToInt32(dataRow.Cell(7).Value);
+                            int personas = Convert.ToInt32(dataRow.Cell(8).Value);
+                            int asistencia = 0;
+                            try
+                            {
+                                Convert.ToInt32(dataRow.Cell(9).Value);
+                                asistencia = 1;
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+                            //Validar si evento ya se cargo
+                            AdminModel.AsignarPuntos(idUsuario, idEvento, evento, puntos);
+                        } catch (Exception ex) {
+                            return new Retorno() { 
+                                estatus = false,
+                                mensaje = "Archivo corrupto uno o más datos no estan en el formato correcto"
+                            };
+                        }
                     }
                 }
             }
 
-            return false;
+            return new Retorno() { 
+                estatus = true,
+                mensaje = ""
+            };
         }
 
     }

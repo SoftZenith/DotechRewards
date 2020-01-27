@@ -88,7 +88,8 @@ namespace DotechRewards.Models
                                 Convert.ToInt16(reader["puntos"].ToString()),
                                 reader["url"].ToString()
                             ));*/
-                        eventos.Add(new Evento() { 
+                        eventos.Add(new Evento()
+                        {
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
                             nombre = reader["nombre"].ToString(),
                             lugar = reader["lugar"].ToString(),
@@ -97,8 +98,9 @@ namespace DotechRewards.Models
                             imagen = reader["imagen"].ToString(),
                             puntos = Convert.ToInt16(reader["puntos"].ToString()),
                             url = reader["url"].ToString(),
-                            confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false
-                        });
+                            confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false,
+                            confirmados = Convert.ToInt32(reader["confirmados"].ToString())
+                        }); 
                     }
 
                 }
@@ -572,6 +574,7 @@ namespace DotechRewards.Models
         public Boolean confirmacion { get; set; }
         public string url { get; set; }
         public int puntos { get; set; }
+        public int confirmados { get; set; }
     }
 
     public class Producto {

@@ -100,7 +100,7 @@
                                     <div class="row">
                                         <button type="button" class="btnEditE" data-id="@evento.idEvento" data-confirmacion="@evento.confirmacion" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
                                                 data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen" 
-                                                data-urle="@evento.url" data-toggle="modal" data-target="#EventModal">
+                                                data-urle="@evento.url" data-confirmados="@evento.confirmados" data-toggle="modal" data-target="#EventModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
                                         <button type="button" class="btnDelE" data-id="@evento.idEvento">
@@ -232,7 +232,7 @@
                 </div>
                 <div class="row justify-content-center" style="margin: 5px">
                     <div class="col-md-3">
-                        <h5>0 confirmado(s)</h5>
+                        <h5 id="h5confirmados"> confirmado(s)</h5>
                     </div>
                     <div class="col-md-6">
                         <a id="downloadLista" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
