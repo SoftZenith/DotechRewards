@@ -2,6 +2,7 @@
 @model DotechRewards.Models.Evento
 @{
     ViewBag.Title = "AdminEven";
+    bool exitos = ViewBag.exitoso == 1 ? true : false;
     string user = "";
     int adminFlg = -1;
     AdminModel admin = null;
@@ -118,7 +119,7 @@
         <div class="row justify-content-start" style="margin: 5px">
             
                 <div class="col-md-10">
-                    @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEventos", enctype = "multipart/form-data" }))
                     {
                         <div class="row justify-content-start" style="margin: 10px">
                             <div class="col-md-6">
@@ -250,4 +251,13 @@
         </div>
     </div>
 </div>
+<script>
+    if ('@exitos' === 'True') {
+        Swal.fire(
+            'Cargado',
+            'El archivo se ha cargado correctamente',
+            'success'
+        );
+    }
+</script>
 <!-- /Modal -->

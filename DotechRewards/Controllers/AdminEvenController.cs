@@ -11,11 +11,13 @@ namespace DotechRewards.Controllers
 {
     public class AdminEvenController : Controller
     {
+        public int exitoSubirLista = 0;
+
         // GET: AdminEven
         public ActionResult Index()
         {
             ViewBag.idEvento = 0;
-
+            ViewBag.exitoso = exitoSubirLista;
             return View();
         }
         [HttpPost]
@@ -93,10 +95,21 @@ namespace DotechRewards.Controllers
 
                 //Leer archivo desde Model
                 Retorno retorno = AdminEvenModel.leerListaAsistencia(ruta);
-                return RedirectToAction("Index");
+                if (retorno.estatus)
+                {
+                    exitoSubirLista = 1;
+                    ViewBag.exitoso = 1;
+                }
+                else {
+                    exitoSubirLista = 0;
+                    ViewBag.exitoso = 0;
+                }
+                return View("Index");
             }
             catch (Exception ex) {
-                return RedirectToAction("Index");
+                exitoSubirLista = 0;
+                ViewBag.exitoso = 0;
+                return View("Index");
             }
         }
 
