@@ -179,7 +179,6 @@
                 };
             }
         } else {
-            console.log("Error formato");
             Swal.fire(
                 'Error en imagen',
                 'Solo se permiten archivos de imágenes en formato JPG.',
