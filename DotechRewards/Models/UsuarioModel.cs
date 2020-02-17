@@ -303,12 +303,20 @@ namespace DotechRewards.Models
 
                     cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = user;
                     SqlDataReader reader = cmd.ExecuteReader();
-                    
-                    while (reader.Read())
-                    {
-                        this.puntos = Convert.ToInt16(reader["PUNTOS"].ToString());
-                    }
 
+                    System.Console.WriteLine(this.puntos + " total del puntos");
+                    while (reader.Read()) { 
+
+                        try
+                        {
+                            this.puntos = Convert.ToInt16(reader["PUNTOS"].ToString());
+                        }
+                        catch (Exception e)
+                        {
+                            this.puntos = 0;
+                        }
+                        
+                    }
                 }
                 catch (Exception ex)
                 {

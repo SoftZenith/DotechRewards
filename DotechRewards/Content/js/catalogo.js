@@ -62,6 +62,7 @@
     $('#Foto_Prd').change(function () {
 
         var fileName = document.getElementById("Foto_Prd").value; //c:fakepath/imagen.jpg
+        var fileButon = document.getElementById("btnGuardarPrd");
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase(); //jpg
 
@@ -88,6 +89,8 @@
                             'La imagen no pueden contener espacios al final de su nombre.',
                             'warning'
                         );
+
+                        $('#btnGuardarPrd').attr('disabled', true);
                         $('#Foto_Camp').val('');
                         return false;
                     }
@@ -97,6 +100,8 @@
                             'La imagen no pueden contener espacios al inicio de su nombre.',
                             'warning'
                         );
+
+                        $('#btnGuardarPrd').attr('disabled', true);
                         $('#Foto_Camp').val('');
                         return false;
                     }
@@ -111,6 +116,7 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
+                            $('#btnGuardarPrd').attr('disabled', true);
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
                         }
@@ -124,11 +130,13 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
+                            $('#btnGuardarPrd').attr('disabled',true);
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
                         }
                     }
                     console.log("Buena Imagen");
+                    $('#btnGuardarPrd').removeAttr('disabled');
                     readURL(this);
                 };
             }
@@ -140,6 +148,7 @@
                 'Solo se permiten archivos de imágenes en formato JPG.',
                 'warning'
             );
+            $('#btnGuardarPrd').aattr('disabled',true);
             $('#Foto_Camp').val('');
             return false;
         }

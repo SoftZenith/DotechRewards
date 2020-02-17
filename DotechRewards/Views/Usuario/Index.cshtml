@@ -19,8 +19,8 @@
         bannerP.getEventos(idUsr);
         bannerP.getTotalPuntos(idUsr);
         bannerP.getActivacionStatus(idUsr);
-        res = bannerP.recompensas.Count % 4;
-        res = res == 1 ? (bannerP.recompensas.Count / 4) + 1 : res;
+        res = bannerP.recompensas.Count;
+        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
     }
     catch (Exception ex)
     {
@@ -60,18 +60,21 @@
 <div class="container-fluid" style="height: 400px">
     <div class="row justify-content-center" style="margin: 5px">
         <div class="col-5" style="margin-top:20px;">
-            <h2 style="margin-left: 50px;">
+            <h2 style="margin-left: 50px; font-size:2.6vw">
                 Actualmente cuentas con:
             </h2>
-            <div class="d-flex justify-content-center" style="margin-top: 15px; margin-bottom: 15px;">
-                <h1 style="margin-left: -30px; font-size: 50px;">
-                    <b>@bannerP.puntos </b>
+            <div class="d-flex justify-content-center" style="display:inline-block; 15px; margin-bottom: 15px;">
+                <h1 style="display:inline-block; font-size:4vw">
+                    <b>@bannerP.puntos</b>
                 </h1>
-                <h5 style="margin-top: 23px;">
+                <h5 style="display:inline-block; font-size:4vw">
                     &nbsp Puntos
                 </h5>
             </div>
-            <!--<a href="#" style="margin-left: 150px">Canjea tus productos</a>-->
+            <div class="d-flex justify-content-center" style="margin-top: 15px; margin-bottom: 15px;">
+                <a class="btn btn-primary" target="_blank" href="/catalogos/TOEFLVocabularyPDF.pdf"
+                   role="button">Canjea tus puntos</a>
+            </div>
         </div>
         <div class="col-7">
             <table class="table table-sm">
@@ -123,10 +126,15 @@
                             <img src="~/Content/images/baner_inferior.png" style="position:absolute;top:160px;z-index:2; opacity: 0.6;filter: alpha(opacity=60);" />
                             <div style="position:absolute;left:25px;top:170px;z-index:2; color: white">@panelP.nombre</div>
                             <div style="position:absolute;left:450px;top:170px;z-index:2; color: white"><span class="far fa-calendar-alt" style="font-size:23px;"></span>&nbsp @panelP.fecha</div>
-                            <div style="position:absolute;left:880px;top:170px;z-index:2; color: white"><span class="fas fa-map-marker-alt" style="font-size:23px;"></span>&nbsp @panelP.lugar</div>
+                            <div style="position:absolute;left:880px;top:170px;z-index:2; color: white"><span class="fas fa-map-marker-alt" style="font-size: 23px;"></span>&nbsp @panelP.lugar</div>
                             @if (panelP.registro == 1)
                             {
-                                <a class="aRegistro" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="position:absolute;left:1150px;top:170px;z-index:2; color: white; cursor: pointer">Registrate aquí</a>
+                                <a class="aRegistro" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="        position: absolute;
+        left: 1150px;
+        top: 170px;
+        z-index: 2;
+        color: white;
+        cursor: pointer">Registrate aquí</a>
                             }
                             @if (panelP.url != "")
                             {
@@ -156,13 +164,6 @@
                     }
                 </div>
 
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#demo" data-slide="prev" style="color:#990303;">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
 
             </div>
         </div>
@@ -181,7 +182,7 @@
                 <!---->
                 <div class="carousel-inner" role="listbox">
                     <!--Slides-->
-                    @for (int i = 0; i < res - 1; i++)
+                    @for (int i = 0; i < res; i++)
                     {
                         if (i == 0)
                         {
