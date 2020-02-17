@@ -159,7 +159,6 @@
     <Content Include="Content\images\dotech.png" />
     <Content Include="Content\images\laptop.jpg" />
     <Content Include="Content\images\login_reward.png" />
-    <Content Include="Content\images\login_rewards.png" />
     <Content Include="Content\images\meeting.png" />
     <Content Include="Content\images\producto.jpg" />
     <Content Include="Content\images\searchicon.png" />
@@ -302,6 +301,7 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <None Include="Properties\PublishProfiles\DotechRewards2020 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -34,13 +34,13 @@ namespace DotechRewards.Models
                     while (reader.Read())
                     {
                         usuarios.Add(new Usuario(
-                                Convert.ToInt16(reader["idUsuario"].ToString()),
+                                Convert.ToInt32(reader["idUsuario"].ToString()),
                                 reader["nombre"].ToString(),
                                 reader["usuario"].ToString(),
                                 reader["puesto"].ToString(),
                                 reader["fecha_entrada"].ToString().Substring(0, 10),
                                 reader["cumpleanios"].ToString().Substring(0, 10),
-                                Convert.ToInt16(reader["puntos"].ToString())
+                                Convert.ToInt32(reader["puntos"].ToString())
                             ));
                     }
 
