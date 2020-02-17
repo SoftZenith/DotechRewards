@@ -69,6 +69,7 @@
         $('#puesto_asign').val('');
         $('#fecha_entrada').val('');
         $('#fecha_cumple').val('');
+        $("#historialTable").find("tr").remove();
     });
 
     $('#btnAsignar').click(function () {

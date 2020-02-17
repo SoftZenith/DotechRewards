@@ -46,6 +46,7 @@
         <li><a style="font-size: 20px; margin-right: 18px;">@user</a></li>
         <!--<li><a href="#">Cambiar contraseña</a></li>-->
         <div class="d-flex justify-content-end" style="margin-left: -120px;">
+            <li><a href="@Url.Action("Index","Usuario")" style="margin-right:30px;">Cambiar a vista de usuario</a></li>
             <a href="@Url.Action("LogOff","Home")"><span style="color: red; font-size: 18px; margin-right: 18px;"> Salir</span></a>
         </div>
     </ul>
@@ -175,21 +176,21 @@
                             @Html.TextBoxFor(m => m.puesto, new { @type = "text", @class = "form-control", @id = "puesto_asign", style = "margin-left: 15px;" })
                         </div>
                     </div>
-                    <div class="row justify-content-center" style="margin: 5px">
+                    <div class="row justify-content-center" style="margin-left: 40px; margin-top: 5px;">
                         <div class="row justify-content-center" style="margin: 5px">
-                            <div class="col-md-3">
+                            <div class="col-md-4" style="margin-left: -10px;">
                                 <h5>Fecha Entrada:</h5>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="margin-left:-18px;">
                                 <!--<input type="date" class="form-control" id="fecha_entrada">-->
-                                @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date" })
+                                @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date", @style = "font-size: smaller; margin-right: 50px;" })
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h5>Cumpleaños: </h5>
                             </div>
                             <div class="col-md-3">
                                 <!--<input type="date" class="form-control" id="fecha_cumple">-->
-                                @Html.TextBoxFor(m => m.cumpleaños, new { @class = "form-control", @id = "fecha_cumple", @type = "date" })
+                                @Html.TextBoxFor(m => m.cumpleaños, new { @class = "form-control", @id = "fecha_cumple", @type = "date", @style = "font-size: smaller; margin-left: 13px;" })
                             </div>
                         </div>
                     </div>
@@ -212,20 +213,20 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" style="margin-left: 25px;">
                         <div class="col-md-2">
                             <h5>Descripcion:</h5>
                         </div>
                         <div class="col-md-3">
                             <input id="descripcion" type="text" class="form-control">
                         </div>
-                        <div class="col-md-2">
-                            <h5>puntos: </h5>
+                        <div class="col-md-1">
+                            <h5 style="margin-left: -15px;">puntos: </h5>
                         </div>
                         <div class="col-md-2">
                             <input id="puntos" type="number" class="form-control">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="margin-left: 30px;">
                             <button id="btnAsignar" type="button" class="btn btn-primary">Asignar</button>
                         </div>
                         <div class="col-md-1">
