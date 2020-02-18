@@ -250,7 +250,7 @@
                     data: fileData,
                     success: function (result) {
                         Swal.fire(
-                            'Catalogo actualizado',
+                            'Catálogo actualizado',
                             'Se actualizo correctamente el archivo',
                             'success'
                         );
@@ -266,7 +266,7 @@
         } else {
             console.log("Error formato");
             Swal.fire(
-                'Error en imagen',
+                'Error en archivo',
                 'Solo se permiten archivos en formato PDF.',
                 'warning'
             );
