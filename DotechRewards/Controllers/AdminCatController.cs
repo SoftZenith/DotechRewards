@@ -33,6 +33,25 @@ namespace DotechRewards.Controllers
         }
 
         [HttpPost]
+        public ActionResult UploadPDFCatalogo(HttpPostedFileBase nombrePDF) {
+
+            try
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                file = Request.Files[0];
+                string ruta = Server.MapPath("~/catalogos/");
+                ruta += "catalogo.pdf";
+                file.SaveAs(ruta);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return null;
+        }
+
+        [HttpPost]
         public ActionResult DelProducto(int idProducto) {
             AdminModel.delProducto(idProducto);
             return RedirectToAction("Index","AdminCat");

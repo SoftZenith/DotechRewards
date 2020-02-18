@@ -121,7 +121,6 @@ namespace DotechRewards.Models
                 {
                     cnn.Open();
 
-                    //SqlCommand cmd = new SqlCommand("select * from DR_CAT_USUARIO where usuario = '"+user+"' and contrasena = '"+pass+"'",cnn);
                     SqlCommand cmd = new SqlCommand("SP_GET_BANNER_USR", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = user;
@@ -309,7 +308,7 @@ namespace DotechRewards.Models
 
                         try
                         {
-                            this.puntos = Convert.ToInt16(reader["PUNTOS"].ToString());
+                            this.puntos = Convert.ToInt32(reader["PUNTOS"].ToString());
                         }
                         catch (Exception e)
                         {
