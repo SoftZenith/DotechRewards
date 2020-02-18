@@ -150,6 +150,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\card.css" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\images\archivos-y-carpetas.png" />
     <Content Include="Content\images\baner_inferior.png" />
     <Content Include="Content\images\baner_producto.png" />
     <Content Include="Content\images\carousel.jpg" />
@@ -157,6 +158,7 @@
     <Content Include="Content\images\comida.jpg" />
     <Content Include="Content\images\cumpleaños.png" />
     <Content Include="Content\images\dotech.png" />
+    <Content Include="Content\images\flecha_descarga.png" />
     <Content Include="Content\images\laptop.jpg" />
     <Content Include="Content\images\login_reward.png" />
     <Content Include="Content\images\meeting.png" />

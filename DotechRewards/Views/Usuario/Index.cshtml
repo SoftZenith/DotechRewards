@@ -71,8 +71,8 @@
                     &nbsp Puntos
                 </h5>
             </div>
-            <div class="d-flex justify-content-center" style="margin-top: 15px; margin-bottom: 15px;">
-                <a class="btn btn-primary" target="_blank" href="/catalogos/TOEFLVocabularyPDF.pdf"
+            <div class="d-flex justify-content-center" style="margin-top: 15px; margin-bottom: 30px;">
+                <a class="btn btn-primary" style="color:white" target="_blank" href="/catalogos/TOEFLVocabularyPDF.pdf"
                    role="button">Canjea tus puntos</a>
             </div>
         </div>
@@ -248,7 +248,7 @@
         <div class="col-1">
             <div class="col-md-3 mb-3">
                 <div class="card">
-                    <div class="container" style="margin-left: -100px;">
+                    <div class="container" style="border:none;margin-left: -100px;">
                         <a href="~/catalogos/TOEFLVocabularyPDF.pdf" download>
                             <img src="~/Content/images/producto.jpg" alt="Card image cap" width="180" height="100" style="margin-left: -15px;">
                             <img src="~/Content/images/baner_producto.png" style="max-width:180px; position:absolute; left:0px; top: 80px; z-index: 2; opacity: 0.6;filter: alpha(opacity=60);" />
@@ -258,10 +258,12 @@
                 </div>
             </div>
         </div>
+
+
         <!--/.Carousel Wrapper-->
     </div>
 
-</div>
+    </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -273,9 +275,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="password" class="form-control" id="password1" placeholder="Nueva contraseña">
-                <br />
-                <input type="password" class="form-control" id="password2" placeholder="Confirmar nueva contraseña">
+                <div class="form-group">
+                    <label for="inputPassword4">Nueva contraseña</label>
+                    <input type="password" class="form-control" id="password1" placeholder="Ingrese su nueva contraseña">
+                </div>
+                <!-- Large outline input -->
+                <div class="form-group">
+                    <label for="inputPassword4">Confirmar nueva contraseña</label>
+                    <input type="password" class="form-control" id="password2" placeholder="Repita su nueva contraseña">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
