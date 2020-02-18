@@ -222,7 +222,7 @@
             var nombreEspacio = Fotofile.name;
             var reader = new FileReader();
             //reader.readAsDataURL(Fotofile);
-            alert('Es pdf');
+            //alert('Es pdf');
             
 
             // Checking whether FormData is available in browser  
@@ -249,7 +249,11 @@
                     processData: false, // Not to process data  
                     data: fileData,
                     success: function (result) {
-                        alert(result);
+                        Swal.fire(
+                            'Catalogo actualizado',
+                            'Se actualizo correctamente el archivo',
+                            'success'
+                        );
                     },
                     error: function (err) {
                         alert(err.statusText);
@@ -263,11 +267,10 @@
             console.log("Error formato");
             Swal.fire(
                 'Error en imagen',
-                'Solo se permiten archivos de imágenes en formato JPG.',
+                'Solo se permiten archivos en formato PDF.',
                 'warning'
             );
-            $('#btnGuardarPrd').attr('disabled', true);
-            $('#Foto_Camp').val('');
+            
             return false;
         }
     });
