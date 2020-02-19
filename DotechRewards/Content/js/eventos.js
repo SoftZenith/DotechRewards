@@ -135,6 +135,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
                     if (nombreEspacio[0] == " ") {
@@ -144,6 +145,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
                     var height = this.height;
@@ -158,6 +160,7 @@
                             );
                             $('#Foto_Camp').val('');
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
                     }
@@ -171,9 +174,11 @@
                             );
                             $('#Foto_Camp').val('');
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
                     }
+                    $('#btnGuardar').removeAttr('disabled');
                     console.log("Buena Imagen");
                     readURL(this);
                 };
@@ -185,9 +190,11 @@
                 'warning'
             );
             $('#Foto_Camp').val('');
+
+            $('#btnGuardar').attr('disabled', true);
             return false;
         }
-        console.log("Fin Fn");
+
         readURL(this);
     });
 

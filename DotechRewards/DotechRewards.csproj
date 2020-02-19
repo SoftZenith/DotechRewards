@@ -150,6 +150,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\card.css" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\images\archivos-y-carpetas.png" />
     <Content Include="Content\images\baner_inferior.png" />
     <Content Include="Content\images\baner_producto.png" />
@@ -170,6 +171,7 @@
     <Content Include="Content\js\catalogo.js" />
     <Content Include="Content\js\eventos.js" />
     <Content Include="Content\js\home.js" />
+    <Content Include="Content\js\js.js" />
     <Content Include="Content\js\password.js" />
     <Content Include="Content\js\Usuario.js" />
     <Content Include="favicon.ico" />
