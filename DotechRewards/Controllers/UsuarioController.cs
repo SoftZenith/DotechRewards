@@ -13,8 +13,8 @@ namespace DotechRewards.Controllers
         }
 
         [HttpPost]
-        public int Cambiar(string user, string pass) {
-            return UsuarioModel.cambiar(user, pass);
+        public int Cambiar(string nameuser, string pass) {
+            return UsuarioModel.cambiar(nameuser, pass);
         }
 
         public ActionResult activarPuntos(string usuario) {
