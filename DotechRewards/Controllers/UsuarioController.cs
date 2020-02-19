@@ -13,14 +13,12 @@ namespace DotechRewards.Controllers
         }
 
         [HttpPost]
-        public int Cambiar(string user, string pass) {
-            UsuarioModel usuario = new UsuarioModel();
-            return usuario.cambiar(user, pass);
+        public int Cambiar(string nameuser, string pass) {
+            return UsuarioModel.cambiar(nameuser, pass);
         }
 
         public ActionResult activarPuntos(string usuario) {
-            UsuarioModel usuarioM = new UsuarioModel();
-            usuarioM.ActivarPuntos(usuario);
+            UsuarioModel.ActivarPuntos(usuario);
             return RedirectToAction("Index");
         }
 

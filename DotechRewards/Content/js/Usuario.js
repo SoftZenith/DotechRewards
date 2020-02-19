@@ -122,17 +122,23 @@ function myFunction2() {
     }
 }
 
-function cambiarContra() {
+function cambiarContra(event) {
     var pass1 = document.getElementById("password1").value;  
     var pass2 = document.getElementById("password2").value;
-    var user = "brayan.gutierrez";
     var pass = pass1;
     if (pass1 != pass2) {
+        event.preventDefault();
         swal("Error", "Contraseñas no coinciden", "error");
-        return;
+        return
+    }
+    if (pass1.length < 6 || pass2.length < 6) {
+        event.preventDefault();
+        swal("Error", "Se necesitan almenos 6 caracteres", "error");
+        return
     }
     urlc = "/Usuario/Cambiar/";
-    $.post(urlc, { user, pass }, function (res) {
+    var nameuser = user_name;
+    $.post(urlc, { nameuser , pass }, function (res) {
 
     }).done(function (res) {
         if (res == -1) {
