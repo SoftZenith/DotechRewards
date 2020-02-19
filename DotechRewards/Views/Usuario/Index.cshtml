@@ -136,14 +136,14 @@
                 </table>
 
                 <!--		Start Pagination -->
-                    <nav style="display:inline-block; width:130px;">
+                    <nav style="display:inline-block; width:135px;">
                         <ul class="pagination">
                             <li data-page="prev" class="page-header">
                                 <span class="border-right"> < <span class="sr-only">(current)</span></span>
                             </li>
 
                             <li data-page="next" class="page-item" id="prev">
-                                <span class="border-right"> > <span class="sr-only">(current)</span></span>
+                                <span > > <span class="sr-only">(current)</span></span>
                             </li>
                         </ul>
                     </nav>
@@ -202,20 +202,20 @@
                             <div class="carousel-item">
                                 <img src="~/Content/images/@panelP.imagen" style="z-index:-1;">
                                 <img src="~/Content/images/baner_inferior.png" style="        position: absolute;
-        top: 160px;
+        top: 210px;
         z-index: 2;
         opacity: 0.6;
         filter: alpha(opacity=60);" />
-                                <div style="position:absolute;left:25px;top:170px;z-index:2; color: white">@panelP.nombre</div>
-                                <div style="position:absolute;left:450px;top:170px;z-index:2; color: white"><span class="far fa-calendar-alt" style="font-size:23px;"></span>&nbsp @panelP.fecha</div>
-                                <div style="position:absolute;left:880px;top:170px;z-index:2; color: white"><span class="fas fa-map-marker-alt" style="font-size:23px;"></span>&nbsp @panelP.lugar</div>
+                                <div style="position:absolute;left:25px;top:220px;z-index:2; color: white">@panelP.nombre</div>
+                                <div style="position:absolute;left:450px;top:220px;z-index:2; color: white"><span class="far fa-calendar-alt" style="font-size:23px;"></span>&nbsp @panelP.fecha</div>
+                                <div style="position:absolute;left:880px;top:220px;z-index:2; color: white"><span class="fas fa-map-marker-alt" style="font-size:23px;"></span>&nbsp @panelP.lugar</div>
                                 @if (panelP.registro == 1)
                                 {
                                     <a class="aRegistro" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="position:absolute;left:1150px;top:220px;z-index:2; color: white; cursor: pointer;">Registrate aquí</a>
                                 }
                                 @if (panelP.url != "")
                                 {
-                                    <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="position:absolute;left:1150px;top:170px;z-index:2; color: white; cursor: pointer">Registrate aquí</a>
+                                    <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="position:absolute;left:1150px;top:220px;z-index:2; color: white; cursor: pointer">Registrate aquí</a>
                                 }
                             </div>
                         }
