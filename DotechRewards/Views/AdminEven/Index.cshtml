@@ -160,98 +160,97 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
-            {
-            <div class="modal-body">
-                @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
-                <div class="row justify-content-start" style="margin: 5px;">
-                    <div class="col-md-3">
-                        <h5 style="margin-left: 11px;">Nombre evento: </h5>
-                    </div>
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text", @style = "margin-left: 3px;" })
-                    </div>
-                    <div class="col-md-1">
-                        <h5 style="margin-left: 0px;">Puntos: </h5>
-                    </div>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number", @style = "margin-left: 10px;", @min = "0" })
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin: 5px">
-                    <div class="row justify-content-center" style="margin: 5px">
-                        <div class="col-md-3" style="margin-right: 0px;">
-                            <h5 style="margin-right: 60px;">Lugar: </h5>
+            <form class="needs-validation" novalidate>
+                <div class="modal-body">
+                    @using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+                    {
+                        @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
+
+                    <div class="form-row">
+                        <!--col 12-->
+                        <div class="col-md-2 mb-3">
+                            <label for="validationCustom01">Nombre evento:</label>
                         </div>
-                        <div class="col-md-3" style="margin-left: -85px;">
-                            @Html.TextBoxFor(m => m.lugar, new { id = "lugar", @class = "form-control", @type = "text", @style = "margin-left:25px;" })
+                        <div class="col-md-6 mb-3">
+                            @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" })
                         </div>
-                        <div class="col-md-2">
-                            <h5 style="margin-left:15px;">Fecha: </h5>
+                        <div class="col-md-1 mb-3">
+                            <label for="validationCustom01">Puntos:</label>
                         </div>
-                        <div class="col-md-4" style="margin-left: 10px;">
+                        <div class="col-md-3 mb-3">
+                            @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number", @min = "0" })
+                        </div>
+                        <!--col 12-->
+                        <div class="col-md-2 mb-3">
+                            <label for="validationCustom01">Lugar:</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            @Html.TextBoxFor(m => m.lugar, new { id = "lugar", @class = "form-control", @type = "text" })
+                        </div>
+                        <div class="col-md-1 mb-3">
+                            <label for="validationCustom01">Fecha:</label>
+                        </div>
+                        <div class="col-md-3 mb-3">
                             @Html.TextBoxFor(m => m.fecha, new { id = "fecha", @class = "form-control", @type = "date" })
                         </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin: 5px">
-                    <div class="col-md-4">
-                        <h5>Necesita confirmación: </h5>
-                    </div>
-                    <div class="col-md-2" style="margin-left: -10px; margin-top: 3px;">
-                        @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @type = "checkbox" })
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Cantidad de personas: </h5>
-                    </div>
-                    <div class="col-sm-2" style="margin-left: 0px;">
-                        @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @type = "number", disabled = "disabled" })
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin: 5px">
-                    <div class="col-md-4">
-                        <h5>Link confirmación: </h5>
-                    </div>
-                    <div class="col-md-2" style="margin-left: -10px; margin-top: 3px;">
-                        @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @type = "checkbox" })
-                    </div>
-                    <div class="col-md-6">
-                        @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin: 5px">
-                    <div class="col-md-2">
-                        <h5>Imagen: </h5>
-                    </div>
-                    <div class="col-md-6" style="margin-left: -20px;">
-                        <div class="form-group">
-                            @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
-                            @Html.TextBox("Foto_Camp", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Camp" })
+                        <!--col 12-->
+                        <div class="col-md-4 mb-3">
+                            <label>Necesita confirmación: </label>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <img id="previewImg" src="" alt="Preview de la imagen" height="50" width="240" style="margin-left: -13px;" />
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin: 5px">
-                    <div class="col-md-3">
-                        <h5 id="h5confirmados"> confirmado(s)</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <a id="downloadLista" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
-                    </div>
-                    <div class="col-md-3">
+                        <div class="col-md-2 mb-3">
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @type = "checkbox" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Cantidad de personas: </label>
+                        </div>
+                        <!--col 12-->
+                        <div class="col-sm-2 mb-3">
+                            @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @type = "number", disabled = "disabled" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Link confirmación: </label>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @type = "checkbox" })
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
+                        </div>
+                        <!--col 12-->
+                        <div class="col-md-2 mb-3">
+                            <label>Imagen: </label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
+                                @Html.TextBox("Foto_Camp", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Camp" })
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img id="previewImg" src="" alt="Preview de la imagen" height="50" width="240" />
+                        </div>
+                        <!--col 12-->
+                        <div class="col-md-3 mb-3">
+                            <label id="h5confirmados"> confirmado(s)</label>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a id="downloadLista" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+
+                        </div>
 
                     </div>
+                            }
+                    <div class="modal-footer">
+                        <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-            }
+            </form>
         </div>
-    </div>
+     </div>
 </div>
 <script>
     if ('@exitos' === 'True') {
