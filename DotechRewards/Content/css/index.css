@@ -291,3 +291,7 @@ input[type=text] {
 #icon {
     width: 60%;
 }
+
+.form-check-input {
+    width: 10px !important;
+}

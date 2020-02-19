@@ -1,0 +1,20 @@
+﻿body {
+    font-size: 1rem !important;
+}
+
+.form-check-input {
+    width: 10px !important;
+}
+.modal-header {
+    background-color: #c31e23;
+    color:white;
+}
+.close {
+    color: white !important;
+}
+.btn-secondary {
+    background-color: #c31e23 !important;
+}
+.fas{
+    font-size:18px !important;
+}
