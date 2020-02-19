@@ -53,7 +53,8 @@ namespace DotechRewards.Controllers
 
         [HttpPost]
         public ActionResult DelProducto(int idProducto) {
-            AdminModel.delProducto(idProducto);
+            AdminModel admin = new AdminModel();
+            admin.delProducto(idProducto);
             return RedirectToAction("Index","AdminCat");
         }
 

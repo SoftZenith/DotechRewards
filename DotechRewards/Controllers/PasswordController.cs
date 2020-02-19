@@ -32,7 +32,8 @@ namespace DotechRewards.Controllers
         [HttpPost]
         public ActionResult ChangePassword(string password, string uuid)
         {
-            PasswordModel.ResetPassword(uuid, password);
+            PasswordModel pass = new PasswordModel();
+            pass.ResetPassword(uuid, password);
             return RedirectToAction("Index", "Home");
         }
 

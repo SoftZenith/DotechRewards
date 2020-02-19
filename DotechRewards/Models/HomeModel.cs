@@ -7,7 +7,7 @@ namespace DotechRewards.Models
 {
     public class HomeModel
     {
-        public static int login(string user, string pass)
+        public int login(string user, string pass)
         {
             int res = 0;
             
@@ -36,7 +36,7 @@ namespace DotechRewards.Models
             return res;
         }//login()
 
-        public static int getPermisos(string user) {
+        public int getPermisos(string user) {
             int res = 0;
 
             using (SqlConnection cnn = Context.Connect())
@@ -67,7 +67,7 @@ namespace DotechRewards.Models
             return res;
         }
 
-        public static string getNombreC(string user)
+        public string getNombreC(string user)
         {
             string nombre = "";
 
@@ -99,7 +99,7 @@ namespace DotechRewards.Models
             return nombre;
         }
 
-        public static string recuperarContrasena(string user)
+        public string recuperarContrasena(string user)
         {
             string pass = "";
 

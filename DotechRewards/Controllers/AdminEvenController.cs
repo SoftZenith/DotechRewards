@@ -45,7 +45,8 @@ namespace DotechRewards.Controllers
         }
 
         public ActionResult DelEvento(int idEvento) {
-            AdminModel.delEvento(idEvento);
+            AdminModel admin = new AdminModel();
+            admin.delEvento(idEvento);
             return RedirectToAction("Index", "AdminEven");
         }
 
@@ -53,7 +54,8 @@ namespace DotechRewards.Controllers
             if (idEvento == 0)
                 return null;
             DataTable dt = new DataTable();
-            dt = AdminEvenModel.getListaConfirmacion(idEvento);
+            AdminEvenModel evento = new AdminEvenModel();
+            dt = evento.getListaConfirmacion(idEvento);
             //dt.TableName = "AR_LOG_IMPLEMENTACION";
 
             using (XLWorkbook wb = new XLWorkbook())
@@ -94,7 +96,8 @@ namespace DotechRewards.Controllers
                 nombreArchivo = file.FileName.Substring(0, file.FileName.Length);
 
                 //Leer archivo desde Model
-                Retorno retorno = AdminEvenModel.leerListaAsistencia(ruta);
+                AdminEvenModel evento = new AdminEvenModel();
+                Retorno retorno = evento.leerListaAsistencia(ruta);
                 if (retorno.estatus)
                 {
                     exitoSubirLista = 1;

@@ -10,7 +10,7 @@ namespace DotechRewards.Models
     public class AdminEvenModel
     {
 
-        public static DataTable getListaConfirmacion(int idEvento)
+        public DataTable getListaConfirmacion(int idEvento)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter ad;
@@ -43,7 +43,7 @@ namespace DotechRewards.Models
 
         }
 
-        public static Retorno leerListaAsistencia(string nombreArchivo) {
+        public Retorno leerListaAsistencia(string nombreArchivo) {
 
             string fileName = @"C:\Users\BHN_R\source\repos\DotechRewards\DotechRewards\Content\Listas\" + nombreArchivo;
             using (var excelWorkbook = new XLWorkbook(nombreArchivo))
@@ -75,7 +75,8 @@ namespace DotechRewards.Models
 
                             }
                             //Validar si evento ya se cargo
-                            AdminModel.AsignarPuntos(idUsuario, idEvento, evento, puntos);
+                            AdminModel admin = new AdminModel();
+                            admin.AsignarPuntos(idUsuario, idEvento, evento, puntos);
                         } catch (Exception ex) {
                             return new Retorno() { 
                                 estatus = false,

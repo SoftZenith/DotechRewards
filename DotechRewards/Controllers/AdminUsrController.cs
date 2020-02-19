@@ -15,32 +15,36 @@ namespace DotechRewards.Controllers
 
         [HttpPost]
         public ActionResult AddUsuario(Usuario usuarioPost) {
-            AdminModel.addUsuario(usuarioPost);
+            AdminModel admin = new AdminModel();
+            admin.addUsuario(usuarioPost);
             return RedirectToAction("Index","AdminUsr");
         }
 
         [HttpPost]
         public ActionResult DelUsuario(int idUsuario) {
-            AdminModel.delUsuario(idUsuario);
+            AdminModel admin = new AdminModel();
+            admin.delUsuario(idUsuario);
             return RedirectToAction("Index","AdminUsr");
         }
 
         [HttpPost]
         public ActionResult AsignarPuntos(string nUsuario, string descripcion, int puntos) {
-            int idUsuario = AdminModel.getIdusuario(nUsuario);
+            AdminModel admin = new AdminModel();
+            int idUsuario = admin.getIdusuario(nUsuario);
             try {
                 idUsuario = Convert.ToInt32(nUsuario);
             } catch (Exception ex) { 
             
             }
-            AdminModel.AsignarPuntos(idUsuario, 0, descripcion, puntos);
+            admin.AsignarPuntos(idUsuario, 0, descripcion, puntos);
             return null;
         }
 
         [HttpPost]
         public ActionResult AsignarPuntosE(string nUsuario, int idEvento, int puntos)
         {
-            int idUsuario = AdminModel.getIdusuario(nUsuario);
+            AdminModel admin = new AdminModel();
+            int idUsuario = admin.getIdusuario(nUsuario);
             try
             {
                 idUsuario = Convert.ToInt32(nUsuario);
@@ -48,13 +52,14 @@ namespace DotechRewards.Controllers
             catch (Exception ex) { 
                 
             }
-            AdminModel.AsignarPuntos(idUsuario, idEvento,"", puntos);
+            admin.AsignarPuntos(idUsuario, idEvento,"", puntos);
             return null;
         }
 
         [HttpPost]
         public ActionResult CobrarPuntos(int idUsuario, string descripcion, int puntos) {
-            AdminModel.CobrarPuntos(idUsuario, 0, descripcion, puntos);
+            AdminModel admin = new AdminModel();
+            admin.CobrarPuntos(idUsuario, 0, descripcion, puntos);
             return null;
         }
 

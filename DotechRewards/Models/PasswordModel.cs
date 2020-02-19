@@ -44,7 +44,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static bool AddResetPassword(string uuid, string usuario)
+        public bool AddResetPassword(string uuid, string usuario)
         {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -71,7 +71,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static bool ResetPassword(string uuid, string password)
+        public bool ResetPassword(string uuid, string password)
         {
             using (SqlConnection cnn = Context.Connect())
             {
