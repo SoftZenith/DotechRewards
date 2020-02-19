@@ -1,6 +1,6 @@
 body{
 
-    background-color: #eee; 
+    background-color: white; 
 }
 
 table th, table td {
@@ -10,7 +10,7 @@ table th, table td {
 }
 
 table tr:nth-child(even){
-    background-color: #BEF2F5
+    background-color: white;
 }
 
 .pagination li:hover {
