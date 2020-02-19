@@ -99,7 +99,7 @@
                                 <td width="160px" style="text-align: center">@producto.puntos</td>
                                 <td width="100px" style="text-align: end">
                                     <div class="row">
-                                        <button type="button" class="btnEditP" data-toggle="modal" data-target="#exampleModal" data-idprd="@producto.idProducto"
+                                        <button type="button" class="btnEditP button-edit" data-toggle="modal" data-target="#exampleModal" data-idprd="@producto.idProducto"
                                                 data-image="@producto.imagen" data-nombre="@producto.nombre" data-desc="@producto.descripcion" data-puntos="@producto.puntos">
                                             <i class="fas fa-edit"></i>
                                         </button>
@@ -123,7 +123,7 @@
             </div>
             <div style="float: right; margin-left:550px;">
                 <button id="btnAddCampana" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
+                    <i class="fas fa-plus-circle" style="font-size: 45px !important; color:green; float: right;"  aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -136,7 +136,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalle producto</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Detalle producto</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
