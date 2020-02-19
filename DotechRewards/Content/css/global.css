@@ -18,3 +18,20 @@
 .fas{
     font-size:18px !important;
 }
+
+.button-edit {
+    margin-right: 10px;
+}
+
+.table-hover {
+    background-color: #c31e23 !important;
+}
+.table {
+    font-size:1rem !important;
+}
+h3{
+    font-size:1.1rem !important;
+}
+h5{
+    font-size:1rem !important;
+}
