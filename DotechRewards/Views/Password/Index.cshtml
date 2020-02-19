@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     string UUID_V = ViewBag.Message;
+    bool valido_v = ViewBag.Valido;
 }
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -42,3 +43,14 @@
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        if ('@valido_v' == 'False') {            
+            window.location.href = '/home';
+            alert("Enlace invalido o caducado");
+        }
+    });
+</script>

@@ -15,11 +15,17 @@ namespace DotechRewards.Controllers
             return View();
         }
 
+
         public ActionResult ResetPassword(string UUID) {
 
             string UUID_user = UUID;
 
+            //Revisar caducidad del enlace
+            PasswordModel pm = new PasswordModel();
+            bool valido = pm.GetDateURL(UUID);
+
             ViewBag.Message = UUID_user;
+            ViewBag.Valido = valido;
             return View("Index");
         }
 
