@@ -15,11 +15,12 @@ table tr:nth-child(even){
 
 .pagination li:hover {
     cursor: pointer;
-    background-color: blue;
+    background-color: red;
 }
 .pagination li {
     width: inherit;
     margin: auto;
+    border-radius: 6px;
 }
 .pagination li span{
     padding: 1px 8px 1px 8px

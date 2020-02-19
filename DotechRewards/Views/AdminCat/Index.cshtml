@@ -123,7 +123,7 @@
             </div>
             <div style="float: right; margin-left:550px;">
                 <button id="btnAddCampana" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fas fa-plus-circle" style="font-size: 45px !important; color:green; float: right;"  aria-hidden="true"></i>
+                    <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -136,7 +136,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Detalle producto</h3>
+                <h3 id="exampleModalLabel">Detalle producto</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -147,19 +147,17 @@
                     @Html.TextBoxFor(m => m.idProducto, new { id = "idPrdM", @type = "hidden"})
                     <div class="row justify-content-center" style="margin: 5px">
                         <div class="row justify-content-center" style="margin: 5px">
-                            <div class="col-md-3" style="margin-right: 0px; padding-left: 12px;">
+                            <div class="col-md-3" style="margin-right: 0px; padding-left: 10px;">
                                 <h5>Producto: </h5>
                             </div>
                             <div class="col-md-5" style="padding:initial">
                                 @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" })
-                                <!--<input type="text" class="form-control" id="nombre">-->
                             </div>
                             <div class="col-md-2">
                                 <h5>Puntos: </h5>
                             </div>
                             <div class="col-md-2" style="margin-left: 0px;">
                                 @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number" })
-                                <!--<input type="number" class="form-control">-->
                             </div>
                         </div>
                     </div>
