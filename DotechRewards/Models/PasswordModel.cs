@@ -13,6 +13,37 @@ namespace DotechRewards.Models
 
         public string UUID { get; set; }
 
+
+        public bool GetDateURL(string uuid) {
+            using (SqlConnection cnn = Context.Connect())
+            {
+                bool res = false;
+                try
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_GET_DATE_URL_RESET", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@uuid", SqlDbType.VarChar).Value = uuid;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read()) {
+                        res = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res = false;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+                return res;
+            }
+        }
+
         public static bool AddResetPassword(string uuid, string usuario)
         {
             using (SqlConnection cnn = Context.Connect())

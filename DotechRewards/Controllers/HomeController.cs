@@ -60,13 +60,13 @@ namespace DotechRewards.Controllers
 
             try
             {
-                /*string senderEmail = "bhn.rock@gmail.com";
+                string senderEmail = "bhn.rock@gmail.com";
                 string senderPassword = "yiesajpdikycokfg";
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);*/
-
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                /*
                 string senderEmail = "rewards@dotech.com.mx";
                 string senderPassword = "rewards2020";
-                SmtpClient client = new SmtpClient("Smtpout.secureserver.net", 80);
+                SmtpClient client = new SmtpClient("Smtpout.secureserver.net", 80);*/
 
                 client.EnableSsl = true;
                 client.Timeout = 10000;
