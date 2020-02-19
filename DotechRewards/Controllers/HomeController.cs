@@ -19,11 +19,12 @@ namespace DotechRewards.Controllers
 
         [HttpPost]
         public ActionResult login(string usuario, string contrasena) {
-            if (HomeModel.login(usuario, contrasena) == 1)
+            HomeModel home = new HomeModel();
+            if (home.login(usuario, contrasena) == 1)
             {
                 UserData.User = usuario;
-                UserData.Admin = HomeModel.getPermisos(usuario).ToString();
-                UserData.Nombre = HomeModel.getNombreC(usuario).ToString();
+                UserData.Admin = home.getPermisos(usuario).ToString();
+                UserData.Nombre = home.getNombreC(usuario).ToString();
                 //FormsAuthentication.SetAuthCookie(usuario, false);
                 return RedirectToAction("Index", "Usuario");
             }
@@ -41,8 +42,8 @@ namespace DotechRewards.Controllers
 
         public bool SendEmail(string user)
         {
-
-            string pass = HomeModel.recuperarContrasena(user);
+            HomeModel home = new HomeModel();
+            string pass = home.recuperarContrasena(user);
             string UIDD_url = "http://localhost:58322/Password/ResetPassword?UUID=";
 
             if (pass == "")
@@ -54,8 +55,8 @@ namespace DotechRewards.Controllers
                 String UUID = Guid.NewGuid().ToString();
                 UIDD_url += UUID;
                 //Generar url con UUID
-                //http://localhost:58322/Password/ResetPassword?UUID=
-                PasswordModel.AddResetPassword(UUID, user);
+                PasswordModel password = new PasswordModel();
+                password.AddResetPassword(UUID, user);
             }
 
             try

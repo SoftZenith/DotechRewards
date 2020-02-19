@@ -46,7 +46,7 @@ namespace DotechRewards.Models
             this.recompensas = recompensas;
         }
         
-        public static int login(string user, string pass)
+        public int login(string user, string pass)
         {
             int res = 0;
 
@@ -361,7 +361,7 @@ namespace DotechRewards.Models
                 }
             }
         }
-        public static int cambiar(string user, string pass)
+        public int cambiar(string user, string pass)
         {
             int res = 0;
             try
@@ -414,7 +414,7 @@ namespace DotechRewards.Models
                 return res;
             }
         }
-        public static int ActivarPuntos(string usuario)
+        public int ActivarPuntos(string usuario)
         {
             using (SqlConnection cnn = Context.Connect())
             {

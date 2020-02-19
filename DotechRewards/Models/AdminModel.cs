@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace DotechRewards.Models
 {
@@ -162,7 +160,7 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
-        public static int addUsuario(Usuario usuarioPost) {
+        public int addUsuario(Usuario usuarioPost) {
             using (SqlConnection cnn = Context.Connect())
             {
                 try
@@ -195,7 +193,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static bool delUsuario(int idUsuario) {
+        public bool delUsuario(int idUsuario) {
             using (SqlConnection cnn = Context.Connect())
             {
                 try
@@ -224,7 +222,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static bool delEvento(int idEvento)
+        public bool delEvento(int idEvento)
         {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -254,7 +252,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static bool delProducto(int idProducto)
+        public bool delProducto(int idProducto)
         {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -356,7 +354,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static int getIdusuario(string nombreUsuario)
+        public  int getIdusuario(string nombreUsuario)
         {
             int idUsuario = 0;
             using (SqlConnection cnn = Context.Connect())
@@ -390,7 +388,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static int AsignarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
+        public int AsignarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
         {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -422,7 +420,7 @@ namespace DotechRewards.Models
             }
         }
 
-        public static int CobrarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
+        public int CobrarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
         {
             using (SqlConnection cnn = Context.Connect())
             {
