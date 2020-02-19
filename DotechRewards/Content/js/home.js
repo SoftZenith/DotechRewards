@@ -1,4 +1,22 @@
-﻿
+﻿$(document).ready(function () {
+
+    $("form").submit(function (event) {
+        if ($('#password1').val() == "") {
+            //swal("Error", "Ingresa tu nueva contraseña", "error");
+            alert("Ingresa tu nueva contraseña");
+            event.preventDefault();
+            return;
+        }
+        if ($('#password2').val().length < 6) {
+            //swal("Error", "Ingresa una contraseña de al menos 6 caracteres", "error");
+            alert("Ingresa una contraseña de al menos 6 caracteres")
+            event.preventDefault();
+            return;
+        }
+
+    });
+
+});
 
 function olvideContrasena() {
     var user = document.getElementById("usuario").value;
