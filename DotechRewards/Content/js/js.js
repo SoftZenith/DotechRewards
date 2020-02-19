@@ -51,7 +51,7 @@ function getPagination(table) {
               '<li data-page="' +
                 i +
                 '">\
-								  <span>' +
+								  <span class="border-right">' +
                 i++ +
                 '<span class="sr-only">(current)</span></span>\
 								</li>'
