@@ -164,12 +164,12 @@
                             return false;
                         }
                     }
-                    if (height != 210) {
-                        if (height != 210) {
+                    if (height != 260) {
+                        if (height != 260) {
                             console.log("Error alto");
                             Swal.fire(
                                 'Error en imagen',
-                                'La imagen debe tener un alto de 210 pixeles.',
+                                'La imagen debe tener un alto de 260 pixeles.',
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
