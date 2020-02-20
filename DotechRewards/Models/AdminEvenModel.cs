@@ -9,7 +9,9 @@ namespace DotechRewards.Models
 {
     public class AdminEvenModel
     {
-
+        /// <summary>
+        /// Obtiene DataTable con la lista de confirmación para un evento, recibe id del evento.
+        /// </summary>
         public DataTable getListaConfirmacion(int idEvento)
         {
             DataTable dt = new DataTable();
@@ -43,6 +45,9 @@ namespace DotechRewards.Models
 
         }
 
+        /// <summary>
+        /// Lee archivo .xlsx de lista de asistencia y asigna los puntos individualmente.
+        /// </summary>
         public Retorno leerListaAsistencia(string nombreArchivo) {
 
             string fileName = "~/Content/Listas/" + nombreArchivo;

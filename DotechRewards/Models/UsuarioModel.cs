@@ -45,7 +45,10 @@ namespace DotechRewards.Models
         public void setRecompensas(List<recompensa> recompensas) {
             this.recompensas = recompensas;
         }
-        
+
+        /// <summary>
+        /// Valida credenciales de acceso de usuario
+        /// </summary>
         public int login(string user, string pass)
         {
             int res = 0;
@@ -68,6 +71,9 @@ namespace DotechRewards.Models
             }//using para crear conexión con metodo de clase Context
             return res;
         }//login()
+        /// <summary>
+        /// Obtiene la lista de banners que se mostraran en la pantalla principal de usuario.
+        /// </summary>
         public UsuarioModel getBanner() {
             List<banner> bannerPrincipal = null;
             using (SqlConnection cnn = Context.Connect())
@@ -112,6 +118,9 @@ namespace DotechRewards.Models
             this.banners = bannerPrincipal;
             return UsuarioM;
         }
+        /// <summary>
+        /// Obtiene la lista de banners por usuario.
+        /// </summary>
         public UsuarioModel getBanner(String user)
         {
             List<banner> bannerPrincipal = null;
@@ -160,6 +169,9 @@ namespace DotechRewards.Models
             this.banners = bannerPrincipal;
             return UsuarioM;
         }
+        /// <summary>
+        /// Obtiene tiene la lista de recompensas para mostrar en carrusel inferior.
+        /// </summary>
         public UsuarioModel getRecompensa()
         {
             List<recompensa> bannerRecompensas = null;
@@ -202,6 +214,9 @@ namespace DotechRewards.Models
             this.recompensas = bannerRecompensas;
             return UsuarioM;
         }
+        /// <summary>
+        /// Obtiene lista de eventos.
+        /// </summary>
         public UsuarioModel getEventos(string user)
         {
             List<Evento> eventos = null;
@@ -243,7 +258,9 @@ namespace DotechRewards.Models
             this.eventos = eventos;
             return UsuarioM;
         }
-
+        /// <summary>
+        /// Obtiene historial de asignación/cobro de puntos de un usuario
+        /// </summary>
         public UsuarioModel getHistorialUsuario(string user)
         {
             List<Evento> eventos = null;
@@ -287,6 +304,9 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
+        /// <summary>
+        /// Obtiene total de puntos para un usuario.
+        /// </summary>
         public void getTotalPuntos(string user)
         {
             List<Evento> eventos = null;
@@ -328,6 +348,9 @@ namespace DotechRewards.Models
                 }
             }
         }
+        /// <summary>
+        /// Obtiene bandera para saber si estan activados los puntos.
+        /// </summary>
         public void getActivacionStatus(string user)
         {
             List<Evento> eventos = null;
@@ -336,8 +359,6 @@ namespace DotechRewards.Models
                 try
                 {
                     cnn.Open();
-
-                    //SqlCommand cmd = new SqlCommand("select * from DR_CAT_USUARIO where usuario = '"+user+"' and contrasena = '"+pass+"'",cnn);
                     SqlCommand cmd = new SqlCommand("SP_GET_ACTIVACION_PUNTOS", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -361,6 +382,10 @@ namespace DotechRewards.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Cambia contraseña de usuario.
+        /// </summary>
         public int cambiar(string user, string pass)
         {
             int res = 0;
@@ -382,6 +407,10 @@ namespace DotechRewards.Models
             }
             return res;
         }//login()
+
+        /// <summary>
+        /// Agrega confirmación a evento de un usuario
+        /// </summary>
         public int AddConfirmacion(int confirmacion, int asistentes, int idActividad, string usuario)
         {
             using (SqlConnection cnn = Context.Connect())
@@ -414,6 +443,10 @@ namespace DotechRewards.Models
                 return res;
             }
         }
+
+        /// <summary>
+        /// Activa puntos de usuario en B.D. 
+        /// </summary>
         public int ActivarPuntos(string usuario)
         {
             using (SqlConnection cnn = Context.Connect())

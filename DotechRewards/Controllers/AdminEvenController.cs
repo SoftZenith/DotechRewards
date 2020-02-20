@@ -20,6 +20,11 @@ namespace DotechRewards.Controllers
             ViewBag.exitoso = exitoSubirLista;
             return View();
         }
+
+        /// <summary>
+        /// Agrega un evento al listado de eventos, recibe una instancia de la clase Evento.
+        /// La imagen se guarda en ~/Content/images/
+        /// </summary>
         [HttpPost]
         public ActionResult AddEvento(Evento evento) {
 
@@ -44,12 +49,18 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index", "AdminEven");
         }
 
+        /// <summary>
+        /// Elimina un evento de la lista de eventos.
+        /// </summary>
         public ActionResult DelEvento(int idEvento) {
             AdminModel admin = new AdminModel();
             admin.delEvento(idEvento);
             return RedirectToAction("Index", "AdminEven");
         }
 
+        /// <summary>
+        /// Genera y descarga archivo con extensión .xlxs con la lista de asistentes, recibe id del evento del que se desea generar la lista.
+        /// </summary>
         public ActionResult DescargarLista(int idEvento = 6) {
             if (idEvento == 0)
                 return null;
@@ -83,6 +94,9 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Sube archivo de lista de asistencia con extension .xlxs, el archivo se toma del post request y se guarda en ~/Content/lista/
+        /// </summary>
         [HttpPost]
         public ActionResult SubirLista() {
             string nombreArchivo = "";

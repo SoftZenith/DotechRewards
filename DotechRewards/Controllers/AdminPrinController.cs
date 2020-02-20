@@ -15,6 +15,9 @@ namespace DotechRewards.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Retorn JSON con lista usuarios.
+        /// </summary>
         [HttpGet]
         public JsonResult getUsuarios() {
             AdminModel admin = new AdminModel();
@@ -22,6 +25,9 @@ namespace DotechRewards.Controllers
             return Json(admin.usuarios, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Retorna JSON con lista de eventos.
+        /// </summary>
         [HttpGet]
         public JsonResult getEventos() {
             AdminModel admin = new AdminModel();

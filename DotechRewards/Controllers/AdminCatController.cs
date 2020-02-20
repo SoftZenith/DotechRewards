@@ -13,6 +13,9 @@ namespace DotechRewards.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Agrega un producto/beneficio al catalogo de productos/beneficios, recibe una instancia de la clase Producto.
+        /// </summary>
         [HttpPost]
         public ActionResult AddProducto(Producto productoPos) {
             String imagen = "";
@@ -32,9 +35,11 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index", "AdminCat");
         }
 
+        /// <summary>
+        /// Subir archivo en formato PDF para guardar en ~/catalogos
+        /// </summary>
         [HttpPost]
         public ActionResult UploadPDFCatalogo(HttpPostedFileBase nombrePDF) {
-
             try
             {
                 HttpPostedFileBase file = Request.Files[0];
@@ -50,7 +55,9 @@ namespace DotechRewards.Controllers
 
             return null;
         }
-
+        /// <summary>
+        /// Elimina un producto/beneficio del catálogo productos/beneficios, recibe el id del producto/beneficio.
+        /// </summary>
         [HttpPost]
         public ActionResult DelProducto(int idProducto) {
             AdminModel admin = new AdminModel();

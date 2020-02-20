@@ -59,6 +59,9 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
+        /// <summary>
+        /// Obtiene todos los eventos activos en una lista de tipo Eventos.
+        /// </summary>
         public AdminModel getEventos()
         {
             List<Evento> eventos = null;
@@ -118,6 +121,9 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
+        /// <summary>
+        /// Obtiene lista de productos/beneficios en una lista de tipo Producto.
+        /// </summary>
         public AdminModel getProductos()
         {
             List<Producto> productos = null;
@@ -160,6 +166,9 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
+        /// <summary>
+        /// Agrega un usuario a la lista de usuarios, requiere una instancia de la clase Usuario.
+        /// </summary>
         public int addUsuario(Usuario usuarioPost) {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -193,6 +202,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Elimina producto de la lista de productos.
+        /// </summary>
         public bool delUsuario(int idUsuario) {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -282,6 +294,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Agrega producto a la lista de productos.
+        /// </summary>
         public int AddProducto(Producto productoPos, string imagen)
         {
             using (SqlConnection cnn = Context.Connect())
@@ -316,6 +331,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Agrega un evento a la lista de eventos.
+        /// </summary>
         public int AddEvento(Evento evento, String imagen)
         {
             using (SqlConnection cnn = Context.Connect())
@@ -354,7 +372,10 @@ namespace DotechRewards.Models
             }
         }
 
-        public  int getIdusuario(string nombreUsuario)
+        /// <summary>
+        /// Obtiene id de usuario basado en el nombre de usuario nombre.apellido
+        /// </summary>
+        public int getIdusuario(string nombreUsuario)
         {
             int idUsuario = 0;
             using (SqlConnection cnn = Context.Connect())
@@ -388,6 +409,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Asigna puntos a un usuario, si el idActividad es 0, requiere la descripción.
+        /// </summary>
         public int AsignarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
         {
             using (SqlConnection cnn = Context.Connect())
@@ -420,6 +444,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Resta puntos a un usuario, si el idActividad es 0, requiere descripción.
+        /// </summary>
         public int CobrarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
         {
             using (SqlConnection cnn = Context.Connect())
