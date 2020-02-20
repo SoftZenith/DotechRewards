@@ -13,6 +13,9 @@ namespace DotechRewards.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Agrega usuario a lista de usuarios, recibe una instancia de la clase Usuario.
+        /// </summary>
         [HttpPost]
         public ActionResult AddUsuario(Usuario usuarioPost) {
             AdminModel admin = new AdminModel();
@@ -20,6 +23,9 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index","AdminUsr");
         }
 
+        /// <summary>
+        /// Elimina usuario de la lista de usuario, recibe id del usuario a eliminar.
+        /// </summary>
         [HttpPost]
         public ActionResult DelUsuario(int idUsuario) {
             AdminModel admin = new AdminModel();
@@ -27,6 +33,9 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index","AdminUsr");
         }
 
+        /// <summary>
+        /// Asigna puntos a un usuario, requiere el usuario, la descripción de la actividad, y los puntos que se asignan por esa actividad.
+        /// </summary>
         [HttpPost]
         public ActionResult AsignarPuntos(string nUsuario, string descripcion, int puntos) {
             AdminModel admin = new AdminModel();
@@ -40,6 +49,9 @@ namespace DotechRewards.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Asigna puntos a un usuario por evento al que asistió, requiere el usuario, el id del evento y los puntos que se asignaran a ese evento.
+        /// </summary>
         [HttpPost]
         public ActionResult AsignarPuntosE(string nUsuario, int idEvento, int puntos)
         {
@@ -56,6 +68,9 @@ namespace DotechRewards.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Cobra o resta puntos a un usuario, requiere el usuario, la descripción por la que se restan puntos y los puntos a restar.
+        /// </summary>
         [HttpPost]
         public ActionResult CobrarPuntos(int idUsuario, string descripcion, int puntos) {
             AdminModel admin = new AdminModel();
@@ -63,6 +78,9 @@ namespace DotechRewards.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Obtiene JSON con el historia de asignación/cobro de puntos de un usuario, requiere el usuario.
+        /// </summary>
         [HttpPost]
         public JsonResult getHistorialUsuario(string usuario) {
             UsuarioModel usuarioModel = new UsuarioModel();

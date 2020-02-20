@@ -15,7 +15,9 @@ namespace DotechRewards.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Te envia a formulario para reestablecer contraseña asociada al UUID que se recibe de la URL, si, solo si, no han pasado más de 12hrs desde que se genero el UUID. 
+        /// </summary>
         public ActionResult ResetPassword(string UUID) {
 
             string UUID_user = UUID;
@@ -23,12 +25,14 @@ namespace DotechRewards.Controllers
             //Revisar caducidad del enlace
             PasswordModel pm = new PasswordModel();
             bool valido = pm.GetDateURL(UUID);
-
             ViewBag.Message = UUID_user;
             ViewBag.Valido = valido;
             return View("Index");
         }
 
+        /// <summary>
+        /// Cambiar contraseña de usuario al que se le envio la URL con UUID.
+        /// </summary>
         [HttpPost]
         public ActionResult ChangePassword(string password, string uuid)
         {

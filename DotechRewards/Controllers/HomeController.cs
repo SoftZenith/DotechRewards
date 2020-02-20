@@ -18,6 +18,9 @@ namespace DotechRewards.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Valida las credenciales de acceso de los usuarios. Requiere usuario y contraseña.
+        /// </summary>
         [HttpPost]
         public ActionResult login(string usuario, string contrasena) {
             HomeModel home = new HomeModel();
@@ -35,12 +38,19 @@ namespace DotechRewards.Controllers
             }
         }
 
+        /// <summary>
+        /// Cierra la sesión activa del usuario actual.
+        /// </summary>
         public ActionResult LogOff()
         {
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Envia correo con URL para reestablecer contraseña
+        /// Cambiar valores de email, contraseña, smtp, etc. desde Web.config.
+        /// </summary>
         public bool SendEmail(string user)
         {
             HomeModel home = new HomeModel();
