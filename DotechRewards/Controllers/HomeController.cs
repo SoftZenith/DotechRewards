@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotechRewards.Models;
@@ -61,9 +62,12 @@ namespace DotechRewards.Controllers
 
             try
             {
-                string senderEmail = "bhn.rock@gmail.com";
-                string senderPassword = "yiesajpdikycokfg";
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                string senderEmail = WebConfigurationManager.AppSettings["email"].ToString(); //"bhn.rock@gmail.com"; 
+                string senderPassword = WebConfigurationManager.AppSettings["password"].ToString(); //"yiesajpdikycokfg";
+                string smtpClient = WebConfigurationManager.AppSettings["smtpClient"].ToString(); //"smtp.gmail.com"
+                int smtpPort = Convert.ToInt32(WebConfigurationManager.AppSettings["emailPort"].ToString()); //587
+
+                SmtpClient client = new SmtpClient(smtpClient, smtpPort);
                 /*
                 string senderEmail = "rewards@dotech.com.mx";
                 string senderPassword = "rewards2020";
@@ -90,7 +94,6 @@ namespace DotechRewards.Controllers
             }
             catch (Exception ex)
             {
-
                 return false;
             }
 

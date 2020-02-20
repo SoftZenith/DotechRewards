@@ -19,6 +19,10 @@ i.fuente {
 .btn-secondary {
     background-color: #c31e23 !important;
 }
+.fas{
+    font-size:18px !important;
+}
+
 .button-edit {
     margin-right: 10px;
 }
@@ -35,14 +39,14 @@ h3{
 h5{
     font-size:1rem !important;
 }
-.menu-item-font {
-    display: inline-block;
-    width: 191px;
-    padding-left: 20px!important;
-    padding-right: 25px!important;
-    padding-top: 20px!important;
-    padding-bottom: 20px!important;
-    font-size: 24px!important;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
+.nav-link {
+    width: 100% !important;
+    
+}
+
+.link-download-cat{
+    font-weight:bold;
+}
+.pagination {
+    font-weight: bold;
 }

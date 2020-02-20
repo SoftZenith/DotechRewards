@@ -45,7 +45,7 @@ namespace DotechRewards.Models
 
         public Retorno leerListaAsistencia(string nombreArchivo) {
 
-            string fileName = @"C:\Users\BHN_R\source\repos\DotechRewards\DotechRewards\Content\Listas\" + nombreArchivo;
+            string fileName = "~/Content/Listas/" + nombreArchivo;
             using (var excelWorkbook = new XLWorkbook(nombreArchivo))
             {
                 var nonEmptyDataRows = excelWorkbook.Worksheet(1).RowsUsed();

@@ -112,7 +112,7 @@ namespace DotechRewards.Controllers
             catch (Exception ex) {
                 exitoSubirLista = 0;
                 ViewBag.exitoso = 0;
-                return View("Index");
+                return RedirectToAction("Index","AdminEven");
             }
         }
 
