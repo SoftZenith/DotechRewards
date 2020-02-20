@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace DotechRewards.Controllers
@@ -104,7 +105,8 @@ namespace DotechRewards.Controllers
             {
                 HttpPostedFileBase file = Request.Files[0];
                 file = Request.Files[0];
-                string ruta = Server.MapPath("~/Content/Listas/");
+                string pathListas = WebConfigurationManager.AppSettings["pathListas"].ToString();
+                string ruta = Server.MapPath(pathListas);
                 ruta += file.FileName;
                 file.SaveAs(ruta);
                 nombreArchivo = file.FileName.Substring(0, file.FileName.Length);
