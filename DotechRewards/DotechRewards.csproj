@@ -155,6 +155,8 @@
     <Content Include="Content\images\archivos-y-carpetas.png" />
     <Content Include="Content\images\baner_inferior.png" />
     <Content Include="Content\images\baner_producto.png" />
+    <Content Include="Content\images\calendario %281%29.png" />
+    <Content Include="Content\images\calendario.png" />
     <Content Include="Content\images\carousel.jpg" />
     <Content Include="Content\images\catalogo.jpg" />
     <Content Include="Content\images\comida.jpg" />
@@ -162,6 +164,7 @@
     <Content Include="Content\images\dotech.png" />
     <Content Include="Content\images\flecha_descarga.png" />
     <Content Include="Content\images\laptop.jpg" />
+    <Content Include="Content\images\localizador-de-lugar.png" />
     <Content Include="Content\images\login_reward.png" />
     <Content Include="Content\images\meeting.png" />
     <Content Include="Content\images\producto.jpg" />
