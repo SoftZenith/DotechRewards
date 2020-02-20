@@ -122,17 +122,17 @@
                                 bannerP.eventos.Add(new Evento("", "", 0));
                             }
                         }
-                        <tr>
+                        <tr style="color:gray!important;">
                             <th>Fecha</th>
-                            <th>Nombre</th>
+                            <th>Actividad</th>
                             <th>Puntos</th>
                         </tr>
                         foreach (Evento evento in bannerP.eventos)
                         {
                             <tr>
-                                <td style="text-align: center">@evento.fecha</td>
-                                <td style="text-align: center">@evento.nombre</td>
-                                <td style="text-align: center">@evento.puntos</td>
+                                <td style="text-align: left">@evento.fecha</td>
+                                <td style="text-align: left">@evento.nombre</td>
+                                <td style="text-align: left">@evento.puntos</td>
                             </tr>
                         }
                     }
@@ -141,24 +141,26 @@
                 <!--		Start Pagination -->
                 @if (bannerP.estatus > 0)
                 {
-                    <nav style="display:inline-block; width:135px;">
-                        <ul class="pagination">
-                            <li data-page="prev" class="page-header">
-                                <span class="border-right"> < <span class="sr-only">(current)</span></span>
-                            </li>
+                    <div style="width=700px; border-bottom: 2px solid #dee2e6; margin-bottom:1rem;">
+                        <nav style="display:inline-block; width:135px;">
+                            <ul class="pagination" style="margin-bottom:0.5rem;">
+                                <li data-page="prev" class="page-header">
+                                    <span class="border-right"> < <span class="sr-only">(current)</span></span>
+                                </li>
 
-                            <li data-page="next" class="page-item" id="prev">
-                                <span> > <span class="sr-only">(current)</span></span>
-                            </li>
-                        </ul>
-                    </nav>
+                                <li data-page="next" class="page-item" id="prev">
+                                    <span> > <span class="sr-only">(current)</span></span>
+                                </li>
+                            </ul>
+                        </nav>
 
-                    <div style="display:inline-block; float:right; margin-right: 55px;">
-                        <tfoot>
-                            <tr>
-                                <b><th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th></b>
-                            </tr>
-                        </tfoot>
+                        <div style="display:inline-block; float:right; width: 168px;">
+                            <tfoot>
+                                <tr>
+                                    <b><th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th></b>
+                                </tr>
+                            </tfoot>
+                        </div>
                     </div>
                 }
 
