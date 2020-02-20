@@ -72,7 +72,7 @@
                 </h2>
             </div>
             <div class="d-flex justify-content-center" style="display:inline-block; 15px;">
-                <b>
+                <b style="width: 85%; text-align: right;">
                     <h1 style="display:inline-block; font-size:6vw">
                         <b>@bannerP.puntos</b>
                     </h1>
@@ -201,7 +201,13 @@
                                 }
                                 @if (panelP.url != "")
                                 {
-                                    <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="position:absolute;left:1150px;top:265px;z-index:2; color: white; cursor: pointer">Regístrate aquí</a>
+                                    <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="        position: absolute;
+        left: 1150px;
+        top: 265px;
+        z-index: 2;
+        color: white;
+        cursor: pointer
+">Regístrate aquí</a>
                                 }
                             </div>
                             activo = false;
