@@ -7,6 +7,9 @@ namespace DotechRewards.Models
 {
     public class HomeModel
     {
+        /// <summary>
+        /// Valida credenciales de acceso del usuario.
+        /// </summary>
         public int login(string user, string pass)
         {
             int res = 0;
@@ -36,6 +39,9 @@ namespace DotechRewards.Models
             return res;
         }//login()
 
+        /// <summary>
+        /// Obtiene los permisos de un usuario para tener acceso al panel administrativo.
+        /// </summary>
         public int getPermisos(string user) {
             int res = 0;
 
@@ -67,6 +73,9 @@ namespace DotechRewards.Models
             return res;
         }
 
+        /// <summary>
+        /// Obtiene el nombre completo de un usuario basado en el nombre de usuario nombre.apellido.
+        /// </summary>
         public string getNombreC(string user)
         {
             string nombre = "";
@@ -99,6 +108,9 @@ namespace DotechRewards.Models
             return nombre;
         }
 
+        /// <summary>
+        /// Recupera contraseña de usuario para verificar que existe.
+        /// </summary>
         public string recuperarContrasena(string user)
         {
             string pass = "";

@@ -73,7 +73,7 @@ namespace DotechRewards.Controllers
             try
             {
                 string senderEmail = WebConfigurationManager.AppSettings["email"].ToString(); //"bhn.rock@gmail.com"; 
-                string senderPassword = WebConfigurationManager.AppSettings["password"].ToString(); //"yiesajpdikycokfg";
+                string senderPassword = WebConfigurationManager.AppSettings["password"].ToString(); //"yiesajpdikycokfg"
                 string smtpClient = WebConfigurationManager.AppSettings["smtpClient"].ToString(); //"smtp.gmail.com"
                 int smtpPort = Convert.ToInt32(WebConfigurationManager.AppSettings["emailPort"].ToString()); //587
 

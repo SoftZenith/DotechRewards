@@ -13,7 +13,9 @@ namespace DotechRewards.Models
 
         public string UUID { get; set; }
 
-
+        /// <summary>
+        /// Obtiene fecha de creación de URL con UUID.
+        /// </summary>
         public bool GetDateURL(string uuid) {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -44,6 +46,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Inserta registro con UUID y nombre de usuario para posterior recuperación de contraseña.
+        /// </summary>
         public bool AddResetPassword(string uuid, string usuario)
         {
             using (SqlConnection cnn = Context.Connect())
@@ -71,6 +76,9 @@ namespace DotechRewards.Models
             }
         }
 
+        /// <summary>
+        /// Reestablece contraseña basado en el UUID.
+        /// </summary>
         public bool ResetPassword(string uuid, string password)
         {
             using (SqlConnection cnn = Context.Connect())
