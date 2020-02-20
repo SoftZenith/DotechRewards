@@ -1,9 +1,14 @@
 ﻿body {
     font-size: 1rem !important;
 }
-
+.nav-propierties {
+    background-color: #f2f0f0;
+    padding: 0px!important;
+    border-bottom: solid 2px;
+    border-color:gray;
+}
 i.fuente {
-    font-family: 'Raleway', Arial, sans-serif!important;
+    font-family: 'Raleway', Arial, sans-serif !important;
 }
 
 .form-check-input {

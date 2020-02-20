@@ -41,14 +41,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-<nav class="navbar navbar-light bg-light justify-content-between" style="padding: 0px;">
+<nav class="navbar navbar-light nav-propierties justify-content-between nav-properties" >
     <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top" alt="" style="margin:0px;">
     <ul class="nav navbar-nav navbar-fixed-top" style="font-weight:normal;">
         <li><a style="font-size: 20px; margin-right: 18px;">@user</a></li>
         <!--<li><a href="#">Cambiar contraseña</a></li>-->
         <div class="d-flex justify-content-end" style="margin-left: -120px;">
             <li><a href="@Url.Action("Index","Usuario")" style="margin-right:30px;">Cambiar a vista de usuario</a></li>
-            <a href="@Url.Action("LogOff","Home")"><span style="color: red; font-size: 18px; margin-right: 18px;"> Salir</span></a>
+            <a href="@Url.Action("LogOff","Home")"><span style="color: black; font-size: 18px; margin-right: 18px;"> Salir</span></a>
         </div>
     </ul>
 </nav>
@@ -109,7 +109,8 @@
                     <thead style="display: block;">
                         <tr>
                             <th scope="col" width="200px" style="text-align: center">Usuario</th>
-                            <th scope="col" width="390px" style="text-align: center">Puesto/asignación</th>
+                            <th scope="col" width="390px" style="        text-align: center
+">Puesto/asignación</th>
                             <th scope="col" width="160px" style="text-align: center">Fecha entrada</th>
                             <th scope="col" width="140px" style="text-align: center">Cumpleaños</th>
                             <th scope="col" width="125px" style="        text-align: center

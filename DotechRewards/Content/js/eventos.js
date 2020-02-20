@@ -98,7 +98,29 @@
 
             })
     });
+    $('#Lista_asis').change(function () {
 
+        var fileName = document.getElementById("Lista_asis").value; //c:fakepath/imagen.jpg
+        var fileButon = document.getElementById("btnListaGuardar");
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase(); //jpg
+
+
+
+
+        if (extFile == "xlsx") {
+            $('#btnListaGuardar').attr('disabled', false);
+        } else {
+            console.log("Error formato");
+            Swal.fire(
+                'Error en la lista',
+                'Solo se permiten archivos de imágenes en formato xlsx.',
+                'warning'
+            );
+            $('#btnListaGuardar').attr('disabled', true);
+            return false;
+        }
+    });
     $('#subirLista').click(function () {
         $.post("/AdminEven/SubirLista").done(function () {
             window.Location.href = "adminEven";

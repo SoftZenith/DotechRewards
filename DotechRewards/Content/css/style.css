@@ -12,6 +12,15 @@ table th, table td {
 table tr:nth-child(even){
     background-color: white;
 }
+.table th, .table td {
+    border-bottom: 2px solid #dee2e6;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: white;
+}
+.table {
+    color: gray!important;
+}
 
 .pagination li:hover {
     cursor: pointer;

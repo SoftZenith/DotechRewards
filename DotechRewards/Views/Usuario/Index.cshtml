@@ -43,7 +43,7 @@
 <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="~/Content/js/js.js"></script>
 
-<nav class="navbar navbar-light bg-light justify-content-between" style="padding: 0px;border-bottom: solid 1px;border-color:gray;">
+<nav class="navbar navbar-light nav-propierties justify-content-between" >
     <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top" alt="" style="margin:0px;">
     <ul class="nav navbar-nav navbar-fixed-top" style="font-weight:normal;">
         <li><a style="font-size: 20px; margin-right: 18px;"> @user</a></li>
@@ -57,26 +57,28 @@
             <a data-toggle="modal" data-target="#exampleModal" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">
                 Cambiar contraseña &nbsp
             </a>
-            <a href="@Url.Action("LogOff","Home")"><span style="color: red; font-size: 18px; margin-right: 18px;"> Salir</span></a>
+            <a href="@Url.Action("LogOff","Home")"><span style="color: black; font-size: 18px; margin-right: 18px;"> Salir</span></a>
         </div>
     </ul>
 </nav>
 <div class="container-fluid" style="height: 400px">
     <div class="row justify-content-center" style="margin: 5px">
-        <div class="col-5" style="margin-top:20px;">
+        <div class="col-5" style="margin-top:20px; font-family:sans-serif;">
 
-            <div class="d-flex justify-content-center" style="margin-top: 0px; margin-bottom: 15px;">
+            <div class="d-flex justify-content-center" style="margin-top: 0px;">
                 <h2 style="margin-left: 30px; font-size:2.6vw">
                     Actualmente cuentas con:
                 </h2>
             </div>
-            <div class="d-flex justify-content-center" style="display:inline-block; 15px; margin-bottom: 10px;">
-                <h1 style="display:inline-block; font-size:4vw">
-                    <b>@bannerP.puntos</b>
-                </h1>
-                <h5 style="display:inline-block;font-size:2.2vw; align-self: flex-end;">
-                    &nbsp Puntos
-                </h5>
+            <div class="d-flex justify-content-center" style="display:inline-block; 15px;">
+                <b>
+                    <h1 style="display:inline-block; font-size:6vw">
+                        <b>@bannerP.puntos</b>
+                    </h1>
+                    <h5 style="display:inline-block;font-size:2.2vw; align-self: flex-end;">
+                        &nbsp Puntos
+                    </h5>
+                </b>
             </div>
 
             <div class="d-flex justify-content-center" style="margin-top: 0px; margin-bottom: 15px;">
@@ -153,7 +155,7 @@
                     <div style="display:inline-block; float:right; margin-right: 55px;">
                         <tfoot>
                             <tr>
-                                <th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th>
+                                <b><th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th></b>
                             </tr>
                         </tfoot>
                     </div>
