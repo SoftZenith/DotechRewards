@@ -2,6 +2,10 @@
     font-size: 1rem !important;
 }
 
+i.fuente {
+    font-family: 'Raleway', Arial, sans-serif!important;
+}
+
 .form-check-input {
     width: 10px !important;
 }
@@ -34,4 +38,15 @@ h3{
 }
 h5{
     font-size:1rem !important;
+}
+.nav-link {
+    width: 100% !important;
+    
+}
+
+.link-download-cat{
+    font-weight:bold;
+}
+.pagination {
+    font-weight: bold;
 }

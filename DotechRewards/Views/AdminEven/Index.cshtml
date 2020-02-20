@@ -198,7 +198,7 @@
                             <label>Necesita confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @type = "checkbox" })
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input",@style="margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Cantidad de personas: </label>
@@ -211,7 +211,7 @@
                             <label>Link confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @type = "checkbox" })
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @style="margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-6 mb-3">
                             @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
