@@ -9,8 +9,11 @@ table th, table td {
     padding-bottom: 2px !important;
 }
 
-table tr:nth-child(even){
+table tr:nth-child(even) {
     background-color: white;
+}
+table tr {
+    color: #111111 !important;
 }
 .table th, .table td {
     border-bottom: 2px solid #dee2e6;
