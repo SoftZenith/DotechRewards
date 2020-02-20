@@ -258,7 +258,17 @@
             'Cargado',
             'El archivo se ha cargado correctamente',
             'success'
-        );
-    }
+        ).then((result) => {
+            window.location.href = "/AdminEven"
+        });
+    }/* else {
+        Swal.fire(
+            'Error en archivo',
+            'Revisa los valores dentro del archivo',
+            'warning'
+        ).then((result) => {
+            window.location.href = "/AdminEven"
+        });
+    }*/
 </script>
 <!-- /Modal -->

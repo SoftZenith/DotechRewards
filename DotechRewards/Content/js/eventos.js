@@ -35,7 +35,8 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar'
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Eliminar',
         }).then((result) => {
             if (result.value) {
                 $.post("/AdminEven/DelEvento", { idEvento: $(this).data('id') })
@@ -99,7 +100,9 @@
     });
 
     $('#subirLista').click(function () {
-        $.post("/AdminEven/SubirLista");
+        $.post("/AdminEven/SubirLista").done(function () {
+            window.Location.href = "adminEven";
+        });
     });
 
     
@@ -164,12 +167,12 @@
                             return false;
                         }
                     }
-                    if (height != 260) {
-                        if (height != 260) {
+                    if (height != 300) {
+                        if (height != 300) {
                             console.log("Error alto");
                             Swal.fire(
                                 'Error en imagen',
-                                'La imagen debe tener un alto de 260 pixeles.',
+                                'La imagen debe tener un alto de 300 pixeles.',
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
