@@ -294,4 +294,5 @@ input[type=text] {
 
 .form-check-input {
     width: 10px !important;
+    margin:initial!important;
 }

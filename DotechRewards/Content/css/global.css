@@ -2,6 +2,10 @@
     font-size: 1rem !important;
 }
 
+i.fuente {
+    font-family: 'Raleway', Arial, sans-serif!important;
+}
+
 .form-check-input {
     width: 10px !important;
 }
