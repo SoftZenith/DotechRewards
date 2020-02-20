@@ -62,3 +62,19 @@ h5{
     border-style: solid;
     border-width: 0px 1px 1px 1px;
 }
+.span-menu {
+    text-decoration: underline;
+    margin-right:5px;
+}
+.span-menu--black {
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 18px;
+} 
+.span-menu--blue {
+    color: royalblue;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 4px;
+}

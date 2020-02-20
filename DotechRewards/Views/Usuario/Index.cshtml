@@ -50,14 +50,14 @@
         <div class="d-flex justify-content-end" style="margin-left: -120px;">
             @if (admin == 1)
             {
-                <a href="@Url.Action("Index", "Admin")" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">
-                    Panel administración &nbsp
+                <a href="@Url.Action("Index", "Admin")" class="span-menu span-menu--blue">
+                    Panel administración
                 </a>
             }
-            <a data-toggle="modal" data-target="#exampleModal" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">
-                Cambiar contraseña &nbsp
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="span-menu span-menu--blue" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">
+                Cambiar contraseña
             </a>
-            <a href="@Url.Action("LogOff","Home")"><span style="color: black; font-size: 18px; margin-right: 18px;"> Salir</span></a>
+            <a href="@Url.Action("LogOff","Home")" class="span-menu span-menu--black"> Salir</a>
         </div>
     </ul>
 </nav>
