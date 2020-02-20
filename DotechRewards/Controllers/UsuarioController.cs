@@ -1,4 +1,5 @@
 ﻿using DotechRewards.Models;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace DotechRewards.Controllers
@@ -9,6 +10,8 @@ namespace DotechRewards.Controllers
         public ActionResult Index()
         {
             //UsuarioModel UsuarioM = new UsuarioModel().getRecompensa();
+            string pathCatalogo = WebConfigurationManager.AppSettings["pathCatalogos"].ToString().Replace("~/","")+"catalogo.pdf";
+            ViewBag.pathCatalogo = pathCatalogo;
             return View();
         }
 

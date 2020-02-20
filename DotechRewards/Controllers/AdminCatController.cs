@@ -1,6 +1,7 @@
 ﻿using DotechRewards.Models;
 using System;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace DotechRewards.Controllers
@@ -44,7 +45,8 @@ namespace DotechRewards.Controllers
             {
                 HttpPostedFileBase file = Request.Files[0];
                 file = Request.Files[0];
-                string ruta = Server.MapPath("~/catalogos/");
+                string pathCatalogo = WebConfigurationManager.AppSettings["pathCatalogos"].ToString();
+                string ruta = Server.MapPath(pathCatalogo);
                 ruta += "catalogo.pdf";
                 file.SaveAs(ruta);
             }
