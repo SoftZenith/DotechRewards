@@ -26,7 +26,6 @@ namespace DotechRewards.Models
                     //SqlCommand cmd = new SqlCommand("select * from DR_CAT_USUARIO where usuario = '"+user+"' and contrasena = '"+pass+"'",cnn);
                     SqlCommand cmd = new SqlCommand("SP_GET_USUARIOS", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     SqlDataReader reader = cmd.ExecuteReader();
                     usuarios = new List<Usuario>();
                     while (reader.Read())
