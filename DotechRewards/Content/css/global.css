@@ -86,3 +86,8 @@ h5{
 .aRegistro {
     text-decoration: underline !important;
 }
+
+.img--header {
+    width:180px;
+    height:69px;
+}

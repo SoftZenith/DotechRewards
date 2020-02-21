@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using DotechRewards.Util.Database;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Globalization;
 
 namespace DotechRewards.Models
 {
@@ -235,8 +236,21 @@ namespace DotechRewards.Models
                     eventos = new List<Evento>();
                     while (reader.Read())
                     {
+                        string fecha_mes = "";
+                        try
+                        {
+                            //CultureInfo esMX = new CultureInfo("es-MX");
+                            string fecha_normal = reader["fecha"].ToString().Substring(0, 10).Replace("/","-");
+                            DateTime dt = DateTime.Parse(fecha_normal);
+                            fecha_mes = dt.ToString("dd MMM yyyy").Replace(".", "");
+                            fecha_mes = fecha_mes.Replace(" ", "-");
+                        }
+                        catch (Exception ex) {
+                            fecha_mes = ex.ToString();
+                        }
                         eventos.Add(new Evento(
-                                reader["fecha"].ToString().Substring(0, 10),
+                                //reader["fecha"].ToString().Substring(0, 10),
+                                fecha_mes,
                                 reader["nombre"].ToString(),
                                 Convert.ToInt16(reader["PUNTOS"].ToString())
                             ));
