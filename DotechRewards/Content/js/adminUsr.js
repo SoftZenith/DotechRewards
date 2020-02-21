@@ -97,6 +97,20 @@
     $('#btnCobrar').click(function () {
         $.post("/AdminUsr/CobrarPuntos", { idUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
+                if (data == -1) {
+                    Swal.fire(
+                        'Error en cobro',
+                        'No puede cobrar más puntos de los que tiene el usuario',
+                        'warning'
+                    );
+                } else {
+                    Swal.fire(
+                        'Cobro exitoso',
+                        'Se hizo el cobro de puntos exitosamente',
+                        'success'
+                    );
+                }
+
                 //Llenar tabla historial
                 $.post("/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
                     //console.log(json);
