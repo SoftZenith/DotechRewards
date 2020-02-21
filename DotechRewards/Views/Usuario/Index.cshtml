@@ -66,24 +66,24 @@
     <div class="row justify-content-center" style="margin: 5px">
         <div class="col-5" style="margin-top:20px; font-family:sans-serif;">
 
-            <div class="d-flex justify-content-center" style="margin-top: 0px;">
-                <h2 style="margin-left: 30px; font-size:2.6vw">
+            <div class="d-flex justify-content-start" style="margin-top: 0px;">
+                <h2 style="font-size:2.6vw">
                     Actualmente cuentas con:
                 </h2>
             </div>
-            <div class="d-flex justify-content-center" style="display:inline-block; 15px;">
-                <b style="width: 82%; text-align: right;">
+            <div class="d-flex justify-content-start" style="display:inline-block; 15px;">
+                <b style="width: 77%; text-align: right;">
                     <h1 style="display:inline-block; font-size:6vw">
-                        <b>@bannerP.puntos</b>
+                        <b style="margin-left: 1em;">@bannerP.puntos</b>
                     </h1>
                     <h5 style="display:inline-block;font-size:2.2vw; align-self: flex-end;font-weight:bold">
                         &nbsp Puntos
                     </h5>
                 </b>
             </div>
-
-            <div class="d-flex justify-content-center" style="margin-top: 0px; margin-bottom: 15px;">
-                <u><a class="link-download-cat" target="_blank" href="@pathCatalogoH" style="font-size:1.3vw; color:black;">Canjea tus puntos</a></u>
+             
+            <div class="d-flex justify-content-start" style="margin-top: 0px; margin-bottom: 15px;">
+                <us style="width: 77%; text-align: center;"><a class="link-download-cat" target="_blank" href="@pathCatalogoH" style="font-size:1.3vw; color:black;">Canjea tus puntos</a></ustyle="width:>
             </div>
         </div>
         <div class="col-7">
@@ -131,7 +131,7 @@
                         {
                             <tr>
                                 <td style="text-align: left">@evento.fecha</td>
-                                <td style="text-align: left">@evento.nombre</td>
+                                <td style="text-align: left; width:53%;">@evento.nombre</td>
                                 <td style="text-align: center">@evento.puntos</td>
                             </tr>
                         }
@@ -196,11 +196,11 @@
                         @if (panelP.registro == 1)
                         {
                             <a class="aRegistro" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre" style="        position: absolute;
-                                    left: 1150px;
-                                    top: 265px;
-                                    z-index: 2;
-                                    color: white;
-                                    cursor: pointer">Regístrate aquí</a>
+        left: 1150px;
+        top: 265px;
+        z-index: 2;
+        color: white;
+        cursor: pointer">Regístrate aquí</a>
                         }
                         @if (panelP.url != "")
                         {
