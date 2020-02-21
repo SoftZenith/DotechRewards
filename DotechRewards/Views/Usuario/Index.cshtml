@@ -72,7 +72,7 @@
                 </h2>
             </div>
             <div class="d-flex justify-content-center" style="display:inline-block; 15px;">
-                <b style="width: 85%; text-align: right;">
+                <b style="width: 82%; text-align: right;">
                     <h1 style="display:inline-block; font-size:6vw">
                         <b>@bannerP.puntos</b>
                     </h1>
@@ -103,7 +103,7 @@
                     @if (bannerP.estatus == 0)
                     {
                         <tr>
-                            <td width="700px" style="text-align: center; font-size: 30px; color:gray">Para activar tu puntos de bienvenida <a href="@Url.Action("activarPuntos", "Usuario", new { usuario = idUsr })">haz click aquí</a></td>
+                            <td width="100%" style="text-align: center; font-size: 30px; color:gray">Para activar tu puntos de bienvenida <a href="@Url.Action("activarPuntos", "Usuario", new { usuario = idUsr })">haz click aquí</a></td>
                         </tr>
                     }
                     else
@@ -122,7 +122,7 @@
                                 bannerP.eventos.Add(new Evento("", "", 0));
                             }
                         }
-                        <tr style="color:gray!important;">
+                        <tr style="color:gray!important; border-top: 2px solid #d4d4d4!important;">
                             <th>Fecha</th>
                             <th>Actividad</th>
                             <th>Puntos</th>
@@ -141,7 +141,7 @@
                 <!--		Start Pagination -->
                 @if (bannerP.estatus > 0)
                 {
-                    <div style="width=700px; border-bottom: 2px solid #dee2e6; margin-bottom:1rem;">
+                    <div style="width:100%; border-bottom: 2px solid #d4d4d4; margin-bottom:1rem;">
                         <nav style="display:inline-block; width:135px;">
                             <ul class="pagination" style="margin-bottom:0.5rem;">
                                 <li data-page="prev" class="page-header">
@@ -155,11 +155,9 @@
                         </nav>
 
                         <div style="display:inline-block; float:right; width: 125px;">
-                            <tfoot>
-                                <tr>
-                                    <b><th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th></b>
-                                </tr>
-                            </tfoot>
+                            
+                             <b style="float: right; margin-right: 51px;">Total: @bannerP.puntos</b>
+                                
                         </div>
                     </div>
                 }
@@ -318,7 +316,8 @@
 
             </div>
         </div>
-        <div class="col-1" style="margin-left: -57px!important;">
+        <div class="col-1" style="        margin-left: -57px !important;
+">
             <div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important;">
                 <div class="card">
                     <div class="container" >

@@ -16,7 +16,7 @@ table tr {
     color: #111111 !important;
 }
 .table th, .table td {
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid #d4d4d4;
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: white;
