@@ -3,9 +3,10 @@
 }
 .nav-propierties {
     background-color: #f2f0f0;
-    padding: 0px!important;
-    border-bottom: solid 2px;
-    border-color:gray;
+    padding: 0px !important;
+    border-bottom: solid 1px;
+    border-color: gray;
+    height:70px;
 }
 i.fuente {
     font-family: 'Raleway', Arial, sans-serif !important;
@@ -86,4 +87,9 @@ h5{
 
 .aRegistro {
     text-decoration: underline !important;
+}
+
+.img--header {
+    width:180px;
+    height:69px;
 }
