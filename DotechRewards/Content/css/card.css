@@ -101,7 +101,7 @@ input[type=checkbox] {
     .carousel-multi-item-2 .col-md-3 {
         float: left;
         width: 260px;
-        height: 30%;
+        height: 80%;
         max-width: 100%;
     }
 }
