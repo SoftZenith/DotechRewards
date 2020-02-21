@@ -6,6 +6,9 @@
     padding: 0px !important;
     border-bottom: 2px solid #d4d4d4;
 }
+.nav-propierties img {
+    margin-left: 68px!important;
+}
 i.fuente {
     font-family: 'Raleway', Arial, sans-serif !important;
 }
