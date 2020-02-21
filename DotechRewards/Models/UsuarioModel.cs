@@ -242,8 +242,10 @@ namespace DotechRewards.Models
                             //CultureInfo esMX = new CultureInfo("es-MX");
                             string fecha_normal = reader["fecha"].ToString().Substring(0, 10).Replace("/","-");
                             DateTime dt = DateTime.Parse(fecha_normal);
-                            fecha_mes = dt.ToString("dd MMM yyyy").Replace(".", "");
-                            fecha_mes = fecha_mes.Replace(" ", "-");
+                            fecha_mes = dt.ToString("dd-MMM-yyyy").Replace(".", "");
+                            string[] fecha_mes_arreglo = fecha_mes.Split('-');
+                            fecha_mes_arreglo[1] = fecha_mes_arreglo[1][0].ToString().ToUpper() + fecha_mes_arreglo[1][1] + fecha_mes_arreglo[1][2];
+                            fecha_mes = String.Join("-",fecha_mes_arreglo);
                         }
                         catch (Exception ex) {
                             fecha_mes = ex.ToString();
