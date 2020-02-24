@@ -72,10 +72,14 @@ namespace DotechRewards.Controllers
         /// Cobra o resta puntos a un usuario, requiere el usuario, la descripción por la que se restan puntos y los puntos a restar.
         /// </summary>
         [HttpPost]
-        public ActionResult CobrarPuntos(int idUsuario, string descripcion, int puntos) {
+        public int CobrarPuntos(int idUsuario, string descripcion, int puntos) {
             AdminModel admin = new AdminModel();
+            int puntosActuales = admin.validaPuntos(idUsuario);
+            if (puntosActuales < puntos) {
+                return -1;
+            }
             admin.CobrarPuntos(idUsuario, 0, descripcion, puntos);
-            return null;
+            return 0;
         }
 
         /// <summary>

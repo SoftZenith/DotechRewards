@@ -172,11 +172,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="needs-validation" novalidate>
-                <div class="modal-body">
-                    @using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
-                    {
-                        @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
+            <div class="modal-body">
+                @using (Html.BeginForm("AddEvento", "AdminEven", FormMethod.Post, new { id = "AddEvento", enctype = "multipart/form-data" }))
+                {
+                    @Html.TextBoxFor(m => m.idEvento, new { @id = "idEventoM", @type = "hidden", @name = "idEventoM" })
 
                     <div class="form-row">
                         <!--col 12-->
@@ -210,7 +209,7 @@
                             <label>Necesita confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input",@style="margin:initial; position:initial;", @type = "checkbox" })
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Cantidad de personas: </label>
@@ -223,7 +222,7 @@
                             <label>Link confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @style="margin:initial; position:initial;", @type = "checkbox" })
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-6 mb-3">
                             @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
@@ -246,21 +245,21 @@
                             <label id="h5confirmados"> confirmado(s)</label>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <a id="downloadLista" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
+                            <a id="downloadLista" target="_blank" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
                         </div>
                         <div class="col-md-3 mb-3">
 
                         </div>
 
                     </div>
-                            }
                     <div class="modal-footer">
                         <button type="submit" id="btnGuardar" class="btn btn-success">Guardar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
+                }
 
-                </div>
-            </form>
+
+            </div>
         </div>
      </div>
 </div>

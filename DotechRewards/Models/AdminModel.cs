@@ -26,7 +26,6 @@ namespace DotechRewards.Models
                     //SqlCommand cmd = new SqlCommand("select * from DR_CAT_USUARIO where usuario = '"+user+"' and contrasena = '"+pass+"'",cnn);
                     SqlCommand cmd = new SqlCommand("SP_GET_USUARIOS", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     SqlDataReader reader = cmd.ExecuteReader();
                     usuarios = new List<Usuario>();
                     while (reader.Read())
@@ -391,7 +390,7 @@ namespace DotechRewards.Models
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        idUsuario = Convert.ToInt16(reader["idUsuario"].ToString());
+                        idUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
                     }
 
                 }
@@ -474,6 +473,35 @@ namespace DotechRewards.Models
                     cnn.Close();
                     cnn.Dispose();
                     res = 1;
+                }
+                return res;
+            }
+        }
+
+        public int validaPuntos(int idUsuario) {
+            using (SqlConnection cnn = Context.Connect())
+            {
+                int res = 0;
+                try
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_VALIDA_COBRO_PUNTOS", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read()) { 
+                        res = Convert.ToInt32(reader["puntos"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res = -1;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
                 }
                 return res;
             }

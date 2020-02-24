@@ -98,6 +98,7 @@
 
             })
     });
+
     $('#Lista_asis').change(function () {
 
         var fileName = document.getElementById("Lista_asis").value; //c:fakepath/imagen.jpg
@@ -121,13 +122,12 @@
             return false;
         }
     });
+
     $('#subirLista').click(function () {
         $.post("/AdminEven/SubirLista").done(function () {
             window.Location.href = "adminEven";
         });
     });
-
-    
 
     $('#Foto_Camp').change(function () {
         var fileName = document.getElementById("Foto_Camp").value; //c:fakepath/imagen.jpg

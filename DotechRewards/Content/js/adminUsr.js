@@ -73,6 +73,14 @@
     });
 
     $('#btnAsignar').click(function () {
+        if ($('#puntos').val() < 0) {
+            Swal.fire(
+                'Error en asignación',
+                'Solo se aceptan montos positivos',
+                'warning'
+            );
+            return;
+        }
         var idUSur = $('#idUsuarioModal').val();
         $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
@@ -95,8 +103,30 @@
     });
 
     $('#btnCobrar').click(function () {
+        if ($('#puntos').val() < 0) {
+            Swal.fire(
+                'Error en cobro',
+                'Solo se aceptan montos positivos',
+                'warning'
+            );
+            return;
+        }
         $.post("/AdminUsr/CobrarPuntos", { idUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
+                if (data == -1) {
+                    Swal.fire(
+                        'Error en cobro',
+                        'No puede cobrar más puntos de los que tiene el usuario',
+                        'warning'
+                    );
+                } else {
+                    Swal.fire(
+                        'Cobro exitoso',
+                        'Se hizo el cobro de puntos exitosamente',
+                        'success'
+                    );
+                }
+
                 //Llenar tabla historial
                 $.post("/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
                     //console.log(json);
