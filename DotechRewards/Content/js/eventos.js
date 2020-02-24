@@ -1,4 +1,9 @@
 ﻿$(document).ready(function () {
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
     $('.btnEditE').click(function () {
         $('#confirmacionEven').prop('checked', false);
         $('#confirmacionLink').prop('checked', false);

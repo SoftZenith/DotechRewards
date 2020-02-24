@@ -45,6 +45,37 @@ namespace DotechRewards.Models
 
         }
 
+        public DataTable getListaGenerica(int idEvento) {
+            DataTable dt = new DataTable();
+            SqlDataAdapter ad;
+            using (SqlConnection cnn = Context.Connect())
+            {
+                try
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SP_GET_LISTA_GENERICA", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@idEvento", SqlDbType.Int).Value = idEvento;
+
+                    ad = new SqlDataAdapter(cmd);
+                    ad.Fill(dt);
+                    cnn.Close();
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex);
+                    return dt;
+                }/*
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }*/
+            }
+        }
+
         /// <summary>
         /// Lee archivo .xlsx de lista de asistencia y asigna los puntos individualmente.
         /// </summary>

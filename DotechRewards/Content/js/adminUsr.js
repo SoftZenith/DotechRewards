@@ -119,6 +119,13 @@
                         'No puede cobrar más puntos de los que tiene el usuario',
                         'warning'
                     );
+                }
+                else if (data == -2) {
+                    Swal.fire(
+                        'Error en cobro',
+                        'El usuario aun no activa sus puntos',
+                        'warning'
+                    );
                 } else {
                     Swal.fire(
                         'Cobro exitoso',

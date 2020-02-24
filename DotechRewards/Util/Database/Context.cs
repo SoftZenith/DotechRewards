@@ -14,6 +14,5 @@ namespace DotechRewards.Util.Database
             string connStr = ConfigurationManager.ConnectionStrings[connName].ConnectionString;
             return new SqlConnection(connStr);
         }
-
     }
 }

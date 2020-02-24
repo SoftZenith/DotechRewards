@@ -507,6 +507,36 @@ namespace DotechRewards.Models
             }
         }
 
+        public int getActivacionPuntos(int idUsuario) {
+            using (SqlConnection cnn = Context.Connect())
+            {
+                int res = 0;
+                try
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_GET_ACTIVACION_PUNTOS_BY_ID", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        res = Convert.ToInt32(reader["estatus"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res = 0;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+                return res;
+            }
+        }
+
     }
 
     public class Usuario

@@ -96,30 +96,34 @@
                 <table class="table table-sm" style="margin-left: 30px;" id="myTable">
                     <thead style="display: block;">
                         <tr>
-                            <th scope="col" width="290px" style="text-align: center">Evento</th>
-                            <th scope="col" width="390px" style="text-align: center">Lugar</th>
+                            <th scope="col" width="260px" style="text-align: center">Evento</th>
+                            <th scope="col" width="320px" style="text-align: center">Lugar</th>
                             <th scope="col" width="140px" style="text-align: center">Fecha</th>
-                            <th scope="col" width="80px" style="text-align: center">Asistentes</th>
-                            <th scope="col" width="70px" style="text-align: center">Acciones</th>
+                            <th scope="col" width="60px" style="text-align: center">Asistentes</th>
+                            <th scope="col" width="140px" style="text-align: center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody style="display: block; height: 368px; overflow-y: auto; overflow-x: hidden;">
                         @foreach (Evento evento in admin.eventos)
                         {
                             <tr>
-                                <td width="300px" style="text-align: center">@evento.nombre</td>
-                                <td width="390px" style="text-align: center">@evento.lugar</td>
+                                <td width="270px" style="text-align: center">@evento.nombre</td>
+                                <td width="320px" style="text-align: center">@evento.lugar</td>
                                 <td width="130px" style="text-align: center">@evento.fecha</td>
-                                <td width="130px" style="text-align: center">@evento.asistentes</td>
-                                <td width="80px" style="text-align: end">
+                                <td width="120px" style="text-align: center">@evento.asistentes</td>
+                                <td width="120px" style="text-align: center">
                                     <div class="row">
                                         <button type="button" class="btnEditE button-edit" data-id="@evento.idEvento" data-confirmacion="@evento.confirmacion" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
-                                                data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen" 
+                                                data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen"
                                                 data-urle="@evento.url" data-confirmados="@evento.confirmados" data-toggle="modal" data-target="#EventModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button type="button" class="btnDelE" data-id="@evento.idEvento">
+                                        <button data-toggle="tooltip" title="Eliminar" type="button" class="btnDelE button-edit" data-id="@evento.idEvento">
                                             <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <button  data-toggle="tooltip" title="Descargar lista de asistencia" type="button" 
+                                                class="btnDownE" data-id="@evento.idEvento" onclick="window.location.href='/AdminEven/DescargarListaGeneric?idEvento=@evento.idEvento'" formtarget="_blank">
+                                            <i class="fas fa-file-download"></i>
                                         </button>
                                     </div>
                                 </td>

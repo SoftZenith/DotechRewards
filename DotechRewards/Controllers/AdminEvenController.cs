@@ -95,6 +95,39 @@ namespace DotechRewards.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DescargarListaGeneric(int idEvento) {
+            if (idEvento == 0)
+                return null;
+            DataTable dt = new DataTable();
+            AdminEvenModel evento = new AdminEvenModel();
+            dt = evento.getListaGenerica(idEvento);
+            //dt.TableName = "AR_LOG_IMPLEMENTACION";
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, "REPORTES");
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string nombre_archivo = "attachment;filename=ListaAsistencia_" + DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ".xlsx";
+                Response.AddHeader("Content-Disposition", nombre_archivo);
+
+                //Response.AddHeader("content-disposition", "attachment;filename=GridView.xlsx");
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                }
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
         /// <summary>
         /// Sube archivo de lista de asistencia con extension .xlxs, el archivo se toma del post request y se guarda en ~/Content/lista/
         /// </summary>
