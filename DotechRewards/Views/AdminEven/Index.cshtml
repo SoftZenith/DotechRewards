@@ -2,7 +2,7 @@
 @model DotechRewards.Models.Evento
 @{
     ViewBag.Title = "AdminEven";
-    bool exitos = ViewBag.exitoso == 1 ? true : false;
+    int exitos = ViewBag.exitoso;
     string user = "";
     int adminFlg = -1;
     AdminModel admin = null;
@@ -264,7 +264,7 @@
      </div>
 </div>
 <script>
-    if ('@exitos' === 'True') {
+    if ('@exitos' === '1') {
         Swal.fire(
             'Cargado',
             'El archivo se ha cargado correctamente',
@@ -272,7 +272,7 @@
         ).then((result) => {
             window.location.href = "/AdminEven"
         });
-    }/* else {
+    } else if('@exitos' === '0') {
         Swal.fire(
             'Error en archivo',
             'Revisa los valores dentro del archivo',
@@ -280,6 +280,7 @@
         ).then((result) => {
             window.location.href = "/AdminEven"
         });
-    }*/
+    }
+
 </script>
 <!-- /Modal -->

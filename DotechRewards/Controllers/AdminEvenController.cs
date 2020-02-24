@@ -12,7 +12,7 @@ namespace DotechRewards.Controllers
 {
     public class AdminEvenController : Controller
     {
-        public int exitoSubirLista = 0;
+        public int exitoSubirLista = 2;
 
         // GET: AdminEven
         public ActionResult Index()
