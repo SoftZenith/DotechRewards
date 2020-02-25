@@ -91,7 +91,7 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
-                        $('#Foto_Camp').val('');
+                        $('#Foto_Prd').val('');
                         return false;
                     }
                     if (nombreEspacio[0] == " ") {
@@ -102,7 +102,7 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
-                        $('#Foto_Camp').val('');
+                        $('#Foto_Prd').val('');
                         return false;
                     }
                     var height = this.height;
@@ -115,7 +115,7 @@
                                 'La imagen debe tener un ancho de 250 pixeles.',
                                 'warning'
                             );
-                            $('#Foto_Camp').val('');
+                            $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled', true);
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
@@ -129,7 +129,7 @@
                                 'La imagen debe tener un alto de 130 pixeles.',
                                 'warning'
                             );
-                            $('#Foto_Camp').val('');
+                            $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled',true);
                             $('#previewImg').attr('src', 'Content/images/baner_producto.png');
                             return false;
