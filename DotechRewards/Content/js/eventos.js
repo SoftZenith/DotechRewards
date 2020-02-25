@@ -94,9 +94,41 @@
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=0');
+        
         //$('#urlConfirmacion').val('');
     });
-    
+
+    //validaciones de digitos
+    $('#puntos').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#puntos').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 5));
+        }
+    });
+    $('#cantidadPersonas').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 2) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#cantidadPersonas').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 3));
+        }
+        if ($(this).val().length > 2) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    //-------------------------
     $('#getLista').click(function () {
         $.post("/AdminEven/DescargarLista", { idEvento: $('#idEventoM').val() })
             .done(function (data) {
@@ -133,6 +165,8 @@
             window.Location.href = "adminEven";
         });
     });
+
+
 
     $('#Foto_Camp').change(function () {
         var fileName = document.getElementById("Foto_Camp").value; //c:fakepath/imagen.jpg

@@ -129,10 +129,11 @@
                         </tr>
                         foreach (Evento evento in bannerP.eventos)
                         {
+                            var puntos = (@evento.puntos == 0) ? " " : @evento.puntos+"";
                             <tr>
                                 <td style="text-align: left">@evento.fecha</td>
                                 <td style="text-align: left; width:53%;">@evento.nombre</td>
-                                <td style="text-align: center">@evento.puntos</td>
+                                <td style="text-align: center">&nbsp;@puntos</td>
                             </tr>
                         }
                     }

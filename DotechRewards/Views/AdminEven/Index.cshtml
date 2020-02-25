@@ -99,7 +99,7 @@
                             <th scope="col" width="260px" style="text-align: center">Evento</th>
                             <th scope="col" width="320px" style="text-align: center">Lugar</th>
                             <th scope="col" width="140px" style="text-align: center">Fecha</th>
-                            <th scope="col" width="60px" style="text-align: center">Asistentes</th>
+                            <th scope="col" width="60px" style="text-align: center">Confirmados</th>
                             <th scope="col" width="140px" style="text-align: center">Acciones</th>
                         </tr>
                     </thead>
@@ -187,40 +187,40 @@
                             <label for="validationCustom01">Nombre evento:</label>
                         </div>
                         <div class="col-md-6 mb-3">
-                            @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" })
+                            @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" , required = "required"})
                         </div>
                         <div class="col-md-1 mb-3">
                             <label for="validationCustom01">Puntos:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                            @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number", @min = "0" })
+                            @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number", @min = "1" , required = "required"})
                         </div>
                         <!--col 12-->
                         <div class="col-md-2 mb-3">
                             <label for="validationCustom01">Lugar:</label>
                         </div>
                         <div class="col-md-6 mb-3">
-                            @Html.TextBoxFor(m => m.lugar, new { id = "lugar", @class = "form-control", @type = "text" })
+                            @Html.TextBoxFor(m => m.lugar, new { id = "lugar", @class = "form-control", @type = "text", required = "required" })
                         </div>
                         <div class="col-md-1 mb-3">
                             <label for="validationCustom01">Fecha:</label>
                         </div>
                         <div class="col-md-3 mb-3">
-                            @Html.TextBoxFor(m => m.fecha, new { id = "fecha", @class = "form-control", @type = "date" })
+                            @Html.TextBoxFor(m => m.fecha, new { id = "fecha", @class = "form-control", @type = "date" , required = "required"})
                         </div>
                         <!--col 12-->
                         <div class="col-md-4 mb-3">
                             <label>Necesita confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
-                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox" })
+                            @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox",  })
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Cantidad de personas: </label>
+                        <div class="col-md-3 mb-3">
+                            <label>Acompañantes: </label>
                         </div>
                         <!--col 12-->
-                        <div class="col-sm-2 mb-3">
-                            @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @type = "number", disabled = "disabled" })
+                        <div class="col-sm-3 mb-3">
+                            @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @min = "0", @type = "number", disabled = "disabled" , required = "required"})
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Link confirmación: </label>
@@ -229,7 +229,7 @@
                             @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-6 mb-3">
-                            @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" })
+                            @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" , required = "required"})
                         </div>
                         <!--col 12-->
                         <div class="col-md-2 mb-3">
@@ -238,7 +238,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
-                                @Html.TextBox("Foto_Camp", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Camp" })
+                                @Html.TextBox("Foto_Camp", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Camp"})
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">

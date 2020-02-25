@@ -10,7 +10,7 @@
         var fecha_cumple = $(this).data('cumple');
         fecha_cumple = fecha_cumple.split("/").reverse().join("-");
         $('#fecha_cumple').val(fecha_cumple);
-
+        $("#asigPuntos").show();
         //Llenar tabla historial
         $.post("/AdminUsr/getHistorialUsuario", { usuario: $(this).data('usuario')}, function (json) {
             //console.log(json);
@@ -70,6 +70,7 @@
         $('#fecha_entrada').val('');
         $('#fecha_cumple').val('');
         $("#historialTable").find("tr").remove();
+        $("#asigPuntos").hide();
     });
 
     $('#btnAsignar').click(function () {

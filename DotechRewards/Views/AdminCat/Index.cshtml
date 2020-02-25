@@ -134,7 +134,7 @@
                 </label>
             </div>
             <div style="float: right; margin-left:550px;">
-                <button id="btnAddCampana" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
+                <button id="btnAddP" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
                 </button>
             </div>
@@ -162,20 +162,20 @@
                     <h5>Producto: </h5>
                 </div>
                 <div class="col-md-6 mb-3">
-                    @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" })
+                    @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" , required = "required"})
                 </div>
                 <div class="col-md-2 mb-3" style="text-align:right">
                     <h5>Puntos: </h5>
                 </div>
                 <div class="col-md-2 mb-3">
-                    @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number" })
+                    @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number" , required = "required"})
                 </div>
                 <!-- 12 col-->
                 <div class="col-md-2 mb-3" style="text-align:right">
                     <h5>Descripción: </h5>
                 </div>
                 <div class="col-md-10 mb-3">
-                    @Html.TextBoxFor(m => m.descripcion, new { id = "descripcion", @class = "form-control", @type = "text" })
+                    @Html.TextBoxFor(m => m.descripcion, new { id = "descripcion", @class = "form-control", @type = "text" , required = "required"})
                     <!--<input type="text" class="form-control" id="descripcion">-->
                 </div>
                 <!-- 12 col-->

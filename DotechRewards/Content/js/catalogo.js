@@ -36,9 +36,9 @@
 
     $('#btnAddP').click(function () {
         $('#idPrdM').val(0);
-        $('#nombre').val($(this).data(''));
-        $('#descripcion').val($(this).data(''));
-        $('#puntos').val($(this).data(''));
+        $('#nombre').val('');
+        $('#descripcion').val('');
+        $('#puntos').val('');
         $('#Foto_Prd').val(null);
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
     });
@@ -194,11 +194,11 @@
             })
             return false;
         }
-        else if (productImage = '') {
+        else if (productImage == "") {
 
             Swal.fire(
                 'Error en imagen de producto.',
-                'Se.',
+                'Necesita seleccionar una imagen.',
                 'warning'
             ).then((result) => {
                 $('#puntos').focus();
