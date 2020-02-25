@@ -34,6 +34,9 @@
         $('#lugar').val($(this).data('lugar'));
         $('#urlConfirmacion').val($(this).data('urle'));
         $('#descList').show();
+        $('#previewImg').show();
+        $('#Foto_Camp').removeAttr('required');
+
         if ($(this).data('urle')) {
             $('#confirmacionLink').prop('checked', true);
             $('#confirmacionEven').prop('checked', $(this).data('confirmacion').toLowerCase() === 'true');
@@ -115,6 +118,8 @@
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=0');
         $('#descList').hide();
+        $('#previewImg').hide();
+        $('#Foto_Camp').attr('required', 'required');
         //$('#urlConfirmacion').val('');
     });
 
@@ -219,6 +224,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
                         $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
@@ -229,6 +235,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
                         $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
@@ -243,7 +250,7 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
@@ -257,12 +264,13 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
                     }
                     $('#btnGuardar').removeAttr('disabled');
+                    $('#previewImg').show();
                     console.log("Buena Imagen");
                     readURL(this);
                 };
@@ -274,7 +282,7 @@
                 'warning'
             );
             $('#Foto_Camp').val('');
-
+            $('#previewImg').hide();
             $('#btnGuardar').attr('disabled', true);
             return false;
         }
