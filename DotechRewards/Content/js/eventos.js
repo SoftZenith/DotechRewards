@@ -18,6 +18,7 @@
         $('#puntos').val($(this).data('puntos'));
         $('#lugar').val($(this).data('lugar'));
         $('#urlConfirmacion').val($(this).data('urle'));
+        $('#descList').show();
         if ($(this).data('urle')) {
             $('#confirmacionLink').prop('checked', true);
             $('#confirmacionEven').prop('checked', $(this).data('confirmacion').toLowerCase() === 'true');
@@ -96,7 +97,7 @@
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=0');
-        
+        $('#descList').hide();
         //$('#urlConfirmacion').val('');
     });
 
