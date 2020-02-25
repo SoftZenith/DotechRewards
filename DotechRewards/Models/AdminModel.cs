@@ -93,13 +93,15 @@ namespace DotechRewards.Models
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
                             nombre = reader["nombre"].ToString(),
                             lugar = reader["lugar"].ToString(),
+                            //fecha = Convert.ToDateTime(reader["fecha"]).ToString(),
                             fecha = reader["fecha"].ToString().Substring(0, 16),
                             asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
                             imagen = reader["imagen"].ToString(),
                             puntos = Convert.ToInt16(reader["puntos"].ToString()),
                             url = reader["url"].ToString(),
                             confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false,
-                            confirmados = Convert.ToInt32(reader["confirmados"].ToString())
+                            confirmados = Convert.ToInt32(reader["confirmados"].ToString()),
+                            acompañantes = Convert.ToInt32(reader["acompañantes"])
                         }); 
                     }
 
@@ -658,6 +660,7 @@ namespace DotechRewards.Models
         public string url { get; set; }
         public int puntos { get; set; }
         public int confirmados { get; set; }
+        public int acompañantes { get; set; }
     }
 
     public class Producto {

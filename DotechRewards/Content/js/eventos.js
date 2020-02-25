@@ -50,9 +50,13 @@
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');
         console.log('fecha completa: '+fecha);
-        var fecha2 = fecha.split("/").reverse().join("-");
-        console.log('fecha despues de split: ' + fecha2);
-        $('#fecha').val(fecha2);
+        var fecha2 = fecha.split("/");//.reverse().join("-");
+        var hora = fecha2[2].split(" ")[1];
+        var año = fecha2[2].split(" ")[0];
+        console.log('año: ' + año + "Mes: " + fecha[1] + "dia: " + fecha[0] + "hora: " + hora);
+        var fecha_hora = año + "-" + fecha2[1] + "-" + fecha2[0] + "T" + hora;
+        console.log("Fecha con hora: " + fecha_hora);
+        $('#fecha').val(fecha_hora);
     });
 
     $('.btnDelE').click(function () {
