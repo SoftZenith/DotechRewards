@@ -7,7 +7,7 @@
         $('#nombre').val($(this).data('nombre'));
         $('#descripcion').val($(this).data('desc'));
         $('#puntos').val($(this).data('puntos'));
-        $('#previewImg').show();
+        $('#Foto_Camp').show();
     });
 
     $('.btnDelP').click(function () {
