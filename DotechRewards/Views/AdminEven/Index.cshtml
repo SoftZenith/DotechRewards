@@ -144,7 +144,7 @@
                                 @Html.TextBox("Lista_asis", "", new { @class = "form-control-file", type = "file", id = "Lista_asis" })
                             </div>
                             <div class="col-md-4" style="margin-left:0px;">
-                                <button id="btnListaGuardar" type="submit">Subir lista</button>
+                                <button id="btnListaGuardar" type="submit">Subir Lista</button>
                             </div>
                         </div>
                     }
@@ -171,7 +171,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalle evento</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detalle Evento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -184,7 +184,7 @@
                     <div class="form-row">
                         <!--col 12-->
                         <div class="col-md-2 mb-3">
-                            <label for="validationCustom01">Nombre evento:</label>
+                            <label for="validationCustom01">Nombre Evento:</label>
                         </div>
                         <div class="col-md-6 mb-3">
                             @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" , required = "required"})
@@ -210,7 +210,7 @@
                         </div>
                         <!--col 12-->
                         <div class="col-md-4 mb-3">
-                            <label>Necesita confirmación: </label>
+                            <label>Necesita Confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                             @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionEven", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox",  })
@@ -223,13 +223,13 @@
                             @Html.TextBoxFor(m => m.asistentes, new { id = "cantidadPersonas", @class = "form-control", @min = "0", @type = "number", disabled = "disabled" , required = "required"})
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label>Link confirmación: </label>
+                            <label>Link Confirmación: </label>
                         </div>
                         <div class="col-md-2 mb-3">
                             @Html.CheckBoxFor(m => m.confirmacion, new { id = "confirmacionLink", @class = "form-check-input", @style = "margin:initial; position:initial;", @type = "checkbox" })
                         </div>
                         <div class="col-md-6 mb-3">
-                            @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "text", disabled = "disabled" , required = "required"})
+                            @Html.TextBoxFor(m => m.url, new { id = "urlConfirmacion", @class = "form-control", @type = "url", disabled = "disabled" , required = "required"})
                         </div>
                         <!--col 12-->
                         <div class="col-md-2 mb-3">
@@ -242,17 +242,21 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <img id="previewImg" src="" alt="Preview de la imagen" height="50" width="240" />
+                            <img id="previewImg" src="" alt="Preview de la Imagen" height="50" width="240" />
                         </div>
                         <!--col 12-->
-                        <div class="col-md-3 mb-3">
-                            <label id="h5confirmados"> confirmado(s)</label>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <a id="downloadLista" target="_blank" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;"><i class="fas fa-file-download"></i>Descargar lista de confirmación</a>
-                        </div>
-                        <div class="col-md-3 mb-3">
+                        <div id="descList" class="form-row col-md-12">
+                            <div class="col-md-3 mb-3">
+                                <label id="h5confirmados"> Confirmado(s)</label>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a id="downloadLista" target="_blank" href="@Url.Action("DescargarLista","AdminEven", new { idEvento = 10})" style="font-size:20px;">
+                                    <i class="fas fa-file-download"></i>Descargar Lista de Confirmación
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
 
+                            </div>
                         </div>
 
                     </div>
@@ -284,6 +288,27 @@
         ).then((result) => {
             window.location.href = "/AdminEven"
         });
+    }
+    function myFunction() {
+        // Declare variables 
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
 
 </script>
