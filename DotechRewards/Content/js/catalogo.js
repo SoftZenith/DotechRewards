@@ -7,6 +7,7 @@
         $('#nombre').val($(this).data('nombre'));
         $('#descripcion').val($(this).data('desc'));
         $('#puntos').val($(this).data('puntos'));
+        $('#previewImg').show();
     });
 
     $('.btnDelP').click(function () {
@@ -40,7 +41,7 @@
         $('#descripcion').val('');
         $('#puntos').val('');
         $('#Foto_Prd').val(null);
-        $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+        $('#previewImg').hide();
     });
 
     $('#Foto_Prd').change(function () {
@@ -91,6 +92,7 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
+                        $('#previewImg').hide();
                         $('#Foto_Prd').val('');
                         return false;
                     }
@@ -102,6 +104,7 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
+                        $('#previewImg').hide();
                         $('#Foto_Prd').val('');
                         return false;
                     }
@@ -117,7 +120,7 @@
                             );
                             $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled', true);
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             return false;
                         }
                     }
@@ -131,11 +134,12 @@
                             );
                             $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled',true);
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             return false;
                         }
                     }
                     console.log("Buena Imagen");
+                    $('#previewImg').show();
                     $('#btnGuardarPrd').removeAttr('disabled');
                     readURL(this);
                 };
@@ -206,6 +210,23 @@
             return false;
         }
        // alert(productName + productDesc + productPoints +productImage);
+    });
+
+    $('#puntos').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 3) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#puntos').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 4));
+        }
+        if ($(this).val().length > 3) {
+            $(this).val($(this).val().slice(0, -1));
+        }
     });
 
     $('#exampleInputFile').change(function () {
