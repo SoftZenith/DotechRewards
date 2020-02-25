@@ -2,6 +2,7 @@
 using DotechRewards.Models;
 using DotechRewards.Util;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Web;
@@ -73,6 +74,10 @@ namespace DotechRewards.Controllers
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt, "REPORTES");
+                
+                /*ws.Cell("Z1").Value = "Yes";
+                ws.Cell("Z2").Value = "No";
+                ws.Cell("G2").DataValidation.List(ws.Range("Z1:Z2"));*/
 
                 Response.Clear();
                 Response.Buffer = true;
@@ -99,13 +104,33 @@ namespace DotechRewards.Controllers
             if (idEvento == 0)
                 return null;
             DataTable dt = new DataTable();
+            
             AdminEvenModel evento = new AdminEvenModel();
             dt = evento.getListaGenerica(idEvento);
             //dt.TableName = "AR_LOG_IMPLEMENTACION";
 
+            var options = new List<string>();
+            int max_acompañantes = (int)dt.Rows[1].ItemArray[2];
+            for (int i = 0; i <= max_acompañantes; i++)
+            {
+                options.Add(i.ToString());
+            }
+            var validOptions = $"\"{String.Join(",", options)}\"";
+
             using (XLWorkbook wb = new XLWorkbook())
             {
-                wb.Worksheets.Add(dt, "REPORTES");
+                var ws = wb.Worksheets.Add(dt, "REPORTES");
+
+                ws.Cell("Z1").Value = "SI";
+                ws.Cell("Z2").Value = "NO";
+
+                for (int i = 0; i < dt.Rows.Count; i++) {
+                    ws.Cell("H2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
+                    ws.Cell("I2").CellBelow(i).DataValidation.List(validOptions, true);
+                    ws.Cell("J2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
+                }
+
+                //ws.Cell("G2:G11").DataValidation.List(ws.Range("Z1:Z2"));
 
                 Response.Clear();
                 Response.Buffer = true;
