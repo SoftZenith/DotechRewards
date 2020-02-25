@@ -96,38 +96,41 @@
                 <table class="table table-sm" style="margin-left: 30px;" id="myTable">
                     <thead style="display: block;">
                         <tr>
-                            <th scope="col" width="260px" style="text-align: center">Evento</th>
-                            <th scope="col" width="320px" style="text-align: center">Lugar</th>
-                            <th scope="col" width="140px" style="text-align: center">Fecha</th>
+                            <th scope="col" width="240px" style="text-align: center">Evento</th>
+                            <th scope="col" width="275px" style="text-align: center">Lugar</th>
+                            <th scope="col" width="135px" style="text-align: center">Fecha y Hora</th>
                             <th scope="col" width="60px" style="text-align: center">Confirmados</th>
+                            <th scope="col" width="60px" style="text-align: center">Acompañantes</th>
                             <th scope="col" width="140px" style="text-align: center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody style="display: block; height: 368px; overflow-y: auto; overflow-x: hidden;">
                         @foreach (Evento evento in admin.eventos)
                         {
-                            <tr>
-                                <td width="270px" style="text-align: center">@evento.nombre</td>
-                                <td width="320px" style="text-align: center">@evento.lugar</td>
-                                <td width="130px" style="text-align: center">@evento.fecha</td>
-                                <td width="120px" style="text-align: center">@evento.asistentes</td>
-                                <td width="120px" style="text-align: center">
-                                    <div class="row">
-                                        <button type="button" class="btnEditE button-edit" data-id="@evento.idEvento" data-confirmacion="@evento.confirmacion" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
-                                                data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen"
-                                                data-urle="@evento.url" data-confirmados="@evento.confirmados" data-toggle="modal" data-target="#EventModal">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button data-toggle="tooltip" title="Eliminar" type="button" class="btnDelE button-edit" data-id="@evento.idEvento">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button  data-toggle="tooltip" title="Descargar lista de asistencia" type="button" 
-                                                class="btnDownE" data-id="@evento.idEvento" onclick="window.location.href='/AdminEven/DescargarListaGeneric?idEvento=@evento.idEvento'" formtarget="_blank">
-                                            <i class="fas fa-file-download"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td width="250px" style="text-align: center">@evento.nombre</td>
+                            <td width="260px" style="text-align: center">@evento.lugar</td>
+                            <td width="130px" style="text-align: center">@evento.fecha</td>
+                            <td width="135px" style="text-align: center">@evento.confirmados</td>
+                            <td width="145px" style="text-align: center">@evento.asistentes</td>
+                            <td width="130px" style="text-align: center">
+                                <div class="row">
+                                    <button type="button" class="btnEditE button-edit" data-id="@evento.idEvento" data-confirmacion="@evento.confirmacion" data-nombre="@evento.nombre" data-puntos="@evento.puntos"
+                                            data-lugar="@evento.lugar" data-fecha="@evento.fecha" data-asistentes="@evento.asistentes" data-image="@evento.imagen"
+                                            data-urle="@evento.url" data-confirmados="@evento.confirmados" data-toggle="modal" data-target="#EventModal">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button data-toggle="tooltip" title="Eliminar" type="button" class="btnDelE button-edit" data-id="@evento.idEvento">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button data-toggle="tooltip" title="Descargar lista de asistencia" type="button"
+                                            class="btnDownE" data-id="@evento.idEvento" onclick="window.location.href='/AdminEven/DescargarListaGeneric?idEvento=@evento.idEvento'" formtarget="_blank">
+                                        <i class="fas fa-file-download"></i>
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
                         }
                     </tbody>
                 </table>
