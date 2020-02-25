@@ -139,7 +139,7 @@
                 </table>
 
                 <!--		Start Pagination -->
-                @if (bannerP.estatus > 0)
+                @if (bannerP.estatus != 0)
                 {
                     <div style="width:100%; border-bottom: 1px solid #d4d4d4; margin-bottom:1rem;">
                         <nav style="display:inline-block; width:135px;">
@@ -155,9 +155,9 @@
                         </nav>
 
                         <div style="display:inline-block; float:right; width: 125px;">
-                            
-                             <b style="float: right; margin-right: 51px;">Total: @bannerP.puntos</b>
-                                
+
+                            <b style="float: right; margin-right: 51px;">Total: @bannerP.puntos</b>
+
                         </div>
                     </div>
                 }
