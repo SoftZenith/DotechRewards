@@ -19,7 +19,7 @@
             mm = '0' + mm
         }
 
-        today = yyyy + '-' + mm + '-' + dd;
+        today = yyyy + '-' + mm + '-' + dd + "T00:00";
         document.getElementById("fecha").setAttribute("min", today);
 
         $('#confirmacionEven').prop('checked', false);
@@ -46,7 +46,9 @@
         $('#cantidadPersonas').val($(this).data('asistentes'));
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');
+        console.log('fecha completa: '+fecha);
         var fecha2 = fecha.split("/").reverse().join("-");
+        console.log('fecha despues de split: ' + fecha2);
         $('#fecha').val(fecha2);
     });
 

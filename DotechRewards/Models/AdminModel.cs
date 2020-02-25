@@ -93,7 +93,7 @@ namespace DotechRewards.Models
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
                             nombre = reader["nombre"].ToString(),
                             lugar = reader["lugar"].ToString(),
-                            fecha = reader["fecha"].ToString().Substring(0, 10),
+                            fecha = reader["fecha"].ToString().Substring(0, 16),
                             asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
                             imagen = reader["imagen"].ToString(),
                             puntos = Convert.ToInt16(reader["puntos"].ToString()),
@@ -347,7 +347,7 @@ namespace DotechRewards.Models
                     cmd.Parameters.Add("@idEvento", SqlDbType.Int).Value = evento.idEvento;
                     cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = evento.nombre;
                     cmd.Parameters.Add("@lugar", SqlDbType.VarChar).Value = evento.lugar;
-                    cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = evento.fecha;
+                    cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = evento.fecha;
                     cmd.Parameters.Add("@asistentes", SqlDbType.Int).Value = evento.asistentes;
                     cmd.Parameters.Add("@confirmacion", SqlDbType.Int).Value = evento.confirmacion ? 1 : 0;
                     cmd.Parameters.Add("@imagen", SqlDbType.VarChar).Value = imagen;
