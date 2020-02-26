@@ -98,13 +98,13 @@ namespace DotechRewards.Models
                             string evento = dataRow.Cell(5).Value.ToString();
                             int puntos = Convert.ToInt32(dataRow.Cell(6).Value);
                             string lugar = dataRow.Cell(7).Value.ToString();
-                            int confirmacion = dataRow.Cell(8).Value !=null ? (dataRow.Cell(8).Value.ToString() == "SI" ? 1 : 0) : 0; //Esta fila
+                            int confirmacion = dataRow.Cell(8).Value != null ? (dataRow.Cell(8).Value.ToString() == "SI" ? 1 : 0) : 0; //Esta fila
                             object confirmaobj = dataRow.Cell(8).Value;
                             int personas = 0;
-                            if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())){
+                            if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())) {
                                 personas = Convert.ToInt32(dataRow.Cell(9).Value.ToString());
                             }
-                            
+
                             int asistencia = 0;
                             try
                             {
@@ -118,16 +118,16 @@ namespace DotechRewards.Models
                             //Validar si evento ya se cargo
                             AdminModel admin = new AdminModel();
                             UsuarioModel confi = new UsuarioModel();
-                            if (confirmacion==1)
+                            if (confirmacion == 1)
                             {
-                                confi.AddConfirmacion(confirmacion, personas, idEvento,admin.getUsuario(idUsuario));
+                                confi.AddConfirmacion(confirmacion, personas, idEvento, admin.getUsuario(idUsuario));
                             }
                             if (asistencia == 1)
                             {
                                 admin.AsignarPuntos(idUsuario, idEvento, evento, puntos, personas);
                             }
                         } catch (Exception ex) {
-                            return new Retorno() { 
+                            return new Retorno() {
                                 estatus = false,
                                 mensaje = "Archivo corrupto uno o más datos no estan en el formato correcto"
                             };
@@ -136,7 +136,56 @@ namespace DotechRewards.Models
                 }
             }
 
-            return new Retorno() { 
+            return new Retorno() {
+                estatus = true,
+                mensaje = ""
+            };
+        }
+
+        public Retorno leerListaActividadesExtra(string nombreArchivo) {
+            string fileName = "~/Content/Listas/" + nombreArchivo;
+            using (var excelWorkbook = new XLWorkbook(nombreArchivo))
+            {
+                var nonEmptyDataRows = excelWorkbook.Worksheet(1).RowsUsed();
+
+                foreach (var dataRow in nonEmptyDataRows)
+                {
+                    //for row number check
+                    if (dataRow.RowNumber() > 1)
+                    {
+                        try
+                        {
+                            string usuario = dataRow.Cell(1).Value.ToString();
+                            string actividad = dataRow.Cell(2).Value.ToString();
+                            string fecha = dataRow.Cell(3).Value.ToString();
+                            int puntos = Convert.ToInt32(dataRow.Cell(4).Value);
+                            
+                            //Asignar puntos a usuario
+                            AdminModel admin = new AdminModel();
+                            int idUsuario = admin.getIdusuario(usuario);
+                            if (idUsuario == 0) {
+                                return new Retorno()
+                                {
+                                    estatus = false,
+                                    mensaje = "Usuario no valido en renglon: " + dataRow.RowNumber()
+                                };
+                            }
+                            admin.AsignarPuntosActividadExtra(idUsuario,actividad,puntos,fecha);
+                        }
+                        catch (Exception ex)
+                        {
+                            return new Retorno()
+                            {
+                                estatus = false,
+                                mensaje = "Archivo corrupto uno o más datos no estan en el formato correcto"
+                            };
+                        }
+                    }
+                }
+            }
+
+            return new Retorno()
+            {
                 estatus = true,
                 mensaje = ""
             };
