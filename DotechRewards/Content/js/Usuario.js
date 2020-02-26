@@ -65,14 +65,19 @@
 
     $(".container")
         .mouseover(function () {
-            $('#' + this.id + ' .nombrePrd').css('opacity', '0');
-            $('#' + this.id + ' .puntosPrd').css('opacity', '0');
-            $('#' + this.id + ' .banInfImg').css('opacity', '0');
+            var id = $(this).attr('id');
+            if (!id) return undefined;
+            $('#' + id + ' .nombrePrd').css('opacity', '0');
+            $('#' + id + ' .puntosPrd').css('opacity', '0');
+            $('#' + id + ' .banInfImg').css('opacity', '0');
         })
         .mouseout(function () {
-            $('#'+this.id+' .nombrePrd').css('opacity', '1');
-            $('#' + this.id + ' .puntosPrd').css('opacity', '1');
-            $('#' + this.id + ' .banInfImg').css('opacity', '0.65');
+            
+            var id = $(this).attr('id');
+            if (!id) return undefined;
+            $('#' + id + ' .nombrePrd').css('opacity', '1');
+            $('#' + id + ' .puntosPrd').css('opacity', '1');
+            $('#' + id + ' .banInfImg').css('opacity', '0.65');
         });
 });
 

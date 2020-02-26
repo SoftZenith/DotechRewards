@@ -167,6 +167,14 @@
     <Content Include="Content\images\localizador-de-lugar.png" />
     <Content Include="Content\images\login_reward.png" />
     <Content Include="Content\images\meeting.jpg" />
+    <Content Include="Content\images\mPlaceholder1.jpg" />
+    <Content Include="Content\images\mPlaceholder2.jpg" />
+    <Content Include="Content\images\mPlaceholder3.jpg" />
+    <Content Include="Content\images\mPlaceholder4.jpg" />
+    <Content Include="Content\images\placeholder1.jpg" />
+    <Content Include="Content\images\placeholder2.jpg" />
+    <Content Include="Content\images\placeholder3.jpg" />
+    <Content Include="Content\images\placeholder4.jpg" />
     <Content Include="Content\images\producto.jpg" />
     <Content Include="Content\images\searchicon.png" />
     <Content Include="Content\images\termo.jpg" />

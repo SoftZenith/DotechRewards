@@ -6,7 +6,7 @@
     string user = "", idUsr = "", estatus = "";
     int admin = -1;
     bool activo = true;
-    int index = 0;
+    //int index = 0;
     int res = 0;
     string pathCatalogoH = ViewBag.pathCatalogo;
     try
@@ -25,7 +25,33 @@
     }
     catch (Exception ex)
     {
-        { Response.Redirect("~/"); }
+        //Mientras que no me jala
+        user = "Brayan";
+        idUsr = "1";
+        admin = 1;
+        bannerP = new UsuarioModel();
+        bannerP.banners = new List<banner> { new banner("mPlaceholder4.jpg", "El banner", "2020-02-28", "Aquí", 1) };
+        //new banner("mPlaceholder2.jpg", "El banner 2", "2020-02-28", "Allá", 1)
+        bannerP.puntos = 100;
+        bannerP.recompensas = new List<recompensa> {
+            new recompensa("Jenga", "El juego de apilar bloques", 100, "mPlaceholder1.jpg"),
+            new recompensa("Monopoly", "El juego de comprar propiedades", 1241, "mPlaceholder2.jpg"),
+            new recompensa("Buscaminas", "No es un juego de mesa pero que tiene", 39, "mPlaceholder3.jpg"),
+            new recompensa("Matatena", "La verdad no se qué sea", 76, "mPlaceholder4.jpg"),
+            //new recompensa("Mario Kart", "Un juego de carreras emocionante", 3201, "placeholder1.jpg")
+        };
+        res = bannerP.recompensas.Count;
+        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
+
+        bannerP.estatus = 1;
+        bannerP.eventos = new List<Evento> {
+            new Evento("2020-03-10", "Dotech Rewards 1", 100),
+            new Evento("2020-03-10", "Dotech Rewards 2", 120),
+            new Evento("2020-03-10", "Dotech Rewards 3", 130),
+            new Evento("2020-03-10", "Dotech Rewards 1", 100),
+            new Evento("2020-03-10", "Dotech Rewards 1", 100)
+        };
+        //{ Response.Redirect("~/"); }
     }
 }
 
@@ -44,148 +70,207 @@
 <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="~/Content/js/js.js"></script>
 
-<nav class="navbar navbar-light nav-propierties justify-content-between" >
-    <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top img--header" alt="" style="margin:0px;">
+<nav class="navbar navbar-light nav-propierties justify-content-between">
+    <img src="~/Content/images/login_reward.png" width="190" height="80" class="d-inline-block align-top img--header" alt="" style="margin:0px;" />
     <ul class="nav navbar-nav navbar-fixed-top" style="font-weight:normal;">
-        <li><a style="font-size: 20px; margin-right: 18px;"> @user</a></li>
+        <li>
+            <a style="font-size: 20px; margin-right: 18px;"> @user</a>
+        </li>
         <div class="d-flex justify-content-end" style="margin-left: -120px;">
             @if (admin == 1)
             {
-                <a href="@Url.Action("Index", "Admin")" class="span-menu span-menu--blue">
-                    Panel administración
-                </a>
+                <a href="@Url.Action("Index", "Admin")" class="span-menu span-menu--blue">Panel administración</a>
             }
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="span-menu span-menu--blue" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">
-                Cambiar contraseña
-            </a>
-            <a href="@Url.Action("LogOff","Home")" class="span-menu span-menu--black"> Salir</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="span-menu span-menu--blue" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">Cambiar contraseña</a>
+            <a href="@Url.Action("LogOff", "Home")" class="span-menu span-menu--black">Salir</a>
         </div>
     </ul>
 </nav>
-<div class="container-fluid" style="height: 400px">
-    <div class="row justify-content-center" style="margin: 5px">
-        <div class="col-5" style="margin-top:20px; font-family:sans-serif;">
 
-            <div class="d-flex justify-content-start" style="margin-top: 0px;">
-                <h2 style="font-size:2.6vw">
-                    Actualmente cuentas con:
-                </h2>
-            </div>
-            <div class="d-flex justify-content-start" style="display:inline-block; 15px;">
-                <b style="width: 77%; text-align: right;">
-                    <h1 style="display:inline-block; font-size:6vw">
-                        <b style="margin-left: 1em;">@bannerP.puntos</b>
-                    </h1>
-                    <h5 style="display:inline-block;font-size:2.2vw; align-self: flex-end;font-weight:bold">
-                        &nbsp Puntos
-                    </h5>
-                </b>
-            </div>
-             
-            <div class="d-flex justify-content-start" style="margin-top: 0px; margin-bottom: 15px;">
-                <us style="width: 77%; text-align: center;"><a class="link-download-cat" target="_blank" href="@pathCatalogoH" style="font-size:1.3vw; color:black;">Canjea tus puntos</a></ustyle="width:>
+<div class="container-fluid" style="padding-right:50px; padding-left:50px;">
+    <div class="row justify-content-between" style="padding-top:1em; padding-bottom:1em;">
+
+        <div class="col-12 col-lg-4" style="display:flex; flex-direction:row; align-self:flex-start;">
+            <div style="display: flex; flex-direction: column; justify-content: space-between; align-items:center;">
+                <!--margin-top:20px; font-family:sans-serif;-->
+                <h2 style="width:100%; text-align:center;">Actualmente cuentas con:</h2>
+                <div>
+                    <span style="font-size: 4em; font-weight:700;">@bannerP.puntos</span><span style="font-size:1em; font-weight:700;">Puntos</span>
+                </div>
+                <a class="" target="_blank" href="@pathCatalogoH" style="color: black; font-size:1.5em;">Canjea tus puntos</a>
             </div>
         </div>
-        <div class="col-7">
-            <div class="container" style="">
-                <div class="form-group">
-                    <!--		Show Numbers Of Rows 		-->
-                    <select class="form-control" name="state" id="maxRows" style="display: none;">
-                        <option value="5000">Show ALL Rows</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                    </select>
+        
 
-                </div>
 
-                <table class="table table-striped table-class" id="table-id">
 
-                    @if (bannerP.estatus == 0)
-                    {
-                        <tr>
-                            <td width="100%" style="text-align: center; font-size: 30px; color:gray">Para activar tu puntos de bienvenida <a href="@Url.Action("activarPuntos", "Usuario", new { usuario = idUsr })">haz click aquí</a></td>
-                        </tr>
-                    }
-                    else
-                    {
-                        float events = bannerP.eventos.Count;
-                        for (int i = 0; i < 3; i++)
-                        {
-                            double vars = (events / 4.0);
-                            if (vars % 1 == 0)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                events++;
-                                bannerP.eventos.Add(new Evento("", "", 0));
-                            }
-                        }
-                        <tr style="color:gray!important; border-top: 2px solid #d4d4d4!important;">
-                            <th>Fecha</th>
-                            <th>Actividad</th>
-                            <th>Puntos</th>
-                        </tr>
-                        foreach (Evento evento in bannerP.eventos)
-                        {
-                            var puntos = (@evento.puntos == 0) ? " " : @evento.puntos+"";
-                            <tr>
-                                <td style="text-align: left">@evento.fecha</td>
-                                <td style="text-align: left; width:53%;">@evento.nombre</td>
-                                <td style="text-align: center">&nbsp;@puntos</td>
-                            </tr>
-                        }
-                    }
-                </table>
+        <div class="col-12 col-lg-8" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div class="form-group" style="display:none;">
+                <!--		Show Numbers Of Rows 		-->
+                <select class="form-control" name="state" id="maxRows" style="display: none;">
+                    <option value="5000">Show ALL Rows</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
 
-                <!--		Start Pagination -->
-                @if (bannerP.estatus != 0)
+            <table class="table table-striped table-class" id="table-id">
+
+                @if (bannerP.estatus == 0)
                 {
-                    <div style="width:100%; border-bottom: 1px solid #d4d4d4; margin-bottom:1rem;">
-                        <nav style="display:inline-block; width:auto;">
-                            <ul class="pagination" style="margin-bottom:0.5rem;">
-                                <li data-page="prev" class="page-header">
-                                    <span class="border-right"> < <span class="sr-only">(current)</span></span>
-                                </li>
-
-                                <li data-page="next" class="page-item" id="prev">
-                                    <span> > <span class="sr-only">(current)</span></span>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <div style="display:inline-block; float:right; width: 125px;">
-
-                            <b style="float: right; margin-right: 51px;">Total: @bannerP.puntos</b>
-
-                        </div>
-                    </div>
+                    <tr>
+                        <td width="100%" style="text-align: center; font-size: 30px; color:gray">Para activar tu puntos de bienvenida <a href="@Url.Action("activarPuntos", "Usuario", new { usuario = idUsr })">haz click aquí</a></td>
+                    </tr>
                 }
+                else
+                {
+                    float events = bannerP.eventos.Count;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        double vars = (events / 4.0);
+                        if (vars % 1 == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            events++;
+                            bannerP.eventos.Add(new Evento("", "", 0));
+                
+                        }
+                    }
+                    <tr style="color:gray!important; border-top: 2px solid #d4d4d4!important;">
+                        <th>Fecha</th>
+                        <th>Actividad</th>
+                        <th>Puntos</th>
+                    </tr>
+                    foreach (Evento evento in bannerP.eventos)
+                    {
+                        var puntos = (@evento.puntos == 0) ? " " : @evento.puntos + "";
+                        <tr>
+                            <td style="text-align: center;">@evento.fecha</td>
+                            <td style="text-align: start;">@evento.nombre</td>
+                            <td style="text-align: center;">&nbsp;@puntos</td>
+                        </tr>
+                    }
+                    <tr dr-not="true">
+                        <td style="">
+                            <div style="width:100%; display:flex; flex-direction:row; justify-content:flex-start; align-items:center;">
+                                <nav style="display:inline-block; width:135px;">
+                                    <ul class="pagination" style="margin-bottom:0.5rem;">
+                                        <li data-page="prev" class="page-header">
+                                            <span class="border-right"> < <span class="sr-only">(current)</span></span>
+                                        </li>
 
+                                        <li data-page="next" class="page-item" id="prev">
+                                            <span> > <span class="sr-only">(current)</span></span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </td>
+                        <td style="text-align: end; font-weight:900;"></td>
+                        <td style="text-align: center; font-weight:900;">
+                            <div style="position:relative;">
+                                <span class="d-none d-lg-block" style="position:absolute; left:0px;top:0px;">Total:</span>
+                            </div>
+                            
+                            @bannerP.puntos
+                        </td>
+                    </tr>
+                }
+            </table>
 
-            </div> <!-- End of Container -->
+            <!--		Start Pagination -->
+            @if (bannerP.estatus > 0)
+            {
 
-            @if (bannerP.estatus > 0) { 
+            }
+
+            @if (bannerP.estatus > 0) {
                 <script type="text/javascript">
+                    //debugger;
                     getPagination('#table-id');
                 </script>
             }
 
         </div>
     </div>
-    <div class="row justify-content-center" style="margin-left: 10px; margin-right: 10px; margin-top: -15px; ">
+    <div class="row justify-content-between" style="height:220px;"> <!--margin-left: 10px; margin-right: 10px; margin-top: -15px; -->
         <div class="col-md-12">
-            <div id="demo" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+            <style>
+                #demo img{
+                    width:100%;
+                    height: 100%;
+                    object-fit:fill;
+                }
+                .banner-info {
+                    position: absolute;
+                    bottom: 0px;
+                    width:100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-items:center;
+                    height: inherit;
+                }
+                #demo .banner-info > * {
+                    color:white;
+                }
+                #demo .task-icon-wrapper {
+                    
+                }
+                #demo .task-icon-wrapper > img {
+                    width:32px;
+                    height:32px;
+                }
+                #demo .task-icon-wrapper > span {
+                    margin-left: 5px;
+                }
+                .height-inherit {
+                    height:inherit;
+                }
+            </style>
+            <div id="demo" class="carousel slide" data-ride="carousel" style="background-color:red;">
+                <div class="carousel-inner" style="background-color: green;">
                     <!-- Carousel Eventos -->
                     @foreach (banner panelP in bannerP.getBanners())
                     {
+
+
+                        <div class="carousel-item @(activo ? "active" : "")" style="background-color: blue;">
+                            <img src="~/Content/images/@panelP.imagen" style="z-index:1!important; ">
+                            <div style="position:absolute; bottom:0px; z-index:2; width:100%; height: 40px;">
+                                <img src="~/Content/images/baner_inferior.png" style="z-index: 2; opacity: 0.5; padding:0px; filter: alpha(opacity=50);" />
+                                <div class="banner-info">
+                                    <div>@panelP.nombre</div>
+                                    <div class="task-icon-wrapper"><img src="~/Content/images/calendario (1).png" /><span>@panelP.fecha</span></div>
+                                    <div class="task-icon-wrapper d-none d-lg-block"><img src="~/Content/images/localizador-de-lugar.png" /><span>@panelP.lugar</span></div>
+                                    @if (panelP.registro == 1)
+                                    {
+                                        <a class="aRegistro d-none d-lg-block" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
+                                           style="cursor: pointer;">Registrate aquí</a>
+                                    }
+                                    @if (panelP.url != "")
+                                    {
+                                        <!--DEVELOP: HAY QUE DESCOMENTAR ESTO-->
+                                        <!--<a class="registroLink d-none d-lg-block" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
+                                           style="cursor: pointer">Registrate aquí</a>-->
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        activo = false;
+
                         if (activo)
                         {
-                            <div class="carousel-item active">
-                                <img class="col-md-12" src="~/Content/images/@panelP.imagen" style="z-index:1!important;">
-                                <div class="col-md-12" style="position:absolute;top: 84%; z-index:2;">
+
+                        }
+                        else
+                        {
+                            @*<div class="carousel-item">
+                                <img src="~/Content/images/@panelP.imagen" style="z-index:1!important;">
+                                <div style="position:absolute;top: 84%; z-index:2;">
                                     <img class="col-md-12" src="~/Content/images/baner_inferior.png" style="
                                             z-index: 2;
                                             opacity: 0.5;
@@ -206,35 +291,7 @@
                                     <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
                                        style="position:absolute;left:87%;top:88%;z-index:2; color: white; cursor: pointer">Registrate aquí</a>
                                 }
-                            </div>
-                            activo = false;
-                        }
-                        else
-                        {
-                            <div class="carousel-item">
-                                <img class="col-md-12" src="~/Content/images/@panelP.imagen" style="z-index:1!important;">
-                                <div class="col-md-12" style="position:absolute;top: 84%; z-index:2;">
-                                    <img class="col-md-12" src="~/Content/images/baner_inferior.png" style="
-                                            z-index: 2;
-                                            opacity: 0.5;
-                                            padding:0px;
-                                            filter: alpha(opacity=50);" />
-                                </div>
-
-                                <div style="position:absolute;left:5%;top:88%;z-index:2; color: white">@panelP.nombre</div>
-                                <div style="position:absolute;left:30%;top:88%;z-index:2; color: white"><img style="width:32px; height:32px;" src="~/Content/images/calendario (1).png" />&nbsp @panelP.fecha</div>
-                                <div style="position:absolute;left:60%;top:88%;z-index:2; color: white"><img style="width:32px; height:32px;" src="~/Content/images/localizador-de-lugar.png" />&nbsp @panelP.lugar</div>
-                                @if (panelP.registro == 1)
-                                {
-                                    <a class="aRegistro" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
-                                       style="position:absolute;left:87%;top:88%;z-index:2; color: white; cursor: pointer;">Registrate aquí</a>
-                                }
-                                @if (panelP.url != "")
-                                {
-                                    <a class="registroLink" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
-                                       style="position:absolute;left:87%;top:88%;z-index:2; color: white; cursor: pointer">Registrate aquí</a>
-                                }
-                            </div>
+                            </div>*@
                         }
                     }
                 </div>
@@ -243,98 +300,82 @@
             </div>
         </div>
     </div>
-    <div class="row" style="padding-left: 40px; margin-right: 30px; margin-top:20px;">
-        <!--Carousel Wrapper-->
-        <div class="col-11">
-            <div id="multi-item-example" style="align-content:center" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
-
-                <!--Controls-->
-                <div class="controls-top">
-                    <a class="black-text" href="#multi-item-example" data-slide="prev" style="z-index: 2; position: absolute; top: 29px; left: -10px; color: #990303"><i class="fas fa-angle-left fa-3x pr-3"></i></a>
-                    <a class="black-text" href="#multi-item-example" data-slide="next" style="z-index: 2; position: absolute; top: 29px; left: 1059px; color: #990303"><i class="fas fa-angle-right fa-3x pl-3"></i></a>
-                </div>
-                <!--/.Controls-->
-                <!---->
-                <div class="carousel-inner" role="listbox">
-                    <!--Slides-->
-                    @for (int i = 0; i < res; i++)
-                    {
-                        if (i == 0)
-                        {
-                            <div class="carousel-item active" style="margin-left: 2%;" >
-                                @for (int j = 0; j < 4; j++)
-                                {
-                                    if (index >= bannerP.recompensas.Count)
-                                    {
-                                        break;
-                                    }
-
-                                    <div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important; cursor:pointer;">
-                                        <div class="card">
-                                            <div class="container" id="@index">
-                                                <div class="overlay" z-index:3>
-                                                    <div class="text">@bannerP.recompensas.ElementAt(index).descripcion</div>
-                                                </div>
-                                                <img class="img-fluid" src="~/Content/images/@bannerP.recompensas.ElementAt(index).imagen" alt="Card image cap">
-                                                <img class="banInfImg" src="~/Content/images/baner_producto.png" style="max-width:256px; position:absolute; left:0px; top: 90px; z-index: 2; opacity: 0.7;filter: alpha(opacity=70);" />
-                                                <p class="nombrePrd" style="position:absolute;left:5px;top:90px;z-index:2; color: white">@bannerP.recompensas.ElementAt(index).nombre</p>
-                                                <p class="puntosPrd" style="position:absolute;left:165px;top:90px;z-index:2; color: white">@bannerP.recompensas.ElementAt(index++).puntos pts</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="carousel-item" style="margin-left: 2%;">
-                                @for (int j = 0; j < 4; j++)
-                                {
-                                    if (index >= bannerP.recompensas.Count)
-                                    {
-                                        break;
-                                    }
-                                    <div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important; cursor:pointer;">
-                                        <div class="card">
-                                            <div class="container" id="@index">
-                                                <div class="overlay">
-                                                    <div class="text">@bannerP.recompensas.ElementAt(index).descripcion</div>
-                                                </div>
-                                                <img class="img-fluid" src="~/Content/images/@bannerP.recompensas.ElementAt(index).imagen" alt="Card image cap">
-                                                <img class="banInfImg" src="~/Content/images/baner_producto.png" style="max-width:256px; position:absolute; left:0px; top: 90px; z-index: 2; opacity: 0.7;filter: alpha(opacity=70);" />
-                                                <p class="nombrePrd" style="position:absolute;left:5px;top:90px;z-index:2; color: white">@bannerP.recompensas.ElementAt(index).nombre</p>
-                                                <p class="puntosPrd" style="position:absolute;left:165px;top:90px;z-index:2; color: white">@bannerP.recompensas.ElementAt(index++).puntos pts</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        }
-                    }
-
-
-
-
-                </div>
-                <!--/.Slides-->
-
-            </div>
-        </div>
-        <div class="col-1" style="margin-left: -57px !important;">
-            <div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important;">
-                <div class="card">
-                    <div class="container" >
-                        <a href="@pathCatalogoH" download>
-                            <img src="/Content/images/catalogo.jpg" alt="Card image cap" width="137" height="122" style="margin-left: -13px;">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/.Carousel Wrapper-->
-    </div>
-
 </div>
+
+<div class="container-fluid" style="margin-top:1em;">
+    <div class="row">
+        
+        @{ int aux = -1; } 
+
+        <div class="col-9 col-lg-10">
+            <div class="row">
+                @foreach (recompensa recompensa in bannerP.recompensas)
+                {
+                    aux++;
+
+                    <div class="@(aux != 3 ? "col-4" : "d-none d-lg-block") col-lg-3" style="cursor:pointer; height:130px;">
+                        <div class="card height-inherit">
+                            <div class="container height-inherit" id="PENDIENTE" style="padding-right:0px; padding-left:0px;">
+                                <div class="overlay">
+                                    <div class="text">@recompensa.descripcion</div>
+                                </div>
+                                <img class="height-inherit" style="width:100%;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">
+                                <img class="banInfImg" src="~/Content/images/baner_producto.png" style="height:50px; width:100%; position:absolute; left:0px; bottom:0px; z-index: 2; opacity: 0.7;filter: alpha(opacity=70);" />
+                                
+                                <div class="d-lg-none" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: center; align-items:center; width:100%;">
+                                    <!--
+                                    <div class="" style="display:flex; flex-direction:column; align-items:center;">
+                                        <span class="puntosPrd" style="z-index:2; color:white; font-weight:900;">@recompensa.puntos</span>
+                                        <span class="puntosPrd" style="color: white; font-weight:900; z-index:2;">puntos</span>
+                                    </div>
+                                    <span>Se ve cuando es pequeño</span>-->
+                                </div>
+
+                                <div class="d-none d-lg-flex" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: space-around; align-items:center; width:100%;">
+                                    <span class="nombrePrd" style="color:white; z-index:3;">@recompensa.nombre</span>
+                                    <div style="display:flex; flex-direction:column; align-items:center; width:initial;">
+                                        <span class="puntosPrd" style="z-index:2; color:white; font-weight:900;">@recompensa.puntos</span>
+                                        <span class="puntosPrd" style="color: white; font-weight:900; z-index:2;">puntos</span>
+                                    </div>
+                                    <!--<span>Se ve cuando es grande</span>-->
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-3 col-lg-2">
+            <div class="card">
+                <div class="container" style="padding-right:0px; padding-left:0px;">
+                    <a href="@pathCatalogoH" download>
+                        <img class="d-none d-lg-block" src="/Content/images/catalogo.jpg" alt="Card image cap" style="width:100%; height:130px;" height="122">
+                        <div class="d-block d-lg-none" style="width:100%; height:130px; background-color:gray;">
+                            <span style="color:white; font-weight:900; text-decoration:none;">Catálogo completo</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!--<div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important;">
+            </div>-->
+        </div>
+        
+
+
+        <!--<div class="col-3" style="background-color:blue;">asdsa</div>
+        <div class="col-3" style="background-color:green;">asdas</div>
+        <div class="col-3" style="background-color:yellow;">asdsad</div>-->
+    </div>
+</div>
+
+
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

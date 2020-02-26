@@ -7,7 +7,29 @@
 */
 
 function getPagination(table) {
-  var lastPage = 1;
+    var lastPage = 1;
+
+    function hideIfLast(self) {
+        var isLast = $(self).attr('dr-not');
+        if (isLast !== "true") {
+            $(self).hide();
+        }
+        else {
+            //alert(isLast);
+        }
+    }
+
+    function showIfLast(self) {
+        //debugger;
+        var isLast = $(self).attr('dr-not');
+        if (isLast === "true") {
+            $(self).show();
+        }
+        else {
+            //alert(isLast);
+        }
+
+    }
 
   $('#maxRows')
     .on('change', function(evt) {
@@ -28,13 +50,15 @@ function getPagination(table) {
       }
 
       var totalRows = $(table + ' tbody tr').length; // numbers of rows
-      $(table + ' tr:gt(0)').each(function() {
+      $(table + ' tr:gt(0)').each(function (a, b, c) {
+          console.log(a,b,c);
         // each TR in  table and not the header
         trnum++; // Start Counter
         if (trnum > maxRows) {
           // if tr number gt maxRows
 
-          $(this).hide(); // fade it out
+             // fade it out
+            hideIfLast(this);
         }
         if (trnum <= maxRows) {
           $(this).show();
@@ -95,13 +119,17 @@ function getPagination(table) {
             trIndex > maxRows * pageNum ||
             trIndex <= maxRows * pageNum - maxRows
           ) {
-            $(this).hide();
+              $(this).hide();
+              //debugger;
+              showIfLast(this);
           } else {
             $(this).show();
           } //else fade in
         }); // end of for each tr in table
+        
       }); // end of on click pagination list
       limitPagging();
+      
     })
     .val(4)
     .change();
