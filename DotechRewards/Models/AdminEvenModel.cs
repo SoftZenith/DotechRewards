@@ -94,17 +94,20 @@ namespace DotechRewards.Models
                         try {
                             int idUsuario = Convert.ToInt32(dataRow.Cell(1).Value);
                             int idEvento = Convert.ToInt32(dataRow.Cell(2).Value);
-                            string nombre = dataRow.Cell(3).Value.ToString();
-                            string evento = dataRow.Cell(4).Value.ToString();
-                            int puntos = Convert.ToInt32(dataRow.Cell(5).Value);
-                            string lugar = dataRow.Cell(6).Value.ToString();
-                            int confirmacion = Convert.ToInt32(dataRow.Cell(7).Value);
-                            int personas = Convert.ToInt32(dataRow.Cell(8).Value);
+                            string nombre = dataRow.Cell(4).Value.ToString();
+                            string evento = dataRow.Cell(5).Value.ToString();
+                            int puntos = Convert.ToInt32(dataRow.Cell(6).Value);
+                            string lugar = dataRow.Cell(7).Value.ToString();
+                            int confirmacion = dataRow.Cell(8).Value!=null? dataRow.Cell(8).ToString().ToUpper() == "SI" ? 1 : 0:0; //Esta fila
+                            int personas = 0;
+                            if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())){
+                                personas = Convert.ToInt32(dataRow.Cell(9).Value.ToString());
+                            }
+                            
                             int asistencia = 0;
                             try
                             {
-                                Convert.ToInt32(dataRow.Cell(9).Value);
-                                asistencia = 1;
+                                asistencia = dataRow.Cell(10).Value != null ? dataRow.Cell(10).ToString().ToUpper() == "SI" ? 1 : 0 : 0; //Esta fila
                             }
                             catch (Exception ex)
                             {

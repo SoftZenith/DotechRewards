@@ -110,7 +110,14 @@ namespace DotechRewards.Controllers
             //dt.TableName = "AR_LOG_IMPLEMENTACION";
 
             var options = new List<string>();
-            int max_acompañantes = (int)dt.Rows[1].ItemArray[2];
+            int max_acompañantes = 0;
+            try
+            {
+                max_acompañantes = (int)dt.Rows[1].ItemArray[1];
+            }
+            catch (Exception ex) { 
+                
+            }
             for (int i = 0; i <= max_acompañantes; i++)
             {
                 options.Add(i.ToString());
@@ -119,7 +126,7 @@ namespace DotechRewards.Controllers
 
             using (XLWorkbook wb = new XLWorkbook())
             {
-                var ws = wb.Worksheets.Add(dt, "REPORTES");
+                var ws = wb.Worksheets.Add(dt, "LISTA ASISTENCIA");
 
                 ws.Cell("Z1").Value = "SI";
                 ws.Cell("Z2").Value = "NO";
@@ -128,6 +135,27 @@ namespace DotechRewards.Controllers
                     ws.Cell("H2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
                     ws.Cell("I2").CellBelow(i).DataValidation.List(validOptions, true);
                     ws.Cell("J2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
+                    string cellN = "H" + (i + 2);
+                    try
+                    {
+                        if (ws.Cell(cellN).GetString() == "1")
+                        {
+                            ws.Cell(cellN).Value = "SI";
+                        }
+                        else if (ws.Cell(cellN).GetString() == "0")
+                        {
+                            ws.Cell(cellN).Value = "NO";
+                        }
+                    }
+                    catch (Exception ex) { 
+                    
+                    }
+
+                }
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                { 
+                    //ws.Cell("H2")    
                 }
 
                 //ws.Cell("G2:G11").DataValidation.List(ws.Range("Z1:Z2"));
