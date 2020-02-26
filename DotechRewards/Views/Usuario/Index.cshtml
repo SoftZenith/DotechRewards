@@ -144,7 +144,7 @@
                         {
                             events++;
                             bannerP.eventos.Add(new Evento("", "", 0));
-                
+
                         }
                     }
                     <tr style="color:gray!important; border-top: 2px solid #d4d4d4!important;">
@@ -155,7 +155,9 @@
                     foreach (Evento evento in bannerP.eventos)
                     {
                         var puntos = (@evento.puntos == 0) ? " " : @evento.puntos + "";
-                        <tr>
+                        puntos = (@evento.puntos == 0 && @evento.nombre != "") ? "Confirmaste" : @evento.puntos + "";
+                        var estilo = (@evento.puntos == 0 && @evento.nombre != "") ? "color:gray!important; font-style: italic!important;" : @evento.puntos + "";
+                        <tr style="@estilo">
                             <td style="text-align: center;">@evento.fecha</td>
                             <td style="text-align: start;">@evento.nombre</td>
                             <td style="text-align: center;">&nbsp;@puntos</td>

@@ -139,8 +139,6 @@
         $('#puntos').val('');
         $('#lugar').val('');
         $('#fecha').val('');
-        $('#confirmacionAcom').prop('checked', false);
-        $('#confirmacionEven').prop('checked', false);
         $('#cantidadPersonas').val($(this).data(''))
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
