@@ -11,7 +11,7 @@
     string pathCatalogoH = ViewBag.pathCatalogo;
     try
     {
-        /*user = HttpContext.Current.Session["nombre"].ToString();
+        user = HttpContext.Current.Session["nombre"].ToString();
         idUsr = HttpContext.Current.Session["user"].ToString();
         admin = Convert.ToInt32(HttpContext.Current.Session["admin"].ToString());
         bannerP = new UsuarioModel();
@@ -21,21 +21,23 @@
         bannerP.getTotalPuntos(idUsr);
         bannerP.getActivacionStatus(idUsr);
         res = bannerP.recompensas.Count;
-        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;*/
-
-
+        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
+    }
+    catch (Exception ex)
+    {
         //Mientras que no me jala
-        user = "El brayan";
+        user = "Brayan";
         idUsr = "1";
         admin = 1;
         bannerP = new UsuarioModel();
-        bannerP.banners = new List<banner> { new banner("placeholder3.jpg", "El banner", "2020-02-28", "Aquí", 1), new banner("placeholder4.jpg", "El banner 2", "2020-02-28", "Allá", 1) };
+        bannerP.banners = new List<banner> { new banner("mPlaceholder4.jpg", "El banner", "2020-02-28", "Aquí", 1) };
+        //new banner("mPlaceholder2.jpg", "El banner 2", "2020-02-28", "Allá", 1)
         bannerP.puntos = 100;
         bannerP.recompensas = new List<recompensa> {
-            new recompensa("Jenga", "El juego de apilar bloques", 100, "placeholder4.jpg"),
-            new recompensa("Turista", "El juego de comprar propiedades", 1241, "placeholder3.jpg"),
-            new recompensa("Buscaminas", "No es un juego de mesa pero que tiene", 39, "placeholder2.jpg"),
-            new recompensa("Matatena", "La verdad no se qué sea", 76, "placeholder1.jpg"),
+            new recompensa("Jenga", "El juego de apilar bloques", 100, "mPlaceholder1.jpg"),
+            new recompensa("Monopoly", "El juego de comprar propiedades", 1241, "mPlaceholder2.jpg"),
+            new recompensa("Buscaminas", "No es un juego de mesa pero que tiene", 39, "mPlaceholder3.jpg"),
+            new recompensa("Matatena", "La verdad no se qué sea", 76, "mPlaceholder4.jpg"),
             //new recompensa("Mario Kart", "Un juego de carreras emocionante", 3201, "placeholder1.jpg")
         };
         res = bannerP.recompensas.Count;
@@ -49,12 +51,7 @@
             new Evento("2020-03-10", "Dotech Rewards 1", 100),
             new Evento("2020-03-10", "Dotech Rewards 1", 100)
         };
-
-
-    }
-    catch (Exception ex)
-    {
-        { Response.Redirect("~/"); }
+        //{ Response.Redirect("~/"); }
     }
 }
 
@@ -254,8 +251,9 @@
                                     }
                                     @if (panelP.url != "")
                                     {
-                                        <a class="registroLink d-none d-lg-block" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
-                                           style="cursor: pointer">Registrate aquí</a>
+                                        <!--DEVELOP: HAY QUE DESCOMENTAR ESTO-->
+                                        <!--<a class="registroLink d-none d-lg-block" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
+                                           style="cursor: pointer">Registrate aquí</a>-->
                                     }
                                 </div>
                             </div>
@@ -319,24 +317,25 @@
                                 <div class="overlay">
                                     <div class="text">@recompensa.descripcion</div>
                                 </div>
-                                <img class="img-fluid height-inherit" src="~/Content/images/@recompensa.imagen" alt="Card image cap">
+                                <img class="height-inherit" style="width:100%;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">
                                 <img class="banInfImg" src="~/Content/images/baner_producto.png" style="height:50px; width:100%; position:absolute; left:0px; bottom:0px; z-index: 2; opacity: 0.7;filter: alpha(opacity=70);" />
                                 
-                                <div class="d-lg-none" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: space-between; align-items:center; width:100%;">
-                                    <!--<span class="nombrePrd" style="color:white; z-index:3;">@recompensa.nombre</span>
+                                <div class="d-lg-none" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: center; align-items:center; width:100%;">
+                                    <!--
                                     <div class="" style="display:flex; flex-direction:column; align-items:center;">
                                         <span class="puntosPrd" style="z-index:2; color:white; font-weight:900;">@recompensa.puntos</span>
                                         <span class="puntosPrd" style="color: white; font-weight:900; z-index:2;">puntos</span>
-                                    </div>-->
-                                    <span>Se ve cuando es pequeño</span>
+                                    </div>
+                                    <span>Se ve cuando es pequeño</span>-->
                                 </div>
 
-                                <div class="d-none d-lg-block" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: center; align-items:center; width:100%;">
-                                    <!--<div class="" style="display:flex; flex-direction:column; align-items:center;">
+                                <div class="d-none d-lg-flex" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: space-around; align-items:center; width:100%;">
+                                    <span class="nombrePrd" style="color:white; z-index:3;">@recompensa.nombre</span>
+                                    <div style="display:flex; flex-direction:column; align-items:center; width:initial;">
                                         <span class="puntosPrd" style="z-index:2; color:white; font-weight:900;">@recompensa.puntos</span>
                                         <span class="puntosPrd" style="color: white; font-weight:900; z-index:2;">puntos</span>
-                                    </div>-->
-                                    <span>Se ve cuando es pequeño</span>
+                                    </div>
+                                    <!--<span>Se ve cuando es grande</span>-->
                                 </div>
                                 
                                 
