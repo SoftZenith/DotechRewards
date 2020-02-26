@@ -161,8 +161,10 @@
     <Content Include="Content\images\catalogo.jpg" />
     <Content Include="Content\images\comida.jpg" />
     <Content Include="Content\images\cumpleaños.png" />
+    <Content Include="Content\images\derarrow.png" />
     <Content Include="Content\images\dotech.png" />
     <Content Include="Content\images\flecha_descarga.png" />
+    <Content Include="Content\images\izqarrow.png" />
     <Content Include="Content\images\laptop.jpg" />
     <Content Include="Content\images\localizador-de-lugar.png" />
     <Content Include="Content\images\login_reward.png" />
@@ -317,6 +319,7 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="Content\Manual_Canje\manual.pdf" />
     <None Include="Properties\PublishProfiles\DotechRewards2020 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

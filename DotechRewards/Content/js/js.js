@@ -75,7 +75,7 @@ function getPagination(table) {
               '<li data-page="' +
                 i +
                 '">\
-								  <span class="border-right">' +
+								  <span>' +
                 i++ +
                 '<span class="sr-only">(current)</span></span>\
 								</li>'
@@ -128,10 +128,10 @@ function getPagination(table) {
         }); // end of for each tr in table
         
       }); // end of on click pagination list
-      limitPagging();
+      //limitPagging();
       
     })
-    .val(4)
+    .val(5)
     .change();
 
   // end of on select change
@@ -142,7 +142,7 @@ function getPagination(table) {
 function limitPagging() {
   // alert($('.pagination li').length)
 
-  if ($('.pagination li').length > 7) {
+  if ($('.pagination li').length > 10) {
     if ($('.pagination li.active').attr('data-page') <= 3) {
       $('.pagination li:gt(5)').hide();
       $('.pagination li:lt(5)').show();
