@@ -414,10 +414,43 @@ namespace DotechRewards.Models
             }
         }
 
+        public string getUsuario(int idUsuario) {
+            string usuario = "";
+            using (SqlConnection cnn = Context.Connect())
+            {
+                try
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SP_GET_USUARIO_BY_ID", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        usuario = reader["usuario"].ToString();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex);
+                    return usuario;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+                return usuario;
+            }
+        }
+
         /// <summary>
         /// Asigna puntos a un usuario, si el idActividad es 0, requiere la descripción.
         /// </summary>
-        public int AsignarPuntos(int idUsuario, int idActividad, String descripcion, int puntos)
+        public int AsignarPuntos(int idUsuario, int idActividad, String descripcion, int puntos, int acompañantes)
         {
             using (SqlConnection cnn = Context.Connect())
             {
@@ -432,6 +465,7 @@ namespace DotechRewards.Models
                     cmd.Parameters.Add("@idActividad", SqlDbType.Int).Value = idActividad;
                     cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion;
                     cmd.Parameters.Add("@puntos", SqlDbType.Int).Value = puntos;
+                    cmd.Parameters.Add("@acompanantes", SqlDbType.Int).Value = acompañantes;
 
                     SqlDataReader reader = cmd.ExecuteReader();
                 }
