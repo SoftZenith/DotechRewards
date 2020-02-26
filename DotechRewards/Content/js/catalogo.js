@@ -7,6 +7,7 @@
         $('#nombre').val($(this).data('nombre'));
         $('#descripcion').val($(this).data('desc'));
         $('#puntos').val($(this).data('puntos'));
+        $('#Foto_Camp').show();
     });
 
     $('.btnDelP').click(function () {
@@ -36,11 +37,11 @@
 
     $('#btnAddP').click(function () {
         $('#idPrdM').val(0);
-        $('#nombre').val($(this).data(''));
-        $('#descripcion').val($(this).data(''));
-        $('#puntos').val($(this).data(''));
+        $('#nombre').val('');
+        $('#descripcion').val('');
+        $('#puntos').val('');
         $('#Foto_Prd').val(null);
-        $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+        $('#previewImg').hide();
     });
 
     $('#Foto_Prd').change(function () {
@@ -91,7 +92,8 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
-                        $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
+                        $('#Foto_Prd').val('');
                         return false;
                     }
                     if (nombreEspacio[0] == " ") {
@@ -102,7 +104,8 @@
                         );
 
                         $('#btnGuardarPrd').attr('disabled', true);
-                        $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
+                        $('#Foto_Prd').val('');
                         return false;
                     }
                     var height = this.height;
@@ -115,9 +118,9 @@
                                 'La imagen debe tener un ancho de 250 pixeles.',
                                 'warning'
                             );
-                            $('#Foto_Camp').val('');
+                            $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled', true);
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             return false;
                         }
                     }
@@ -129,13 +132,14 @@
                                 'La imagen debe tener un alto de 130 pixeles.',
                                 'warning'
                             );
-                            $('#Foto_Camp').val('');
+                            $('#Foto_Prd').val('');
                             $('#btnGuardarPrd').attr('disabled',true);
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             return false;
                         }
                     }
                     console.log("Buena Imagen");
+                    $('#previewImg').show();
                     $('#btnGuardarPrd').removeAttr('disabled');
                     readURL(this);
                 };
@@ -194,11 +198,11 @@
             })
             return false;
         }
-        else if (productImage = '') {
+        else if (productImage == "") {
 
             Swal.fire(
                 'Error en imagen de producto.',
-                'Se.',
+                'Necesita seleccionar una imagen.',
                 'warning'
             ).then((result) => {
                 $('#puntos').focus();
@@ -206,6 +210,23 @@
             return false;
         }
        // alert(productName + productDesc + productPoints +productImage);
+    });
+
+    $('#puntos').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 3) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#puntos').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 4));
+        }
+        if ($(this).val().length > 3) {
+            $(this).val($(this).val().slice(0, -1));
+        }
     });
 
     $('#exampleInputFile').change(function () {

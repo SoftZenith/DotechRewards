@@ -42,7 +42,7 @@ namespace DotechRewards.Controllers
             //llamar modelo para modificar tabla
             int confirmacion = 0;
             UsuarioModel confi = new UsuarioModel();
-            if (asistentes != 0) {
+            if (asistentes >= 0) {
                 confirmacion = 1;
             }
             confi.AddConfirmacion(confirmacion, asistentes, idEventoF, idUsr);

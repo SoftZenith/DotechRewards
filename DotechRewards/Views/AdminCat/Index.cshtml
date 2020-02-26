@@ -69,7 +69,7 @@
                         <h3 style="display:inline-block;">&nbspCatálogos</h3>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="display:none">
                     <a class="nav-link active menu-item-font" href="AdminPrin">
                         <i style="display:inline-block;" class="fas fa-tasks"></i>
                         <h3 style="display:inline-block;">&nbspAsistencia</h3>
@@ -134,7 +134,7 @@
                 </label>
             </div>
             <div style="float: right; margin-left:550px;">
-                <button id="btnAddCampana" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
+                <button id="btnAddP" class="btn btn-link add-button" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-plus-circle" style="font-size:45px; color:green; float: right;" aria-hidden="true"></i>
                 </button>
             </div>
@@ -155,51 +155,48 @@
             </div>
             @using (Html.BeginForm("AddProducto", "AdminCat", FormMethod.Post, new { id = "Login", enctype = "multipart/form-data" }))
             {
-                <div class="modal-body">
-                    @Html.TextBoxFor(m => m.idProducto, new { id = "idPrdM", @type = "hidden"})
-                    <div class="row justify-content-center" style="margin: 5px">
-                        <div class="row justify-content-center" style="margin: 5px">
-                            <div class="col-md-3" style="margin-right: 0px; padding-left: 10px;">
-                                <h5>Producto: </h5>
-                            </div>
-                            <div class="col-md-5" style="padding:initial">
-                                @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" })
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Puntos: </h5>
-                            </div>
-                            <div class="col-md-2" style="margin-left: 0px;">
-                                @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center" style="margin: 5px">
-                        <div class="col-md-3" style="margin-left: 5px;">
-                            <h5>Descripción: </h5>
-                        </div>
-                        <div class="col-md-8" style="margin-left: -40px;">
-                            @Html.TextBoxFor(m => m.descripcion, new { id = "descripcion", @class = "form-control", @type = "text" })
-                            <!--<input type="text" class="form-control" id="descripcion">-->
-                        </div>
-                    </div>
-                    <div class="row justify-content-start" style="margin-left: 5px">
-                        <div class="col-md-3" style="margin-left: 55px">
-                            <h5>Imagen: </h5>
-                        </div>
-                        <div class="col-md-6" style="margin-left: -45px">
-                            @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
-                            @Html.TextBox("Foto_Prd", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Prd" })
-                        </div>
-                        <div class="col-md-2">
-                            <img id="previewImg" src="" alt="Preview de la imagen" height="60" width="100" style="margin-left: -13px;" />
-                        </div>
-                    </div>
+        <div class="modal-body">
+            @Html.TextBoxFor(m => m.idProducto, new { id = "idPrdM", @type = "hidden" })
+            <div class="form-row">
+                <div class="col-md-2 mb-3" style="text-align:right">
+                    <h5>Producto: </h5>
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.TextBoxFor(m => m.nombre, new { id = "nombre", @class = "form-control", @type = "text" , required = "required"})
+                </div>
+                <div class="col-md-2 mb-3" style="text-align:right">
+                    <h5>Puntos: </h5>
+                </div>
+                <div class="col-md-2 mb-3">
+                    @Html.TextBoxFor(m => m.puntos, new { id = "puntos", @class = "form-control", @type = "number" , required = "required"})
+                </div>
+                <!-- 12 col-->
+                <div class="col-md-2 mb-3" style="text-align:right">
+                    <h5>Descripción: </h5>
+                </div>
+                <div class="col-md-10 mb-3">
+                    @Html.TextBoxFor(m => m.descripcion, new { id = "descripcion", @class = "form-control", @type = "text" , required = "required"})
+                    <!--<input type="text" class="form-control" id="descripcion">-->
+                </div>
+                <!-- 12 col-->
+                <div class="col-md-2 mb-3" style="text-align:right">
+                    <h5>Imagen: </h5>
+                </div>
+                <div class="col-md-7 mb-3">
+                    @Html.TextBoxFor(m => m.imagen, new { id = "edtFoto", type = "hidden" })
+                    @Html.TextBox("Foto_Prd", "", new { @class = "form-control-file", type = "file", accept = "image/jpeg", id = "Foto_Prd" })
+                </div>
+                <div class="col-md-2 mb-3">
+                    <img id="previewImg" src="" alt="Preview de la imagen" height="60" width="100" style="margin-left: -13px;" />
+                </div>
+                
 
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" id="btnGuardarPrd">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" id="btnGuardarPrd">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
             }
         </div>
     </div>

@@ -1,5 +1,27 @@
 ﻿$(document).ready(function () {
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    
+
     $('.btnEditE').click(function () {
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd + "T00:00";
+        document.getElementById("fecha").setAttribute("min", today);
+
         $('#confirmacionEven').prop('checked', false);
         $('#confirmacionLink').prop('checked', false);
         $('#cantidadPersonas').prop('disabled', true);
@@ -11,6 +33,10 @@
         $('#puntos').val($(this).data('puntos'));
         $('#lugar').val($(this).data('lugar'));
         $('#urlConfirmacion').val($(this).data('urle'));
+        $('#descList').show();
+        $('#previewImg').show();
+        $('#Foto_Camp').removeAttr('required');
+
         if ($(this).data('urle')) {
             $('#confirmacionLink').prop('checked', true);
             $('#confirmacionEven').prop('checked', $(this).data('confirmacion').toLowerCase() === 'true');
@@ -23,8 +49,21 @@
         $('#cantidadPersonas').val($(this).data('asistentes'));
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');
-        var fecha2 = fecha.split("/").reverse().join("-");
-        $('#fecha').val(fecha2);
+        var fecha3 = fecha.split(" ");
+        if (fecha3[2] == "p.") {
+
+            var descomponer = fecha3[1].split(":");
+            var recuperarInt = parseInt(descomponer[0]);
+            recuperarInt = recuperarInt + 12;
+            fecha = fecha3[0] + " " + recuperarInt+":" + descomponer[1];
+        }
+
+
+        var fecha2 = fecha.split("/");//.reverse().join("-");
+        var hora = fecha2[2].split(" ")[1];
+        var año = fecha2[2].split(" ")[0];
+        var fecha_hora = año + "-" + fecha2[1] + "-" + fecha2[0] + "T" + hora;
+        $('#fecha').val(fecha_hora);
     });
 
     $('.btnDelE').click(function () {
@@ -89,9 +128,43 @@
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=0');
+        $('#descList').hide();
+        $('#previewImg').hide();
+        $('#Foto_Camp').attr('required', 'required');
         //$('#urlConfirmacion').val('');
     });
-    
+
+    //validaciones de digitos
+    $('#puntos').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#puntos').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 5));
+        }
+    });
+    $('#cantidadPersonas').keyup(function () {
+        if (parseInt($(this).val()) <= 0) {
+            $(this).val('1');
+        }
+        if ($(this).val().length > 2) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    $('#cantidadPersonas').change(function () {
+        if ($(this).val().length > 5) {
+            $(this).val($(this).val().slice(0, 3));
+        }
+        if ($(this).val().length > 2) {
+            $(this).val($(this).val().slice(0, -1));
+        }
+    });
+    //-------------------------
     $('#getLista').click(function () {
         $.post("/AdminEven/DescargarLista", { idEvento: $('#idEventoM').val() })
             .done(function (data) {
@@ -129,6 +202,8 @@
         });
     });
 
+
+
     $('#Foto_Camp').change(function () {
         var fileName = document.getElementById("Foto_Camp").value; //c:fakepath/imagen.jpg
         var idxDot = fileName.lastIndexOf(".") + 1;
@@ -160,6 +235,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
                         $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
@@ -170,6 +246,7 @@
                             'warning'
                         );
                         $('#Foto_Camp').val('');
+                        $('#previewImg').hide();
                         $('#btnGuardar').attr('disabled', true);
                         return false;
                     }
@@ -184,7 +261,7 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
@@ -198,12 +275,13 @@
                                 'warning'
                             );
                             $('#Foto_Camp').val('');
-                            $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+                            $('#previewImg').hide();
                             $('#btnGuardar').attr('disabled', true);
                             return false;
                         }
                     }
                     $('#btnGuardar').removeAttr('disabled');
+                    $('#previewImg').show();
                     console.log("Buena Imagen");
                     readURL(this);
                 };
@@ -215,7 +293,7 @@
                 'warning'
             );
             $('#Foto_Camp').val('');
-
+            $('#previewImg').hide();
             $('#btnGuardar').attr('disabled', true);
             return false;
         }

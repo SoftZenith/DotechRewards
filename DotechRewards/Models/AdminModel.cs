@@ -88,18 +88,24 @@ namespace DotechRewards.Models
                                 Convert.ToInt16(reader["puntos"].ToString()),
                                 reader["url"].ToString()
                             ));*/
+                        var fechaBefore = reader["fecha"].ToString();
+                        var fecha3 = fechaBefore.Split(' ');
+                        var descomponer = fecha3[1].Split(':');
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1]+ " "+ fecha3[2]+" "+fecha3[3];
                         eventos.Add(new Evento()
                         {
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
                             nombre = reader["nombre"].ToString(),
                             lugar = reader["lugar"].ToString(),
-                            fecha = reader["fecha"].ToString().Substring(0, 10),
+                            //fecha = Convert.ToDateTime(reader["fecha"]).ToString(),
+                            fecha = fechaBefore,
                             asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
                             imagen = reader["imagen"].ToString(),
                             puntos = Convert.ToInt16(reader["puntos"].ToString()),
                             url = reader["url"].ToString(),
                             confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false,
-                            confirmados = Convert.ToInt32(reader["confirmados"].ToString())
+                            confirmados = Convert.ToInt32(reader["confirmados"].ToString()),
+                            acompañantes = Convert.ToInt32(reader["acompañantes"])
                         }); 
                     }
 
@@ -347,7 +353,7 @@ namespace DotechRewards.Models
                     cmd.Parameters.Add("@idEvento", SqlDbType.Int).Value = evento.idEvento;
                     cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = evento.nombre;
                     cmd.Parameters.Add("@lugar", SqlDbType.VarChar).Value = evento.lugar;
-                    cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = evento.fecha;
+                    cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = evento.fecha;
                     cmd.Parameters.Add("@asistentes", SqlDbType.Int).Value = evento.asistentes;
                     cmd.Parameters.Add("@confirmacion", SqlDbType.Int).Value = evento.confirmacion ? 1 : 0;
                     cmd.Parameters.Add("@imagen", SqlDbType.VarChar).Value = imagen;
@@ -507,6 +513,36 @@ namespace DotechRewards.Models
             }
         }
 
+        public int getActivacionPuntos(int idUsuario) {
+            using (SqlConnection cnn = Context.Connect())
+            {
+                int res = 0;
+                try
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_GET_ACTIVACION_PUNTOS_BY_ID", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        res = Convert.ToInt32(reader["estatus"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res = 0;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+                return res;
+            }
+        }
+
     }
 
     public class Usuario
@@ -628,6 +664,7 @@ namespace DotechRewards.Models
         public string url { get; set; }
         public int puntos { get; set; }
         public int confirmados { get; set; }
+        public int acompañantes { get; set; }
     }
 
     public class Producto {

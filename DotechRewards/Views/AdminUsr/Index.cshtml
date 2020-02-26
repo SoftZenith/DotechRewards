@@ -75,7 +75,7 @@
                         <h3 style="display:inline-block;">&nbspCatálogos</h3>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="display:none">
                     <a class="nav-link active menu-item-font" href="AdminPrin">
                         <i style="display:inline-block;" class="fas fa-tasks"></i>
                         <h3 style="display:inline-block;">&nbspAsistencia</h3>
@@ -95,7 +95,7 @@
                         <input type="text" class="form-control" id="myInput" onkeyup="myFunction()">
                     </div>
                     <div class="col-md-3">
-                        <h3>Puesto/asignación: </h3>
+                        <h3>Puesto/Asignación: </h3>
                     </div>
                     <div class="col-md-3">
                         <input type="text" class="form-control" id="myInput2" onkeyup="myFunction2()">
@@ -110,8 +110,8 @@
                         <tr>
                             <th scope="col" width="200px" style="text-align: center">Usuario</th>
                             <th scope="col" width="390px" style="        text-align: center
-">Puesto/asignación</th>
-                            <th scope="col" width="160px" style="text-align: center">Fecha entrada</th>
+">Puesto/Asignación</th>
+                            <th scope="col" width="160px" style="text-align: center">Fecha Entrada</th>
                             <th scope="col" width="140px" style="text-align: center">Cumpleaños</th>
                             <th scope="col" width="125px" style="        text-align: center
 ">Puntos</th>
@@ -157,60 +157,60 @@
         <div class="modal-content">
             <form action="/AdminUsr/AddUsuario" method="post" >
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Detalle de usuario</h3>
+                    <h3 class="modal-title" id="exampleModalLabel">Detalle de Usuario</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-center" style="margin: 5px">
-                        @Html.TextBoxFor(m => m.idUsuario, new { @type = "hidden", @class = "form-control", @id = "idUsuarioModal", style = "margin-left: 15px;" })
-                        <div class="col-md-4">
-                            <h5 style="margin-left: 41px;">Nombre completo: </h5>
+
+                    @Html.TextBoxFor(m => m.idUsuario, new { @type = "hidden", @class = "form-control", @id = "idUsuarioModal"  })
+
+                    <div class="form-row">
+
+                        <div class="col-md-4" mb-3>
+                            <h5 >Nombre Completo: </h5>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-3">
                             <!--<input type="text" class="form-control" id="nombreModal" style="margin-left: 15px;">-->
-                            @Html.TextBoxFor(m => m.nombre, new { @type = "text", @class = "form-control", @id = "nombreModal", style = "margin-left: 15px;" })
+                            @Html.TextBoxFor(m => m.nombre, new { @type = "text", @class = "form-control", @id = "nombreModal", required = "required"  })
                         </div>
-                    </div>
-                    <div class="row justify-content-center" style="margin: 5px">
-                        <div class="col-md-4">
-                            <h5 style="margin-left: 41px;">Usuario: </h5>
+
+
+                        <div class="col-md-4 mb-3">
+                            <h5 >Usuario: </h5>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-3">
                             <!--<input type="text" class="form-control" id="usuarioModal" style="margin-left: 15px;">-->
-                            @Html.TextBoxFor(m => m.usuario, new { @type = "text", @class = "form-control", @id = "usuarioModal", style = "margin-left: 15px;" })
+                            @Html.TextBoxFor(m => m.usuario, new { @type = "text", @class = "form-control", @id = "usuarioModal", required = "required" })
                         </div>
-                    </div>
-                    <div class="row justify-content-center" style="margin: 5px">
-                        <div class="col-md-4">
-                            <h5 style="margin-left: 41px;">Puesto/Asginación: </h5>
+
+
+                        <div class="col-md-4 mb-3">
+                            <h5 >Puesto/Asignación: </h5>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-3">
                             <!--<input type="text" class="form-control" id="puesto_asign" style="margin-left: 15px;">-->
-                            @Html.TextBoxFor(m => m.puesto, new { @type = "text", @class = "form-control", @id = "puesto_asign", style = "margin-left: 15px;" })
+                            @Html.TextBoxFor(m => m.puesto, new { @type = "text", @class = "form-control", @id = "puesto_asign", required = "required" })
                         </div>
-                    </div>
-                    <div class="row justify-content-center" style="        margin-left: 40px;
-        margin-top: 5px;">
-                        <div class="row justify-content-center" style="margin: 5px">
-                            <div class="col-md-4" style="margin-left: -10px;">
-                                <h5>Fecha Entrada:</h5>
-                            </div>
-                            <div class="col-md-3" style="margin-left:-18px;">
-                                <!--<input type="date" class="form-control" id="fecha_entrada">-->
-                                @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date", @style = "font-size: smaller; margin-right: 50px;" })
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Cumpleaños: </h5>
-                            </div>
-                            <div class="col-md-3">
-                                <!--<input type="date" class="form-control" id="fecha_cumple">-->
-                                @Html.TextBoxFor(m => m.cumpleaños, new { @class = "form-control", @id = "fecha_cumple", @type = "date", @style = "font-size: smaller; margin-left: 13px;" })
-                            </div>
+
+
+                        <div class="col-md-4 mb-3">
+                            <h5>Fecha Entrada:</h5>
                         </div>
-                    </div>
-                    <div class="row justify-content-center" style="margin-left: 40px">
+                        <div class="col-md-3 mb-3" >
+                            <!--<input type="date" class="form-control" id="fecha_entrada">-->
+                            @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date", @style = "font-size: smaller;", required = "required"})
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <h5>Cumpleaños: </h5>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <!--<input type="date" class="form-control" id="fecha_cumple">-->
+                            @Html.TextBoxFor(m => m.cumpleaños, new { @class = "form-control", @id = "fecha_cumple", @type = "date", @style = "font-size: smaller; " , required = "required"})
+                        </div>
+
+
                         <table class="table table-sm" id="historialTable">
                             <thead style="display: block;">
                                 <tr>
@@ -220,7 +220,6 @@
                                 </tr>
                             </thead>
                             <tbody style="display: block; height: 120px; overflow-y: auto; overflow-x: hidden;">
-
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -228,33 +227,33 @@
                                 </tr>
                             </tfoot>
                         </table>
-                    </div>
-                    <div class="row justify-content-center" style="margin-left: 25px;">
-                        <div class="col-md-2">
-                            <h5>Descripcion:</h5>
-                        </div>
-                        <div class="col-md-3">
-                            <input id="descripcion" type="text" class="form-control">
-                        </div>
-                        <div class="col-md-1">
-                            <h5 style="margin-left: -15px;">puntos: </h5>
-                        </div>
-                        <div class="col-md-2">
-                            <input id="puntos" type="number" class="form-control">
-                        </div>
-                        <div class="col-md-2" style="margin-left: 30px;">
-                            <button id="btnAsignar" type="button" class="btn btn-primary">Asignar</button>
-                        </div>
-                        <div class="col-md-1">
-                            <button id="btnCobrar" type="button" class="btn btn-danger" style="margin-left: -30px;">Cobrar</button>
+                        <div id="asigPuntos" class="form-row" >
+                            <div class="col-md-2 mb-3">
+                                <h5>Descripción:</h5>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <input id="descripcion" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <h5>Puntos: </h5>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <input id="puntos" type="number" class="form-control">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <button id="btnAsignar" type="button" class="btn btn-primary">Asignar</button>
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <button id="btnCobrar" type="button" class="btn btn-danger">Cobrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+</form>
         </div>
     </div>
 </div>

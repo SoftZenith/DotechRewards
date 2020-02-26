@@ -45,6 +45,37 @@ namespace DotechRewards.Models
 
         }
 
+        public DataTable getListaGenerica(int idEvento) {
+            DataTable dt = new DataTable();
+            SqlDataAdapter ad;
+            using (SqlConnection cnn = Context.Connect())
+            {
+                try
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SP_GET_LISTA_GENERICA", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@idEvento", SqlDbType.Int).Value = idEvento;
+
+                    ad = new SqlDataAdapter(cmd);
+                    ad.Fill(dt);
+                    cnn.Close();
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex);
+                    return dt;
+                }/*
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }*/
+            }
+        }
+
         /// <summary>
         /// Lee archivo .xlsx de lista de asistencia y asigna los puntos individualmente.
         /// </summary>
@@ -63,17 +94,20 @@ namespace DotechRewards.Models
                         try {
                             int idUsuario = Convert.ToInt32(dataRow.Cell(1).Value);
                             int idEvento = Convert.ToInt32(dataRow.Cell(2).Value);
-                            string nombre = dataRow.Cell(3).Value.ToString();
-                            string evento = dataRow.Cell(4).Value.ToString();
-                            int puntos = Convert.ToInt32(dataRow.Cell(5).Value);
-                            string lugar = dataRow.Cell(6).Value.ToString();
-                            int confirmacion = Convert.ToInt32(dataRow.Cell(7).Value);
-                            int personas = Convert.ToInt32(dataRow.Cell(8).Value);
+                            string nombre = dataRow.Cell(4).Value.ToString();
+                            string evento = dataRow.Cell(5).Value.ToString();
+                            int puntos = Convert.ToInt32(dataRow.Cell(6).Value);
+                            string lugar = dataRow.Cell(7).Value.ToString();
+                            int confirmacion = dataRow.Cell(8).Value!=null? dataRow.Cell(8).ToString().ToUpper() == "SI" ? 1 : 0:0; //Esta fila
+                            int personas = 0;
+                            if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())){
+                                personas = Convert.ToInt32(dataRow.Cell(9).Value.ToString());
+                            }
+                            
                             int asistencia = 0;
                             try
                             {
-                                Convert.ToInt32(dataRow.Cell(9).Value);
-                                asistencia = 1;
+                                asistencia = dataRow.Cell(10).Value != null ? dataRow.Cell(10).ToString().ToUpper() == "SI" ? 1 : 0 : 0; //Esta fila
                             }
                             catch (Exception ex)
                             {

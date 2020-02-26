@@ -75,6 +75,11 @@ namespace DotechRewards.Controllers
         public int CobrarPuntos(int idUsuario, string descripcion, int puntos) {
             AdminModel admin = new AdminModel();
             int puntosActuales = admin.validaPuntos(idUsuario);
+            int activacion = admin.getActivacionPuntos(idUsuario);
+            if (activacion == 0)
+            {
+                return -2;
+            }
             if (puntosActuales < puntos) {
                 return -1;
             }
