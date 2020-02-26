@@ -92,11 +92,15 @@ namespace DotechRewards.Models
                     bannerPrincipal = new List<banner>();
                     while (reader.Read())
                     {
+                        var fechaBefore = reader["fecha"].ToString();
+                        var fecha3 = fechaBefore.Split(' ');
+                        var descomponer = fecha3[1].Split(':');
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
                         bannerPrincipal.Add(new banner(
                             Convert.ToInt16(reader["idActividad"].ToString()),
                             reader["imagen"].ToString(),
                             reader["nombre"].ToString(),
-                            reader["fecha"].ToString().Substring(0,10),
+                            fechaBefore,
                             reader["lugar"].ToString(),
                             Convert.ToInt16(reader["confirmacion"].ToString()),
                             Convert.ToInt16(reader["asistentes"].ToString()),
@@ -139,13 +143,17 @@ namespace DotechRewards.Models
                     bannerPrincipal = new List<banner>();
                     while (reader.Read())
                     {
+                        var fechaBefore = reader["fecha"].ToString();
+                        var fecha3 = fechaBefore.Split(' ');
+                        var descomponer = fecha3[1].Split(':');
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
                         bannerPrincipal.Add(new banner(
                             Convert.ToInt32(reader["idUsuario"] is DBNull ? 0 : reader["idUsuario"]),
                             Convert.ToInt32(reader["asistencia"] is DBNull ? 0 : reader["asistencia"]),
                             Convert.ToInt16(reader["idActividad"].ToString()),
                             reader["imagen"].ToString(),
                             reader["nombre"].ToString(),
-                            reader["fecha"].ToString().Substring(0, 10),
+                            fechaBefore,
                             reader["lugar"].ToString(),
                             Convert.ToInt16(reader["confirmacion"].ToString()),
                             Convert.ToInt16(reader["asistentes"].ToString()),
