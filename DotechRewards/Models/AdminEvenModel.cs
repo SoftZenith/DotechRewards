@@ -98,7 +98,8 @@ namespace DotechRewards.Models
                             string evento = dataRow.Cell(5).Value.ToString();
                             int puntos = Convert.ToInt32(dataRow.Cell(6).Value);
                             string lugar = dataRow.Cell(7).Value.ToString();
-                            int confirmacion = dataRow.Cell(8).Value!=null? dataRow.Cell(8).ToString().ToUpper() == "SI" ? 1 : 0:0; //Esta fila
+                            int confirmacion = dataRow.Cell(8).Value !=null ? (dataRow.Cell(8).Value.ToString() == "SI" ? 1 : 0) : 0; //Esta fila
+                            object confirmaobj = dataRow.Cell(8).Value;
                             int personas = 0;
                             if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())){
                                 personas = Convert.ToInt32(dataRow.Cell(9).Value.ToString());
@@ -108,6 +109,7 @@ namespace DotechRewards.Models
                             try
                             {
                                 asistencia = dataRow.Cell(10).Value != null ? dataRow.Cell(10).ToString().ToUpper() == "SI" ? 1 : 0 : 0; //Esta fila
+                                //personas = dataRow.Cell(9).Value != null ? Convert.ToInt32(dataRow.Cell(9).ToString()) : 0; //Esta fila
                             }
                             catch (Exception ex)
                             {
@@ -115,7 +117,15 @@ namespace DotechRewards.Models
                             }
                             //Validar si evento ya se cargo
                             AdminModel admin = new AdminModel();
-                            admin.AsignarPuntos(idUsuario, idEvento, evento, puntos);
+                            UsuarioModel confi = new UsuarioModel();
+                            if (confirmacion==1)
+                            {
+                                confi.AddConfirmacion(confirmacion, personas, idEvento,admin.getUsuario(idUsuario));
+                            }
+                            if (asistencia == 1)
+                            {
+                                admin.AsignarPuntos(idUsuario, idEvento, evento, puntos, personas);
+                            }
                         } catch (Exception ex) {
                             return new Retorno() { 
                                 estatus = false,

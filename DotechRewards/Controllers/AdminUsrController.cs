@@ -45,7 +45,7 @@ namespace DotechRewards.Controllers
             } catch (Exception ex) { 
             
             }
-            admin.AsignarPuntos(idUsuario, 0, descripcion, puntos);
+            admin.AsignarPuntos(idUsuario, 0, descripcion, puntos,0);
             return null;
         }
 
@@ -64,7 +64,7 @@ namespace DotechRewards.Controllers
             catch (Exception ex) { 
                 
             }
-            admin.AsignarPuntos(idUsuario, idEvento,"", puntos);
+            admin.AsignarPuntos(idUsuario, idEvento,"", puntos,0);
             return null;
         }
 

@@ -136,6 +136,7 @@ namespace DotechRewards.Controllers
                     ws.Cell("I2").CellBelow(i).DataValidation.List(validOptions, true);
                     ws.Cell("J2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
                     string cellN = "H" + (i + 2);
+                    string cellAsistio = "J" + (i + 2);
                     try
                     {
                         if (ws.Cell(cellN).GetString() == "1")
@@ -146,6 +147,16 @@ namespace DotechRewards.Controllers
                         {
                             ws.Cell(cellN).Value = "NO";
                         }
+
+                        if (ws.Cell(cellAsistio).GetString() == "1")
+                        {
+                            ws.Cell(cellAsistio).Value = "SI";
+                        }
+                        else if (ws.Cell(cellAsistio).GetString() == "0")
+                        {
+                            ws.Cell(cellAsistio).Value = "NO";
+                        }
+
                     }
                     catch (Exception ex) { 
                     
