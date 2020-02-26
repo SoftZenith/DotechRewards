@@ -31,6 +31,20 @@ function getPagination(table) {
 
     }
 
+    function changePage(page) {
+        var toChange = $("[dr-change]");
+        for (var i = 0; i < toChange.length; i++) {
+            var current = toChange[i];
+            if (i + 1 == page) {
+                $(current).removeClass("weight300");
+                $(current).addClass("weight900");
+                continue;
+            }
+            $(current).addClass("weight300");
+            $(current).removeClass("weight900");
+        }
+    }
+
   $('#maxRows')
     .on('change', function(evt) {
       //$('.paginationprev').html('');						// reset pagination
@@ -68,16 +82,17 @@ function getPagination(table) {
         // if tr total rows gt max rows option
         var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
         //	numbers of pages
-        for (var i = 1; i <= pagenum-1; ) {
+        for (var i = 1; i <= pagenum - 1;) {
+            var do900 = i ==  1 ? 'weight900' : '';
           // for each page append pagination li
           $('.pagination #prev')
             .before(
-              '<li data-page="' +
+              '<li class="d-none d-lg-block"  data-page="' +
                 i +
                 '">\
-								  <span>' +
+								  <span dr-change class="weight300 '+ do900 +'">' +
                 i++ +
-                '<span class="sr-only">(current)</span></span>\
+                '<span class="sr-only d-none">(current)</span></span>\
 								</li>'
             )
             .show();
@@ -106,6 +121,9 @@ function getPagination(table) {
         }
 
         lastPage = pageNum;
+
+        changePage(pageNum);
+
         var trIndex = 0; // reset tr counter
         $('.pagination li').removeClass('active'); // remove active class from all li
         $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
@@ -128,10 +146,10 @@ function getPagination(table) {
         }); // end of for each tr in table
         
       }); // end of on click pagination list
-      //limitPagging();
+      limitPagging();
       
     })
-    .val(5)
+    .val(4)
     .change();
 
   // end of on select change
@@ -142,7 +160,7 @@ function getPagination(table) {
 function limitPagging() {
   // alert($('.pagination li').length)
 
-  if ($('.pagination li').length > 10) {
+  if ($('.pagination li').length > 7) {
     if ($('.pagination li.active').attr('data-page') <= 3) {
       $('.pagination li:gt(5)').hide();
       $('.pagination li:lt(5)').show();
