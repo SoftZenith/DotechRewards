@@ -88,13 +88,17 @@ namespace DotechRewards.Models
                                 Convert.ToInt16(reader["puntos"].ToString()),
                                 reader["url"].ToString()
                             ));*/
+                        var fechaBefore = reader["fecha"].ToString();
+                        var fecha3 = fechaBefore.Split(' ');
+                        var descomponer = fecha3[1].Split(':');
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1]+ " "+ fecha3[2]+" "+fecha3[3];
                         eventos.Add(new Evento()
                         {
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
                             nombre = reader["nombre"].ToString(),
                             lugar = reader["lugar"].ToString(),
                             //fecha = Convert.ToDateTime(reader["fecha"]).ToString(),
-                            fecha = reader["fecha"].ToString().Substring(0, 16),
+                            fecha = fechaBefore,
                             asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
                             imagen = reader["imagen"].ToString(),
                             puntos = Convert.ToInt16(reader["puntos"].ToString()),

@@ -49,13 +49,20 @@
         $('#cantidadPersonas').val($(this).data('asistentes'));
         $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');
-        console.log('fecha completa: '+fecha);
+        var fecha3 = fecha.split(" ");
+        if (fecha3[2] == "p.") {
+
+            var descomponer = fecha3[1].split(":");
+            var recuperarInt = parseInt(descomponer[0]);
+            recuperarInt = recuperarInt + 12;
+            fecha = fecha3[0] + " " + recuperarInt+":" + descomponer[1];
+        }
+
+
         var fecha2 = fecha.split("/");//.reverse().join("-");
         var hora = fecha2[2].split(" ")[1];
         var año = fecha2[2].split(" ")[0];
-        console.log('año: ' + año + "Mes: " + fecha[1] + "dia: " + fecha[0] + "hora: " + hora);
         var fecha_hora = año + "-" + fecha2[1] + "-" + fecha2[0] + "T" + hora;
-        console.log("Fecha con hora: " + fecha_hora);
         $('#fecha').val(fecha_hora);
     });
 
