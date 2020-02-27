@@ -181,7 +181,25 @@
 
         $('#btnGuardar').click(function () {
 
+
+
             if ($("#customRadio2").is(":checked")) {
+
+                if ($('#txtEvento').val().length == 0) {
+                    alert('Requiere nombre del evento');
+                    return;
+                }
+
+                if ($('#txtInvitado').val().length == 0) {
+                    alert('Selecciona un usuario');
+                    return;
+                }
+
+                if ($('#puntosEvt').val() <= 0 || $('#puntosEvt').val() == "") {
+                    alert('Requiere puntos mayor a 0');
+                    return;
+                }
+
                 $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
                     .done(function (data) {
                         //alert('Se asigno');

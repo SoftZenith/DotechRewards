@@ -414,6 +414,40 @@ namespace DotechRewards.Models
             }
         }
 
+        public int getIdByNombre(string nombre) {
+            int idUsuario = 0;
+            using (SqlConnection cnn = Context.Connect())
+            {
+                try
+                {
+                    cnn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SP_GET_ID_BY_NOMBRE", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        idUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex);
+                    return idUsuario;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+                return idUsuario;
+            }
+        }
+
+
         public string getUsuario(int idUsuario) {
             string usuario = "";
             using (SqlConnection cnn = Context.Connect())
