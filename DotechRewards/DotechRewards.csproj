@@ -157,7 +157,6 @@
     <Content Include="Content\images\baner_producto.png" />
     <Content Include="Content\images\calendario %281%29.png" />
     <Content Include="Content\images\calendario.png" />
-    <Content Include="Content\images\carousel.jpg" />
     <Content Include="Content\images\catalogo.jpg" />
     <Content Include="Content\images\comida.jpg" />
     <Content Include="Content\images\cumpleaños.png" />
@@ -320,6 +319,7 @@
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
     <Content Include="Content\Manual_Canje\manual.pdf" />
+    <None Include="Properties\PublishProfiles\dotechrewards - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\DotechRewards2020 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

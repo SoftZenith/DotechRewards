@@ -181,22 +181,35 @@
 
         $('#btnGuardar').click(function () {
 
-
-
             if ($("#customRadio2").is(":checked")) {
 
                 if ($('#txtEvento').val().length == 0) {
-                    alert('Requiere nombre del evento');
+                    //alert('Requiere nombre del evento');
+                    Swal.fire(
+                        'Error',
+                        'Requiere nombre del evento',
+                        'warning'
+                    );
                     return;
                 }
 
                 if ($('#txtInvitado').val().length == 0) {
-                    alert('Selecciona un usuario');
+                    //alert('Selecciona un usuario');
+                    Swal.fire(
+                        'Error',
+                        'Selecciona un usuario',
+                        'warning'
+                    );
                     return;
                 }
 
                 if ($('#puntosEvt').val() <= 0 || $('#puntosEvt').val() == "") {
-                    alert('Requiere puntos mayor a 0');
+                    //alert('Requiere puntos mayor a 0');
+                    Swal.fire(
+                        'Error',
+                        'Requiere puntos mayor a 0',
+                        'warning'
+                    );
                     return;
                 }
 
