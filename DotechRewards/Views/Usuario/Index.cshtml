@@ -186,7 +186,7 @@
                         <td style="text-align: end; font-weight:900;"></td>
                         <td style="text-align: center; font-weight:900;">
                             <div style="position:relative;">
-                                <span class="d-none d-lg-block" style="">Total: @bannerP.puntos</span>
+                                <span class="d-none d-lg-block" style="position:absolute; left:-15px;top:0px;">Total: @bannerP.puntos</span>
                             </div>
                         </td>
                     </tr>
@@ -255,7 +255,7 @@
                 .carousel-control-prev-icon,
                 .carousel-control-next-icon {
                   height: 100px;
-                  width: 100px;
+                  width: 50px;
                   outline: black;
                   background-size: 100%, 100%;
                   /*border-radius: 50%;
@@ -267,23 +267,23 @@
                 {
                   content: '>';
                   font-size: 55px;
-                  color: red;
+                  color: white;
                 }
 
                 .carousel-control-prev-icon:after {
                   content: '<';
                   font-size: 55px;
-                  color: red;
+                  color: white;
                 }
 
             </style>
             <div id="demo" class="carousel slide" data-ride="carousel" style="background-color:red;">
-                <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true" style="color:#C00000;"></span>
+                <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev" style="justify-content: flex-start;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="color:#C00000;background-color: #202020;opacity: .8;"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#demo" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true" style="color:#C00000;"></span>
+                <a class="carousel-control-next" href="#demo" role="button" data-slide="next" style="justify-content: flex-end;">
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="color:#C00000;background-color: #202020;opacity: .8;"></span>
                     <span class="sr-only">Next</span>
                 </a>
                 <div class="carousel-inner" style="background-color: green;">
