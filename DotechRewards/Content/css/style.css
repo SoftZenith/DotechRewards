@@ -37,3 +37,29 @@ table tr {
 .pagination li span{
     padding: 1px 8px 1px 8px
 }
+
+@media (min-width: 768px) {
+    .total {
+        left: 0px;
+        right: 30px;
+    }
+    .cardo {
+        height: inherit;
+    }
+    .table.table-striped.table-class td {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .total {
+        left: -30px;
+        right: 0px;
+    }
+    .cardo {
+        height: 85px;
+    }
+    .table.table-striped.table-class td{
+        font-size:.94rem;
+    }
+}
