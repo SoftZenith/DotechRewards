@@ -162,6 +162,7 @@
     <Content Include="Content\images\cumpleaños.png" />
     <Content Include="Content\images\derarrow.png" />
     <Content Include="Content\images\dotech.png" />
+    <Content Include="Content\images\downArrow.png" />
     <Content Include="Content\images\flecha_descarga.png" />
     <Content Include="Content\images\izqarrow.png" />
     <Content Include="Content\images\laptop.jpg" />
