@@ -40,8 +40,8 @@ table tr {
 
 @media (min-width: 768px) {
     .total {
-        left: 0px;
-        right: 30px;
+        left: -57px;
+        right: -16px;
     }
     .cardo {
         height: inherit;
