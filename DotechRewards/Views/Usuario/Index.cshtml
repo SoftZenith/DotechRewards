@@ -106,7 +106,7 @@
                 <a class="" target="_blank" href="~/Content/Manual_Canje/manual.pdf" style="color: black; font-size:1.5em;">Canjea tus puntos</a>
             </div>
         </div>
-        
+
         <div class="col-12 d-flex d-lg-none">
             <div style="height:24px;"></div>
         </div>
@@ -200,7 +200,8 @@
 
             }
 
-            @if (bannerP.estatus > 0) {
+            @if (bannerP.estatus > 0)
+            {
                 <script type="text/javascript">
                     //debugger;
                     getPagination('#table-id');
@@ -213,70 +214,73 @@
         <div class="col-md-12">
             <style>
                 .weight300 {
-                    font-weight:300;
+                    font-weight: 300;
                 }
 
                 .weight900 {
-                    font-weight:900;
+                    font-weight: 900;
                 }
 
 
-                #demo img{
-                    width:100%;
+                #demo img {
+                    width: 100%;
                     height: 100%;
-                    object-fit:fill;
+                    object-fit: fill;
                 }
+
                 .banner-info {
                     position: absolute;
                     bottom: 0px;
-                    width:100%;
+                    width: 100%;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-around;
-                    align-items:center;
+                    align-items: center;
                     height: inherit;
                 }
+
                 #demo .banner-info > * {
-                    color:white;
+                    color: white;
                 }
+
                 #demo .task-icon-wrapper {
-                    
                 }
-                #demo .task-icon-wrapper > img {
-                    width:32px;
-                    height:32px;
-                }
-                #demo .task-icon-wrapper > span {
-                    margin-left: 5px;
-                }
+
+                    #demo .task-icon-wrapper > img {
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    #demo .task-icon-wrapper > span {
+                        margin-left: 5px;
+                    }
+
                 .height-inherit {
-                    height:inherit;
+                    height: inherit;
                 }
 
                 .carousel-control-prev-icon,
                 .carousel-control-next-icon {
-                  height: 100px;
-                  width: 100px;
-                  outline: black;
-                  background-size: 100%, 100%;
-                  /*border-radius: 50%;
+                    height: 100px;
+                    width: 100px;
+                    outline: black;
+                    background-size: 100%, 100%;
+                    /*border-radius: 50%;
                   border: 1px solid black;*/
-                  background-image: none;
+                    background-image: none;
                 }
 
-                .carousel-control-next-icon:after
-                {
-                  content: '>';
-                  font-size: 55px;
-                  color: red;
-                }
+                    .carousel-control-next-icon:after {
+                        content: '>';
+                        font-size: 55px;
+                        color: red;
+                    }
 
-                .carousel-control-prev-icon:after {
-                  content: '<';
-                  font-size: 55px;
-                  color: red;
-                }
-
+                    .carousel-control-prev-icon:after {
+                        content: '<';
+                        font-size: 55px;
+                        color: red;
+                    }
             </style>
             <div id="demo" class="carousel slide" data-ride="carousel" style="background-color:red;">
                 <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev">
@@ -304,16 +308,11 @@
                                     <div>@panelP.nombre</div>
                                     <div class="task-icon-wrapper"><img src="~/Content/images/calendario (1).png" /><span>@panelP.fecha</span></div>
                                     <div class="task-icon-wrapper d-none d-lg-block"><img src="~/Content/images/localizador-de-lugar.png" /><span>@panelP.lugar</span></div>
-                                    @if (panelP.registro == 1)
-                                    {
-                                        <a class="aRegistro d-none d-lg-block" data-toggle="modal" data-target="#registroModal" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
-                                           style="cursor: pointer;">Registrate aquí</a>
-                                    }
-                                    @if (panelP.url != "")
-                                    {
-                                        <a class="registroLink d-none d-lg-block" href="@panelP.url" target="_blank" data-usr="@idUsr" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
-                                           style="cursor: pointer">Registrate aquí</a>
-                                    }
+
+                                    <a class="aRegistro d-none d-lg-block" data-toggle="modal" data-target="#registroModal" data-url="@panelP.url" data-confirmacion="@panelP.registro" data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
+                                       style="cursor: pointer;">Registrate aquí</a>
+
+
                                 </div>
                             </div>
                         </div>
@@ -329,8 +328,8 @@
 
 <div class="container-fluid" style="margin-top:1em;">
     <div class="row">
-        
-        @{ int aux = -1; } 
+
+        @{ int aux = -1; }
 
         <div class="col-9 col-lg-10">
             <div class="row">
@@ -347,7 +346,7 @@
                                 <img class="height-inherit" style="width:100%;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">
                                 <!--<img class="d-lg-none" style="width:100%; height:auto;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">-->
                                 <img class="banInfImg" src="~/Content/images/baner_producto.png" style="height:50px; width:100%; position:absolute; left:0px; bottom:0px; z-index: 2; opacity: 0.7;filter: alpha(opacity=70);" />
-                                
+
                                 <div class="d-lg-none" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: center; align-items:center; width:100%;">
                                     <div class="" style="display:flex; flex-direction:column; align-items:center;">
                                         <span class="puntosPrd" style="z-index:2; color:white; font-weight:900;">@recompensa.puntos</span>
@@ -363,8 +362,8 @@
                                     </div>
                                     <!--<span>Se ve cuando es grande</span>-->
                                 </div>
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -386,14 +385,14 @@
             <!--<div class="col-md-3 mb-3" style="padding-right:1px!important; padding-left:1px!important;">
             </div>-->
         </div>
-        
+
 
 
         <!--<div class="col-3" style="background-color:blue;">asdsa</div>
         <div class="col-3" style="background-color:green;">asdas</div>
         <div class="col-3" style="background-color:yellow;">asdsad</div>-->
 
-        
+
 
     </div>
     <div class="row d-flex d-lg-none">
@@ -402,7 +401,7 @@
         </div>
     </div>
 
-    
+
 </div>
 
 
@@ -467,12 +466,23 @@
                                 <label class="custom-control-label" for="customRadio2">No</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <h5 id="lblAsistentes">Acompañantes: </h5>
+                        <div class="row col-md-6" id="sinUrl">
+                            <div class="col-md-6">
+                                <h5 id="lblAsistentes">Acompañantes: </h5>
+                            </div>
+                            <div class="col-md-5" style="margin-left: 16px;" id="inpAsistentes">
+                                <input value="@idUsr" name="idUsr" hidden />
+                                @Html.TextBoxFor(m => m.asistentes, new { id = "asistentesModal", @class = "form-control", @type = "number", @max = "3", @min = "0", @name = "asistentes", @value = "0" })
+                            </div>
                         </div>
-                        <div class="col-md-3" style="margin-right: 10px;" id="inpAsistentes">
-                            <input value="@idUsr" name="idUsr" hidden />
-                            @Html.TextBoxFor(m => m.asistentes, new { id = "asistentesModal", @class = "form-control", @type = "number", @max = "3", @min = "0", @name = "asistentes", @value = "0" })
+                        <div class="row col-md-6" id="conUrl">
+                            <div class="col-md-12">
+                                <h5 id="lblRegistroText">Para completar tu registro responde estas preguntas: </h5>
+                            </div>
+                            <div class="col-md-12" style="margin-right: 10px;" id="inpAsistentes">
+                                <input value="@idUsr" name="idUsr" hidden />
+                                <a id="linkUrl" href="" target="_blank">Click Aqui!</a>
+                            </div>
                         </div>
                     </div>
                 </div>

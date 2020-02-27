@@ -4,8 +4,12 @@
         var check = $("#customRadio1").is(":checked");
         if (check) {
             $("#asistentesModal").val(1);
+            $("#lblRegistroText").show();
+            $("#linkUrl").show();
         } else {
             $("#asistentesModal").val(0);
+            $("#lblRegistroText").hide();
+            $("#linkUrl").hide();
         }
         $("#asistentesModal").prop("disabled", !check);
     });
@@ -13,8 +17,12 @@
         var check = $("#customRadio2").is(":checked");
         if (check) {
             $("#asistentesModal").val(0);
+            $("#lblRegistroText").hide();
+            $("#linkUrl").hide();
         } else {
             $("#asistentesModal").val(1);
+            $("#lblRegistroText").show();
+            $("#linkUrl").show();
         }
         $("#asistentesModal").prop("disabled", check);
     });
@@ -25,28 +33,60 @@
 
     $(".aRegistro").click(function () {
         var y = $('#idEvent').val();
+        var url = $(this).data("url");
         var z = $(this).data("usrasistentes");
-        if (z === 0) {
-            $('#customRadio2').attr('checked', 'checked');
-            $("#asistentesModal").prop("disabled", true);
-        } else {
-            $('#customRadio1').attr('checked', 'checked');
-        }
-        $('#asistentesModal').val(z);
-        if ($(this).data("asistente") == 1) { 
+        if (url == "") {
+            $('#conUrl').hide();
+            $('#sinUrl').show();
+            if (z === 0) {
+                $('#customRadio2').attr('checked', 'checked');
+                $("#asistentesModal").prop("disabled", true);
+            } else {
+                $('#customRadio1').attr('checked', 'checked');
+            }
             $('#asistentesModal').val(z);
-            $('#lblAsistentes').hide();
-            $('#asistentesModal').hide();
-            $('#idEvent').val($(this).data("idevento"));
-            $('#ModalLabelConfirmar').text('Registro-'+$(this).data("nombrevent"));
+            if ($(this).data("asistente") == 1) {
+                $('#asistentesModal').val(z);
+                $('#lblAsistentes').hide();
+                $('#asistentesModal').hide();
+                $('#idEvent').val($(this).data("idevento"));
+                $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
+            } else {
+                $('#asistentesModal').val(z);
+                $('#asistentesModal').attr("max", $(this).data("asistente"));
+                $('#lblAsistentes').show();
+                $('#asistentesModal').show();
+                $('#idEvent').val($(this).data("idevento"));
+                $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
+            }
         } else {
-            $('#asistentesModal').val(z);
-            $('#asistentesModal').attr("max", $(this).data("asistente"));
-            $('#lblAsistentes').show();
-            $('#asistentesModal').show();
-            $('#idEvent').val($(this).data("idevento"));
-            $('#ModalLabelConfirmar').text('Registro-'+$(this).data("nombrevent"));
+            $('#conUrl').show();
+            $('#sinUrl').hide();
+            var confirmacion = $(this).data("confirmacion");
+            if (z === 0) {
+                $('#customRadio2').attr('checked', 'checked');
+                $("#asistentesModal").prop("disabled", true);
+            } else {
+                $('#customRadio1').attr('checked', 'checked');
+            }
+            if (z === 0) {
+                $("#lblRegistroText").hide();
+                $("#linkUrl").hide();
+                $('#asistentesModal').val(z);
+                $('#idEvent').val($(this).data("idevento"));
+                $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
+
+            } else {
+                $("#lblRegistroText").show();
+                $("#linkUrl").show();
+                $('#asistentesModal').val(z);
+                $('#idEvent').val($(this).data("idevento"));
+                $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
+            }
+            $('#linkUrl').attr("href", url+"");
+
         }
+
     });
 
     $(".registroLink").click(function () {
