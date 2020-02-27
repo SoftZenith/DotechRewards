@@ -91,3 +91,20 @@ h5{
     width:180px;
     height:69px;
 }
+.pagination {
+    display: inline-block;
+}
+
+    .pagination li {
+        color: gray;
+        float: left;
+        text-decoration: none;
+    }
+
+        .pagination li.active {
+            color: black;
+        }
+
+        .pagination li:hover:not(.active) {
+            color: gray;
+        }

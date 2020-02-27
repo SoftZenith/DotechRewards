@@ -113,7 +113,7 @@ namespace DotechRewards.Controllers
             int max_acompañantes = 0;
             try
             {
-                max_acompañantes = (int)dt.Rows[1].ItemArray[1];
+                max_acompañantes = (int)dt.Rows[0].ItemArray[2];
             }
             catch (Exception ex) { 
                 
@@ -143,17 +143,14 @@ namespace DotechRewards.Controllers
                         {
                             ws.Cell(cellN).Value = "SI";
                         }
-                        else if (ws.Cell(cellN).GetString() == "0")
-                        {
+                        else{
                             ws.Cell(cellN).Value = "NO";
                         }
 
                         if (ws.Cell(cellAsistio).GetString() == "1")
                         {
                             ws.Cell(cellAsistio).Value = "SI";
-                        }
-                        else if (ws.Cell(cellAsistio).GetString() == "0")
-                        {
+                        }else{
                             ws.Cell(cellAsistio).Value = "NO";
                         }
 
@@ -207,10 +204,19 @@ namespace DotechRewards.Controllers
                 ruta += file.FileName;
                 file.SaveAs(ruta);
                 nombreArchivo = file.FileName.Substring(0, file.FileName.Length);
-
-                //Leer archivo desde Model
+                
                 AdminEvenModel evento = new AdminEvenModel();
-                Retorno retorno = evento.leerListaAsistencia(ruta);
+                Retorno retorno = new Retorno();
+                retorno.estatus = false;
+                
+                if (file.FileName.Contains("Actividades_extra")) //Si inicia nombre con actividades_extra es archivo de actividades extra
+                {
+                    retorno = evento.leerListaActividadesExtra(ruta);
+                }
+                else {
+                    //Leer archivo lista de asistencia
+                    retorno = evento.leerListaAsistencia(ruta);
+                }
                 if (retorno.estatus)
                 {
                     exitoSubirLista = 1;

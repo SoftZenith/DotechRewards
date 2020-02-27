@@ -31,6 +31,20 @@ function getPagination(table) {
 
     }
 
+    function changePage(page) {
+        var toChange = $("[dr-change]");
+        for (var i = 0; i < toChange.length; i++) {
+            var current = toChange[i];
+            if (i + 1 == page) {
+                $(current).removeClass("weight300");
+                $(current).addClass("weight900");
+                continue;
+            }
+            $(current).addClass("weight300");
+            $(current).removeClass("weight900");
+        }
+    }
+
   $('#maxRows')
     .on('change', function(evt) {
       //$('.paginationprev').html('');						// reset pagination
@@ -68,16 +82,17 @@ function getPagination(table) {
         // if tr total rows gt max rows option
         var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
         //	numbers of pages
-        for (var i = 1; i <= pagenum-1; ) {
+        for (var i = 1; i <= pagenum - 1;) {
+            var do900 = i ==  1 ? 'weight900' : '';
           // for each page append pagination li
           $('.pagination #prev')
             .before(
-              '<li data-page="' +
+              '<li class="d-none d-lg-block"  data-page="' +
                 i +
                 '">\
-								  <span class="border-right">' +
+								  <span dr-change class="weight300 '+ do900 +'">' +
                 i++ +
-                '<span class="sr-only">(current)</span></span>\
+                '<span class="sr-only d-none">(current)</span></span>\
 								</li>'
             )
             .show();
@@ -106,11 +121,14 @@ function getPagination(table) {
         }
 
         lastPage = pageNum;
+
+        changePage(pageNum);
+
         var trIndex = 0; // reset tr counter
         $('.pagination li').removeClass('active'); // remove active class from all li
         $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
         // $(this).addClass('active');					// add active class to the clicked
-        limitPagging();
+        //limitPagging();
         $(table + ' tr:gt(0)').each(function() {
           // each tr in table not the header
           trIndex++; // tr index counter
@@ -128,7 +146,7 @@ function getPagination(table) {
         }); // end of for each tr in table
         
       }); // end of on click pagination list
-      limitPagging();
+      //limitPagging();
       
     })
     .val(4)

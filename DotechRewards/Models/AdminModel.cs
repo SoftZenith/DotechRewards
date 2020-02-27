@@ -483,6 +483,37 @@ namespace DotechRewards.Models
             }
         }
 
+        public int AsignarPuntosActividadExtra(int idUsuario, string descripcion, int puntos, string fecha) {
+            using (SqlConnection cnn = Context.Connect())
+            {
+                int res = 0;
+                try
+                {
+                    cnn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_ASIGNAR_ACTIVIDAD_EXTRA", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+                    cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion;
+                    cmd.Parameters.Add("@puntos", SqlDbType.Int).Value = puntos;
+                    cmd.Parameters.Add("@fecha", SqlDbType.Date).Value = Convert.ToDateTime(fecha);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    res = 0;
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                    res = 1;
+                }
+                return res;
+            }
+        }
+
         /// <summary>
         /// Resta puntos a un usuario, si el idActividad es 0, requiere descripción.
         /// </summary>
