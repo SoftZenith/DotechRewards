@@ -91,8 +91,26 @@
 
 <nav class="d-flex d-lg-none navbar navbar-light nav-propierties justify-content-between" style="background-color:#C00000; min-height: 2.5em;">
     <span style="color:white; letter-spacing:12px; margin-left:16px;">REWARDS</span>
-    <i class="fas fa-bars" style="color:white; font-size:24px; margin-right:16px;" title=""></i>
+    <a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <i class="fas fa-bars" style="color:white; font-size:24px; margin-right:16px;" title=""></i>
+    </a>
 </nav>
+
+@*Menu responsivo*@
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-left:10px;margin-right:10px;">
+    <ul class="nav navbar-nav">
+        <li>
+            <a style="font-size: 20px; margin-right: 18px;"> @user</a>
+        </li>
+        @*@if (admin == 1)
+        {
+            <li><a href="@Url.Action("Index", "Admin")" class="span-menu span-menu--blue">Panel administración</a></li>
+        }*@
+        <li><a href="#" data-toggle="modal" data-target="#exampleModal" class="span-menu span-menu--blue" style="color: royalblue; cursor: pointer; font-size: 14px; margin-top:4px;">Cambiar contraseña</a></li>
+        <li><a href="@Url.Action("LogOff", "Home")" class="span-menu span-menu--black">Salir</a></li>
+    </ul>
+</div>
+
 
 <div class="container-fluid" style="padding-right:50px; padding-left:50px;">
     <div class="row justify-content-between" style="padding-top:1em; padding-bottom:1em;">
