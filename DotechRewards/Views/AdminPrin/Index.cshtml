@@ -117,7 +117,7 @@
                         <h3>Puntos:</h3>
                     </div>
                     <div class="col-md-3">
-                        <input type="number" min="0" class="form-control" id="puntosEvt" disabled>
+                        <input type="number" min="0" maxlength="5" max="99999"  class="form-control" id="puntosEvt" disabled>
                     </div>
                 </div>
             </div>
@@ -199,6 +199,16 @@
 
             //alert($('#selectedclick').val());
             //alert($('#selectedclick2').val());
+        });
+
+        $("#puntosEvt").keyup(function () {
+            console.log($("#puntosEvt").val());
+            var puntos = $("#puntosEvt");
+
+            if (puntos.val().length > 5) {
+                puntos.val(puntos.val().slice(0, 5));
+            }
+            puntos.val(puntos.val().replace("[-e.]",""));
         });
 
         $('#selectedclick2').change(function () {
