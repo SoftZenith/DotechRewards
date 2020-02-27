@@ -45,6 +45,7 @@
             console.log($(this).data('confirmacion').toLowerCase() === 'true');
             if ($(this).data('asistentes') != 0) {
                 $('#confirmacionAcom').prop('checked', true);
+                $('#confirmacionAcom').prop('disabled', false);
                 $('#cantidadPersonas').prop('disabled', false);
             } else {
                 $('#confirmacionAcom').prop('checked', false);
@@ -107,6 +108,7 @@
         } else {
             $('#cantidadPersonas').prop('disabled', true);
             $('#confirmacionAcom').prop('disabled', true);
+            $('#confirmacionAcom').prop('checked', false);
             $('#cantidadPersonas').val(0);
         }
     });
@@ -125,6 +127,8 @@
             $('#urlConfirmacion').prop('disabled', false);
 
             $('#confirmacionEven').prop('checked', false);
+            $('#confirmacionAcom').prop('checked', false);
+            $('#confirmacionAcom').prop('disabled', true);
             $('#cantidadPersonas').prop('disabled', true);
             $('#cantidadPersonas').val(0);
         } else {
@@ -139,6 +143,10 @@
         $('#puntos').val('');
         $('#lugar').val('');
         $('#fecha').val('');
+        $('#confirmacionAcom').prop('checked', false);
+        $('#confirmacionAcom').prop('disabled', true);
+        $('#cantidadPersonas').prop('disabled', true);
+        $('#confirmacionLink').prop('checked', false);
         $('#cantidadPersonas').val($(this).data(''))
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
