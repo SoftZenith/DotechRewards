@@ -128,7 +128,7 @@ function getPagination(table) {
         $('.pagination li').removeClass('active'); // remove active class from all li
         $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
         // $(this).addClass('active');					// add active class to the clicked
-        limitPagging();
+        //limitPagging();
         $(table + ' tr:gt(0)').each(function() {
           // each tr in table not the header
           trIndex++; // tr index counter
@@ -146,7 +146,7 @@ function getPagination(table) {
         }); // end of for each tr in table
         
       }); // end of on click pagination list
-      limitPagging();
+      //limitPagging();
       
     })
     .val(4)

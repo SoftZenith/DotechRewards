@@ -103,7 +103,7 @@
                 <div>
                     <span style="font-size: 4em; font-weight:700;">@bannerP.puntos</span><span style="font-size:1em; font-weight:700;">Puntos</span>
                 </div>
-                <a class="" target="_blank" href="@pathCatalogoH" style="color: black; font-size:1.5em;">Canjea tus puntos</a>
+                <a class="" target="_blank" href="~/Content/Manual_Canje/manual.pdf" style="color: black; font-size:1.5em;">Canjea tus puntos</a>
             </div>
         </div>
         
@@ -155,8 +155,8 @@
                     foreach (Evento evento in bannerP.eventos)
                     {
                         var puntos = (@evento.puntos == 0) ? " " : @evento.puntos + "";
-                        puntos = (@evento.puntos == 0 && @evento.nombre != "") ? "Confirmaste" : @evento.puntos + "";
-                        var estilo = (@evento.puntos == 0 && @evento.nombre != "") ? "color:gray!important; font-style: italic!important;" : @evento.puntos + "";
+                        puntos = (@evento.puntos == 0 && @evento.nombre != "") ? "Confirmaste" : puntos;
+                        var estilo = (@evento.puntos == 0 && @evento.nombre != "") ? "color:gray!important; font-style: italic!important;" : puntos;
                         <tr style="@estilo">
                             <td style="text-align: center;">@evento.fecha</td>
                             <td style="text-align: start;">@evento.nombre</td>
