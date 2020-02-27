@@ -288,8 +288,18 @@ input[type=text] {
     outline: none;
 }
 
-#icon {
-    width: 60%;
+
+
+@media (min-width: 768px) {
+    #icon {
+        width: 60%;
+    }
+}
+
+@media (max-width: 767px) {
+    #icon {
+        width: 80%;
+    }
 }
 
 .form-check-input {
