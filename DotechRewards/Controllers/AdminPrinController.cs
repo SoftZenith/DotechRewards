@@ -32,6 +32,7 @@ namespace DotechRewards.Controllers
         public JsonResult getEventos() {
             AdminModel admin = new AdminModel();
             admin.getEventos();
+            admin.eventos = admin.eventos.Where(evento => DateTime.Parse(evento.fecha) >= DateTime.Now).ToList();
             return Json(admin.eventos, JsonRequestBehavior.AllowGet);
         }
     }
