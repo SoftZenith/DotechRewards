@@ -108,3 +108,12 @@ h5{
         .pagination li:hover:not(.active) {
             color: gray;
         }
+.text {
+    top: -2%!important;
+    left: 0%!important;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(16%, 34%)!important;
+    text-align: inherit!important;
+    z-index: 3;
+}

@@ -1,28 +1,25 @@
 ﻿$(document).ready(function () {
 
+
+    $('#txtImporteCargo1').change(function () {
+        $("#txtImporteCargo1").val($("#txtImporteCargo1").val().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ","));
+    });
+
     $('#customRadio1').change(function () {
         var check = $("#customRadio1").is(":checked");
         if (check) {
             $("#asistentesModal").val(1);
-            $("#lblRegistroText").show();
-            $("#linkUrl").show();
         } else {
-            $("#asistentesModal").val(0);
-            $("#lblRegistroText").hide();
-            $("#linkUrl").hide();
+            $("#asistentesModal").val(null);
         }
         $("#asistentesModal").prop("disabled", !check);
     });
     $('#customRadio2').change(function () {
         var check = $("#customRadio2").is(":checked");
         if (check) {
-            $("#asistentesModal").val(0);
-            $("#lblRegistroText").hide();
-            $("#linkUrl").hide();
+            $("#asistentesModal").val(null);
         } else {
             $("#asistentesModal").val(1);
-            $("#lblRegistroText").show();
-            $("#linkUrl").show();
         }
         $("#asistentesModal").prop("disabled", check);
     });
@@ -31,12 +28,50 @@
         evt.preventDefault();
     });
 
+    $('#btnGuardarRegistro').click(function () {
+        
+        //Llenar tabla historial
+        var asis = $(".aRegistro").data("asistente");
+        var asis1 = $(".aRegistro").data("idUsr");
+        var idUsr = user_name;
+
+        $.post("/Usuario/Confirmar", { asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: $(".aRegistro").data('idevento') }, function (json) {
+            //console.log(json);
+            
+            
+        }).done(function () {
+            if ($(".aRegistro").data("url") != "") {
+                var check = $("#customRadio1").is(":checked");
+                if (check) {
+                    $("#sinUrlSiNo").hide();
+                    $("#lblRegistroText").show();
+                    $("#conUrl").show();
+                    $("#linkUrl").show();
+                    $("#btnGuardarRegistro").hide();
+                    $("#btnFinalizar").show();
+                }
+            } else {
+                $("#sinUrlSiNo").show();
+                $("#lblRegistroText").hide();
+                $("#conUrl").hide();
+                $("#linkUrl").hide();
+                $("#btnGuardarRegistro").show();
+                $("#btnFinalizar").hide();
+                    window.location.reload(true);
+                }
+        });
+    });
+
+
     $(".aRegistro").click(function () {
         var y = $('#idEvent').val();
+        $("#btnFinalizar").hide();
         var url = $(this).data("url");
         var z = $(this).data("usrasistentes");
         if (url == "") {
             $('#conUrl').hide();
+            $("#sinUrlSiNo").show();
+            $("#lblRegistroText").hide();
             $('#sinUrl').show();
             if (z === 0) {
                 $('#customRadio2').attr('checked', 'checked');
@@ -47,20 +82,19 @@
             $('#asistentesModal').val(z);
             if ($(this).data("asistente") == 1) {
                 $('#asistentesModal').val(z);
-                $('#lblAsistentes').hide();
-                $('#asistentesModal').hide();
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
             } else {
                 $('#asistentesModal').val(z);
                 $('#asistentesModal').attr("max", $(this).data("asistente"));
-                $('#lblAsistentes').show();
+                $("#sinUrlSiNo").show();
                 $('#asistentesModal').show();
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
             }
         } else {
             $('#conUrl').show();
+            $("#sinUrlSiNo").show();
             $('#sinUrl').hide();
             var confirmacion = $(this).data("confirmacion");
             if (z === 0) {
@@ -70,15 +104,17 @@
                 $('#customRadio1').attr('checked', 'checked');
             }
             if (z === 0) {
-                $("#lblRegistroText").hide();
                 $("#linkUrl").hide();
+                $("#sinUrlSiNo").show();
+                $("#lblRegistroText").hide();
                 $('#asistentesModal').val(z);
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
 
             } else {
-                $("#lblRegistroText").show();
-                $("#linkUrl").show();
+                $("#lblRegistroText").hide();
+                $("#linkUrl").hide();
+                $("#lblRegistroText").hide();
                 $('#asistentesModal').val(z);
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
@@ -88,7 +124,12 @@
         }
 
     });
-
+    $("#linkUrl").click(function () {
+        window.location.reload(true);
+    });
+    $("#btnFinalizar").click(function () {
+        window.location.reload(true);
+    });
     $(".registroLink").click(function () {
         //alert('se registro el usuario: ' + $(this).data('usr') + 'Al evento: ' + $(this).data('idevento'));
         $.post("/Usuario/ConfirmarLink", { idUsuario: $(this).data('usr'), idEvento: $(this).data('idevento')})
@@ -107,9 +148,9 @@
         .mouseover(function () {
             var id = $(this).attr('id');
             if (!id) return undefined;
-            $('#' + id + ' .nombrePrd').css('opacity', '0');
-            $('#' + id + ' .puntosPrd').css('opacity', '0');
-            $('#' + id + ' .banInfImg').css('opacity', '0');
+            $('#' + id + ' .nombrePrd').css('opacity', '1');
+            $('#' + id + ' .puntosPrd').css('opacity', '1');
+            $('#' + id + ' .banInfImg').css('opacity', '0.8');
         })
         .mouseout(function () {
             
@@ -117,7 +158,7 @@
             if (!id) return undefined;
             $('#' + id + ' .nombrePrd').css('opacity', '1');
             $('#' + id + ' .puntosPrd').css('opacity', '1');
-            $('#' + id + ' .banInfImg').css('opacity', '0.65');
+            $('#' + id + ' .banInfImg').css('opacity', '0.80');
         });
 });
 
