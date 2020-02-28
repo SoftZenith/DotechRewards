@@ -22,6 +22,10 @@
         bannerP.getActivacionStatus(idUsr);
         res = bannerP.recompensas.Count;
         res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
+
+        for (int i = 0; i < bannerP.banners.Count; i++) {
+            bannerP.banners[i].fecha = bannerP.banners[i].fecha.Remove(10);
+        }
     }
     catch (Exception ex)
     {
@@ -30,7 +34,10 @@
         idUsr = "1";
         admin = 1;
         bannerP = new UsuarioModel();
-        bannerP.banners = new List<banner> { new banner("mPlaceholder4.jpg", "El banner", "2020-02-28", "Aquí", 1), new banner("mPlaceholder3.jpg", "El banner 2", "2020-02-28", "Allá", 2) };
+        /*new banner("mPlaceholder4.jpg", "La torre avalanz", "2020-02-28 10:00:00 a.m.", "Aquí", 1),*/
+        bannerP.banners = new List<banner> {  new banner("mPlaceholder5.jpg", "La otra torre avalanz", "2020-02-28 10:00:00 a.m.", "Allá", 2) };
+
+        bannerP.banners[0].fecha = bannerP.banners[0].fecha.Remove(10);  ///.Remove(10);
         //new banner("mPlaceholder2.jpg", "El banner 2", "2020-02-28", "Allá", 1)
         bannerP.puntos = 100;
         bannerP.recompensas = new List<recompensa> {
@@ -230,6 +237,12 @@
     <div class="row justify-content-between" style="height:220px;">
         <div class="col-md-12">
             <style>
+                .truncate {
+                  width: 100%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
                 .weight300 {
                     font-weight:300;
                 }
@@ -258,13 +271,16 @@
                     color:white;
                 }
                 #demo .task-icon-wrapper {
+                    display:flex;
+                    flex-direction: row;
+                    align-items:center;
                     
                 }
-                #demo .task-icon-wrapper > img {
+                #demo .task-icon-wrapper img {
                     width:32px;
                     height:32px;
                 }
-                #demo .task-icon-wrapper > span {
+                #demo .task-icon-wrapper div {
                     margin-left: 5px;
                 }
                 .height-inherit {
@@ -327,8 +343,24 @@
                             <div style="position:absolute; bottom:0px; z-index:2; width:100%; height: 40px;">
                                 <img src="~/Content/images/baner_inferior.png" style="z-index: 2; opacity: 0.95; padding:0px; filter: alpha(opacity=95);" />
                                 <div class="banner-info">
-                                    <div>@panelP.nombre</div>
-                                    <div class="task-icon-wrapper"><img src="~/Content/images/calendario (1).png" /><span>@panelP.fecha</span></div>
+                                    <div class="d-lg-none" style="width:49%;"><div class="truncate">@panelP.nombre</div></div>
+                                    
+                                    <div class="d-lg-none" style="width:49%;">
+                                        <div class="task-icon-wrapper" style="width:100%;">
+                                            <img src="~/Content/images/calendario (1).png" />
+                                                <div style="display:inline; width:calc(100% - 32px);" class="truncate">@panelP.fecha</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-none d-lg-block"><div>@panelP.nombre</div></div>
+
+                                    <div class="d-none d-lg-block">
+                                        <div class="task-icon-wrapper">
+                                            <img src="~/Content/images/calendario (1).png" />
+                                            <div>@panelP.fecha</div>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="task-icon-wrapper d-none d-lg-block"><img src="~/Content/images/localizador-de-lugar.png" /><span>@panelP.lugar</span></div>
                                     
                                     
