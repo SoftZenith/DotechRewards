@@ -143,7 +143,7 @@
 
             <table class="table table-striped table-class" id="table-id" style="height:100%;">
 
-                @if (bannerP.estatus == 0)
+                @if (bannerP.estatus == 1)
                 {
                     <tr>
                         <td width="100%" style="text-align: center; font-size: 30px; color:gray">Para activar tu puntos de bienvenida <a href="@Url.Action("activarPuntos", "Usuario", new { usuario = idUsr })">haz click aquí</a></td>

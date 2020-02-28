@@ -422,7 +422,7 @@ namespace DotechRewards.Models
                 {
                     cnn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SP_GET_ID_BY_NOMBRE", cnn);
+                    SqlCommand cmd = new SqlCommand("SP_GET_ID_USUARIO", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre;
 
@@ -446,7 +446,6 @@ namespace DotechRewards.Models
                 return idUsuario;
             }
         }
-
 
         public string getUsuario(int idUsuario) {
             string usuario = "";
