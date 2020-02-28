@@ -5,6 +5,7 @@ using DotechRewards.Util.Database;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 
 namespace DotechRewards.Models
 {
@@ -95,7 +96,7 @@ namespace DotechRewards.Models
                         var fechaBefore = reader["fecha"].ToString();
                         var fecha3 = fechaBefore.Split(' ');
                         var descomponer = fecha3[1].Split(':');
-                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2];
                         bannerPrincipal.Add(new banner(
                             Convert.ToInt16(reader["idActividad"].ToString()),
                             reader["imagen"].ToString(),
@@ -146,7 +147,7 @@ namespace DotechRewards.Models
                         var fechaBefore = reader["fecha"].ToString();
                         var fecha3 = fechaBefore.Split(' ');
                         var descomponer = fecha3[1].Split(':');
-                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] ;
                         bannerPrincipal.Add(new banner(
                             Convert.ToInt32(reader["idUsuario"] is DBNull ? 0 : reader["idUsuario"]),
                             Convert.ToInt32(reader["asistencia"] is DBNull ? 0 : reader["asistencia"]),
@@ -176,6 +177,7 @@ namespace DotechRewards.Models
             UsuarioModel UsuarioM = new UsuarioModel();
             UsuarioM.setBanners(bannerPrincipal);
             this.banners = bannerPrincipal;
+            this.banners = this.banners.Where(banner => DateTime.Parse(banner.fecha).Month >= DateTime.Now.Month && DateTime.Parse(banner.fecha).Month <= DateTime.Now.Month + 2).ToList();
             return UsuarioM;
         }
         /// <summary>

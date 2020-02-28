@@ -260,6 +260,21 @@
 
         $('#txtEvento').hide();
 
+        var accents = {
+            "á": "a",
+            "é": "e",
+            "í": "i",
+            "ó": "o",
+            "ú": "u"
+        };
+
+        function noAccents(term) {
+            var ret = "";
+            for (var i = 0; i < term.length; i++) {
+                ret += accents[term.charAt(i)] || term.charAt(i);
+            }
+            return ret;
+        };
         //var targetDropdown = $("#selectedclick");
         //targetDropdown.empty();
 
@@ -272,7 +287,14 @@
             }
         }).done(function () {
             $('#txtInvitado').autocomplete({
-                source: listaInvitados,
+                source: function (request, response) {
+                    console.log(request);
+                    console.log(response);
+                    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                    response($.grep(listaInvitados, function (value) {
+                        return matcher.test(value) || matcher.test(noAccents(value));
+                    }));
+                },
                 messages: {
                     noResults: '',
                 },
