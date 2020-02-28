@@ -314,7 +314,8 @@
 
 
                         <div class="carousel-item @(activo ? "active" : "")" style="background-color: blue;">
-                            <img src="~/Content/images/@panelP.imagen" style="z-index:1!important; ">
+                            <img class="d-none d-lg-block" src="~/Content/images/@panelP.imagen" style="z-index:1!important; ">
+                            <img class="d-block d-lg-none" src="~/Content/images/@panelP.imagen" style="z-index:1!important; object-fit:cover;">
                             <div class="d-lg-none" style="position:absolute; right:16px; top:16px; background-color:#C00000; color:white; z-index:2;">
                                 <a class="aRegistro" href="#" data-toggle="modal" data-target="#registroModal"
                                    data-url="@panelP.url" data-confirmacion="@panelP.registro" 
