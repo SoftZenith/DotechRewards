@@ -26,13 +26,15 @@
         }).done(function () {
             $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
                 //console.log(json);
-                $('#totalHistUsr').html('Total '+puntosUsr);
+                $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
             })
 
 
         });
     });
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
     $('.btnDelU').click(function () {
         Swal.fire({
             title: '¿Deseas eliminar este usuario?',
