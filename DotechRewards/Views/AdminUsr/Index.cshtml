@@ -203,7 +203,7 @@
                             @Html.TextBoxFor(m => m.fecha_entrada, new { @class = "form-control", @id = "fecha_entrada", @type = "date", @style = "font-size: smaller;", required = "required"})
                         </div>
                         <div class="col-md-2 mb-3">
-                            <h5>Cumpleaños: </h5>
+                            <h5>Fecha de Nacimiento: </h5>
                         </div>
                         <div class="col-md-3 mb-3">
                             <!--<input type="date" class="form-control" id="fecha_cumple">-->
@@ -211,7 +211,7 @@
                         </div>
 
 
-                        <table class="table table-sm" id="historialTable">
+                        <table class="table table-sm" id="historialTable" style="margin-left: 40px;">
                             <thead style="display: block;">
                                 <tr>
                                     <th scope="col" width="100px" style="text-align: center">Fecha</th>
@@ -223,10 +223,14 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th style="float: right; margin-right: 40px;">Total: @bannerP.puntos</th>
+                                    <th style="float: right; margin-right: 40px;">Total: 0</th>
+                                    <!--<th style="float: right; margin-right: 40px;">Total: @@bannerP.puntos</th>-->
                                 </tr>
                             </tfoot>
                         </table>
+                        <div class="col-md-11" style="text-align: end;">
+                            <p id="totalHistUsr">Total: </p>
+                        </div>
                         <div id="asigPuntos" class="form-row" >
                             <div class="col-md-2 mb-3">
                                 <h5>Descripción:</h5>

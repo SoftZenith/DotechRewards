@@ -24,14 +24,10 @@
                     '</tr>');
             }
         }).done(function () {
-            //llenar total de puntos
-            /*
-            $('#historialTable tfoot').append(
-                '<tr>' +
-                '<td width="100px" style="text-align: center">' + json[i].fecha + '</td>' + //fecha
-                '<td width="500px" style="text-align: center">' + json[i].nombre + '</td>' + //nombre
-                '<td width="100px" style="text-align: center">' + json[i].puntos + '</td>' + //puntos
-                '</tr>');*/
+            $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+                //console.log(json);
+                $('#totalHistUsr').html('Total '+puntosUsr);
+            })
 
 
         });
@@ -98,7 +94,8 @@
                             '</tr>');
                     }
                 }).done(function () {
-
+                    $('#descripcion').val('');
+                    $('#puntos').val('');
                 });
             })
     });
@@ -133,6 +130,8 @@
                         'Se hizo el cobro de puntos exitosamente',
                         'success'
                     );
+                    $('#descripcion').val('');
+                    $('#puntos').val('');
                 }
 
                 //Llenar tabla historial
@@ -147,9 +146,10 @@
                             '<td width="100px" style="text-align: center">' + json[i].puntos + '</td>' + //puntos
                             '</tr>');
                     }
-                    $('.selectpicker').selectpicker('refresh');
+                    //$('.selectpicker').selectpicker('refresh');
                 }).done(function () {
-
+                    $('#descripcion').val('');
+                    $('#puntos').val('');
                 });
             })
     });
