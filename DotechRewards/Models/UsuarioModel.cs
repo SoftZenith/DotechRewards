@@ -331,7 +331,7 @@ namespace DotechRewards.Models
         /// <summary>
         /// Obtiene total de puntos para un usuario.
         /// </summary>
-        public void getTotalPuntos(string user)
+        public int getTotalPuntos(string user)
         {
             List<Evento> eventos = null;
             using (SqlConnection cnn = Context.Connect())
@@ -360,10 +360,12 @@ namespace DotechRewards.Models
                         }
                         
                     }
+                    return this.puntos;
                 }
                 catch (Exception ex)
                 {
                     System.Console.WriteLine(ex);
+                    return this.puntos;
                 }
                 finally
                 {

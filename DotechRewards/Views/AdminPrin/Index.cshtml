@@ -216,6 +216,9 @@
                 $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
                     .done(function (data) {
                         //alert('Se asigno');
+                        $('#txtEvento').val('');
+                        $('#puntosEvt').val('');
+                        $('#txtInvitado').val('');
                         $('#mensaje').show();
                         selected = 0;
                     })
@@ -223,6 +226,9 @@
                 $.post("/AdminUsr/AsignarPuntosE", { nUsuario: $('#txtInvitado').val(), idEvento: $('#selectedclick2').val(), puntos: $('#puntosEvt').val() })
                     .done(function (data) {
                         //alert('Se asigno');
+                        $('#txtEvento').val('');
+                        $('#puntosEvt').val('');
+                        $('#txtInvitado').val('');
                         $('#mensaje').show();
                         selected = 0;
                     })

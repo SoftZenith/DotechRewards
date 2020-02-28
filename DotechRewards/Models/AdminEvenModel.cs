@@ -108,7 +108,7 @@ namespace DotechRewards.Models
                             int asistencia = 0;
                             try
                             {
-                                asistencia = dataRow.Cell(10).Value != null ? dataRow.Cell(10).ToString().ToUpper() == "SI" ? 1 : 0 : 0; //Esta fila
+                                asistencia = dataRow.Cell(10).Value != null ? (dataRow.Cell(10).Value.ToString().ToUpper() == "SI" ? 1 : 0) : 0; //Esta fila
                                 //personas = dataRow.Cell(9).Value != null ? Convert.ToInt32(dataRow.Cell(9).ToString()) : 0; //Esta fila
                             }
                             catch (Exception ex)

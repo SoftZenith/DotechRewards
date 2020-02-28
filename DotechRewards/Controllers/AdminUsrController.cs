@@ -106,5 +106,14 @@ namespace DotechRewards.Controllers
             return Json(usuarioModel.eventos, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public int getPuntosTotales(string usuario) {
+
+            UsuarioModel usuarioModel = new UsuarioModel();
+            int puntos = usuarioModel.getTotalPuntos(usuario);
+
+            return puntos;
+        }
+
     }
 }

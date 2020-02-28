@@ -147,11 +147,11 @@ namespace DotechRewards.Controllers
                             ws.Cell(cellN).Value = "NO";
                         }
 
-                        if (ws.Cell(cellAsistio).GetString() == "1")
+                        if (ws.Cell(cellAsistio).GetString() == "0")
                         {
-                            ws.Cell(cellAsistio).Value = "SI";
-                        }else{
                             ws.Cell(cellAsistio).Value = "NO";
+                        }else{
+                            ws.Cell(cellAsistio).Value = "SI";
                         }
 
                     }

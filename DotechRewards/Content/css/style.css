@@ -22,7 +22,8 @@ table tr {
     background-color: white;
 }
 .table {
-    color: gray!important;
+    color: gray !important;
+    border-bottom: 2px solid #d4d4d4!important;
 }
 
 .pagination li:hover {
