@@ -121,12 +121,13 @@ namespace DotechRewards.Models
             UsuarioModel UsuarioM = new UsuarioModel();
             UsuarioM.setBanners(bannerPrincipal);
             this.banners = bannerPrincipal;
+            this.banners = this.banners.Where(banner => DateTime.Parse(banner.fecha).Month >= DateTime.Now.Month && DateTime.Parse(banner.fecha).Month <= DateTime.Now.Month + 2).ToList();
             return UsuarioM;
         }
         /// <summary>
         /// Obtiene la lista de banners por usuario.
         /// </summary>
-        public UsuarioModel getBanner(String user)
+        public UsuarioModel getBannerUsr(String user)
         {
             List<banner> bannerPrincipal = null;
             using (SqlConnection cnn = Context.Connect())
