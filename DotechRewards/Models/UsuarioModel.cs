@@ -88,7 +88,6 @@ namespace DotechRewards.Models
                     SqlCommand cmd = new SqlCommand("SP_GET_BANNER", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-
                     SqlDataReader reader = cmd.ExecuteReader();
                     bannerPrincipal = new List<banner>();
                     while (reader.Read())
@@ -177,7 +176,7 @@ namespace DotechRewards.Models
             UsuarioModel UsuarioM = new UsuarioModel();
             UsuarioM.setBanners(bannerPrincipal);
             this.banners = bannerPrincipal;
-            this.banners = this.banners.Where(banner => DateTime.Parse(banner.fecha).Month >= DateTime.Now.Month && DateTime.Parse(banner.fecha).Month <= DateTime.Now.Month + 2).ToList();
+            //this.banners = this.banners.Where(banner => DateTime.Parse(banner.fecha).Month >= DateTime.Now.Month && DateTime.Parse(banner.fecha).Month <= DateTime.Now.Month + 2).ToList();
             return UsuarioM;
         }
         /// <summary>

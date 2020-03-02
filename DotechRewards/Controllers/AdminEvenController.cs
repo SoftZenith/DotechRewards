@@ -130,16 +130,22 @@ namespace DotechRewards.Controllers
 
                 ws.Cell("Z1").Value = "SI";
                 ws.Cell("Z2").Value = "NO";
+                ws.Cell("Z3").Value = "Pendiente";
 
                 for (int i = 0; i < dt.Rows.Count; i++) {
-                    ws.Cell("H2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
+                    ws.Cell("H2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z3"));
                     ws.Cell("I2").CellBelow(i).DataValidation.List(validOptions, true);
                     ws.Cell("J2").CellBelow(i).DataValidation.List(ws.Range("Z1:Z2"));
                     string cellN = "H" + (i + 2);
                     string cellAsistio = "J" + (i + 2);
                     try
                     {
-                        if (ws.Cell(cellN).GetString() == "1")
+                        
+                        if (ws.Cell(cellN).GetString() == "2")
+                        {
+                            ws.Cell(cellN).Value = "Pendiente";
+                        }
+                        else if (ws.Cell(cellN).GetString() == "1")
                         {
                             ws.Cell(cellN).Value = "SI";
                         }
@@ -150,7 +156,7 @@ namespace DotechRewards.Controllers
                         if (ws.Cell(cellAsistio).GetString() == "0")
                         {
                             ws.Cell(cellAsistio).Value = "NO";
-                        }else{
+                        } else{
                             ws.Cell(cellAsistio).Value = "SI";
                         }
 
