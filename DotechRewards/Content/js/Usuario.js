@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    const eventoAct = new eventoActual();
 
     $('#txtImporteCargo1').change(function () {
         $("#txtImporteCargo1").val($("#txtImporteCargo1").val().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ","));
@@ -35,12 +36,10 @@
         var asis1 = $(".aRegistro").data("idUsr");
         var idUsr = user_name;
 
-        $.post("/Usuario/Confirmar", { asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: $(".aRegistro").data('idevento') }, function (json) {
+        $.post("/Usuario/Confirmar", { asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
             //console.log(json);
-            
-            
         }).done(function () {
-            if ($(".aRegistro").data("url") != "") {
+            if (eventoAct.urlActual != "") {
                 var check = $("#customRadio1").is(":checked");
                 if (check) {
                     $("#sinUrlSiNo").hide();
@@ -67,8 +66,10 @@
         var y = $('#idEvent').val();
         $("#btnFinalizar").hide();
         var url = $(this).data("url");
+        eventoAct.urlActual = url;
+        eventoAct.idEventoActual = y;
         var z = $(this).data("usrasistentes");
-        if (url == "") {
+        if (url == "") { //verifica si tiene url, si no tiene hace todo lo de abajo
             $('#conUrl').hide();
             $("#sinUrlSiNo").show();
             $("#lblRegistroText").hide();
@@ -92,7 +93,7 @@
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
             }
-        } else {
+        } else { //si, si tiene url
             $('#conUrl').show();
             $("#sinUrlSiNo").show();
             $('#sinUrl').hide();
@@ -110,7 +111,6 @@
                 $('#asistentesModal').val(z);
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
-
             } else {
                 $("#lblRegistroText").hide();
                 $("#linkUrl").hide();
@@ -234,4 +234,11 @@ function cambiarContra(event) {
             window.location.href = "../Home"
         }
     });
+}
+
+class eventoActual {
+    constructor(urlActual, idEventoActual) {
+        this.urlActual = urlActual;
+        this.idEventoActual = idEventoActual;
+    }
 }

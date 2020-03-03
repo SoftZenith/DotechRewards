@@ -126,6 +126,70 @@ namespace DotechRewards.Models
             return UsuarioM;
         }
 
+        public AdminModel getEventosAsistencia() {
+            List<Evento> eventos = null;
+            using (SqlConnection cnn = Context.Connect())
+            {
+                try
+                {
+                    cnn.Open();
+
+                    //SqlCommand cmd = new SqlCommand("select * from DR_CAT_USUARIO where usuario = '"+user+"' and contrasena = '"+pass+"'",cnn);
+                    SqlCommand cmd = new SqlCommand("SP_GET_EVENTOS_ASISTENCIA", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    eventos = new List<Evento>();
+                    while (reader.Read())
+                    {
+                        /*eventos.Add(new Evento(
+                                Convert.ToInt16(reader["idActividad"].ToString()),
+                                reader["nombre"].ToString(),
+                                reader["lugar"].ToString(),
+                                reader["fecha"].ToString().Substring(0, 10),
+                                Convert.ToInt16(reader["asistentes"].ToString()),
+                                reader["imagen"].ToString(),
+                                Convert.ToInt16(reader["puntos"].ToString()),
+                                reader["url"].ToString()
+                            ));*/
+                        var fechaBefore = reader["fecha"].ToString();
+                        var fecha3 = fechaBefore.Split(' ');
+                        var descomponer = fecha3[1].Split(':');
+                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
+                        eventos.Add(new Evento()
+                        {
+                            idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
+                            nombre = reader["nombre"].ToString(),
+                            lugar = reader["lugar"].ToString(),
+                            //fecha = Convert.ToDateTime(reader["fecha"]).ToString(),
+                            fecha = fechaBefore,
+                            asistentes = Convert.ToInt16(reader["asistentes"].ToString()),
+                            imagen = reader["imagen"].ToString(),
+                            puntos = Convert.ToInt16(reader["puntos"].ToString()),
+                            url = reader["url"].ToString(),
+                            confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false,
+                            confirmados = Convert.ToInt32(reader["confirmados"].ToString()),
+                            acompañantes = Convert.ToInt32(reader["acompañantes"])
+                        });
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex);
+                }
+                finally
+                {
+                    cnn.Close();
+                    cnn.Dispose();
+                }
+            }
+
+            AdminModel UsuarioM = new AdminModel();
+            this.eventos = eventos;
+            return UsuarioM;
+        }
+
         /// <summary>
         /// Obtiene lista de productos/beneficios en una lista de tipo Producto.
         /// </summary>
