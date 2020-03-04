@@ -34,13 +34,17 @@
         //Llenar tabla historial
         var asis = $(".aRegistro").data("asistente");
         var asis1 = $(".aRegistro").data("idUsr");
+        var asist = $('#asistentesModal').val();
         var idUsr = user_name;
         var confPost = 0;
         if ($("#customRadio1").is(":checked")) {
             confPost = 1;
         }
+        if (eventoAct.urlActual != "") {
+            asist = 0;
+        }
 
-        $.post("/Usuario/Confirmar", { confirmacion: confPost, asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
+        $.post("/Usuario/Confirmar", { confirmacion: confPost, asistentes: asist, idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
             //console.log(json);
         }).done(function () {
             if (eventoAct.urlActual != "") {

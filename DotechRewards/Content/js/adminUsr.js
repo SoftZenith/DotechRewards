@@ -96,6 +96,10 @@ function numberWithCommas(x) {
                             '</tr>');
                     }
                 }).done(function () {
+                    $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+                        //console.log(json);
+                        $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
+                    })
                     $('#descripcion').val('');
                     $('#puntos').val('');
                 });
@@ -150,6 +154,10 @@ function numberWithCommas(x) {
                     }
                     //$('.selectpicker').selectpicker('refresh');
                 }).done(function () {
+                    $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+                        //console.log(json);
+                        $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
+                    })
                     $('#descripcion').val('');
                     $('#puntos').val('');
                 });
