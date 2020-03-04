@@ -35,8 +35,12 @@
         var asis = $(".aRegistro").data("asistente");
         var asis1 = $(".aRegistro").data("idUsr");
         var idUsr = user_name;
+        var confPost = 0;
+        if ($("#customRadio1").is(":checked")) {
+            confPost = 1;
+        }
 
-        $.post("/Usuario/Confirmar", { asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
+        $.post("/Usuario/Confirmar", { confirmacion: confPost, asistentes: $('#asistentesModal').val(), idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
             //console.log(json);
         }).done(function () {
             if (eventoAct.urlActual != "") {
@@ -67,7 +71,7 @@
         $("#btnFinalizar").hide();
         var url = $(this).data("url");
         eventoAct.urlActual = url;
-        eventoAct.idEventoActual = y;
+        eventoAct.idEventoActual = $(this).data("idevento");
         var z = $(this).data("usrasistentes");
         if (url == "") { //verifica si tiene url, si no tiene hace todo lo de abajo
             $('#conUrl').hide();

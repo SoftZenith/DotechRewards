@@ -37,14 +37,14 @@ namespace DotechRewards.Controllers
         /// Agrega la confirmación de un usuario a un evento, requiere el numero de asistentes o acompañantes, el id de usuario y el id 
         /// </summary>
         [HttpPost]
-        public ActionResult Confirmar(int asistentes = 0, string idUsr = "", int idEventoF = 0)
+        public ActionResult Confirmar(int confirmacion, int asistentes = 0, string idUsr = "", int idEventoF = 0)
         {
             //llamar modelo para modificar tabla
-            int confirmacion = 0;
+            
             UsuarioModel confi = new UsuarioModel();
-            if (asistentes >= 0) {
+            /*if (asistentes >= 0) {
                 confirmacion = 1;
-            }
+            }*/
             confi.AddConfirmacion(confirmacion, asistentes, idEventoF, idUsr);
             return RedirectToAction("Index");
         }

@@ -15,7 +15,7 @@
         idUsr = HttpContext.Current.Session["user"].ToString();
         admin = Convert.ToInt32(HttpContext.Current.Session["admin"].ToString());
         bannerP = new UsuarioModel();
-        bannerP.getBanner();
+        bannerP.getBanner(idUsr);
         bannerP.getRecompensa();
         bannerP.getEventos(idUsr);
         bannerP.getTotalPuntos(idUsr);

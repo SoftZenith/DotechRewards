@@ -99,6 +99,19 @@ namespace DotechRewards.Models
                             int puntos = Convert.ToInt32(dataRow.Cell(6).Value);
                             string lugar = dataRow.Cell(7).Value.ToString();
                             int confirmacion = dataRow.Cell(8).Value != null ? (dataRow.Cell(8).Value.ToString() == "SI" ? 1 : 0) : 0; //Esta fila
+                            if (dataRow.Cell(8).Value != null) {
+                                switch (dataRow.Cell(8).Value.ToString()) {
+                                    case "SI":
+                                        confirmacion = 1;
+                                        break;
+                                    case "NO":
+                                        confirmacion = 0;
+                                        break;
+                                    default:
+                                        confirmacion = 2;
+                                        break;
+                                }
+                            }
                             object confirmaobj = dataRow.Cell(8).Value;
                             int personas = 0;
                             if (dataRow.Cell(9).Value != null && !String.IsNullOrWhiteSpace(dataRow.Cell(9).Value.ToString())) {
@@ -119,6 +132,10 @@ namespace DotechRewards.Models
                             AdminModel admin = new AdminModel();
                             UsuarioModel confi = new UsuarioModel();
                             if (confirmacion == 1)
+                            {
+                                confi.AddConfirmacion(confirmacion, personas, idEvento, admin.getUsuario(idUsuario));
+                            }
+                            if (confirmacion == 0) 
                             {
                                 confi.AddConfirmacion(confirmacion, personas, idEvento, admin.getUsuario(idUsuario));
                             }

@@ -105,6 +105,7 @@ namespace DotechRewards.Models
                             url = reader["url"].ToString(),
                             confirmacion = Convert.ToInt16(reader["confirmacion"].ToString()) == 1 ? true : false,
                             confirmados = Convert.ToInt32(reader["confirmados"].ToString()),
+                            no_asistira = Convert.ToInt32(reader["no_asistira"].ToString()),
                             acompañantes = Convert.ToInt32(reader["acompañantes"])
                         }); 
                     }
@@ -826,6 +827,7 @@ namespace DotechRewards.Models
         public string url { get; set; }
         public int puntos { get; set; }
         public int confirmados { get; set; }
+        public int no_asistira { get; set; }
         public int acompañantes { get; set; }
     }
 
