@@ -28,7 +28,7 @@
         $('#h5confirmados').html($(this).data('confirmados') + ' confirmado(s)');
         $('#idEventoM').val($(this).data('id'));
         $('#edtFoto').val($(this).data('image'));
-        $('#previewImg').attr('src', 'Content/images/'+$(this).data('image'));
+        $('#previewImg').attr('src', '/Rewards/Content/images/'+$(this).data('image'));
         $('#nombre').val($(this).data('nombre'));
         $('#puntos').val($(this).data('puntos'));
         $('#lugar').val($(this).data('lugar'));
@@ -149,7 +149,7 @@
         $('#confirmacionLink').prop('checked', false);
         $('#cantidadPersonas').val($(this).data(''))
         $('#Foto_Camp').val('')
-        $('#previewImg').attr('src', 'Content/images/baner_producto.png');
+        $('#previewImg').attr('src', '/Rewards/Content/images/baner_producto.png');
         $('#downloadLista').attr('href', '/Rewards/AdminEven/DescargarLista?idEvento=0');
         $('#descList').hide();
         $('#previewImg').hide();
