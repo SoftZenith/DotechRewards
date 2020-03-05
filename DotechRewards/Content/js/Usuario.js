@@ -44,7 +44,7 @@
             asist = 0;
         }
 
-        $.post("/Usuario/Confirmar", { confirmacion: confPost, asistentes: asist, idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
+        $.post("/Rewards/Usuario/Confirmar", { confirmacion: confPost, asistentes: asist, idUsr: idUsr, idEventoF: eventoAct.idEventoActual }, function (json) {
             //console.log(json);
         }).done(function () {
             if (eventoAct.urlActual != "") {
@@ -140,7 +140,7 @@
     });
     $(".registroLink").click(function () {
         //alert('se registro el usuario: ' + $(this).data('usr') + 'Al evento: ' + $(this).data('idevento'));
-        $.post("/Usuario/ConfirmarLink", { idUsuario: $(this).data('usr'), idEvento: $(this).data('idevento')})
+        $.post("/Rewards/Usuario/ConfirmarLink", { idUsuario: $(this).data('usr'), idEvento: $(this).data('idevento')})
             .done(function (data) {
                 Swal.fire(
                     'Eliminado',
@@ -230,7 +230,7 @@ function cambiarContra(event) {
         swal("Error", "Se necesitan almenos 6 caracteres", "error");
         return
     }
-    urlc = "/Usuario/Cambiar/";
+    urlc = "/Rewards/Usuario/Cambiar/";
     var nameuser = user_name;
     $.post(urlc, { nameuser , pass }, function (res) {
 
