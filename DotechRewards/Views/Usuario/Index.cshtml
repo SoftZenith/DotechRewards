@@ -24,7 +24,7 @@
         res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
 
         for (int i = 0; i < bannerP.banners.Count; i++) {
-            bannerP.banners[i].fecha = bannerP.banners[i].fecha.Remove(10);
+            //bannerP.banners[i].fecha = bannerP.banners[i].fecha.Remove(10);
         }
     }
     catch (Exception ex)
@@ -355,9 +355,10 @@
                                     <div class="d-lg-none" style="width:49%;"><div class="truncate" style="padding-left:0.5em;">@panelP.nombre</div></div>
                                     
                                     <div class="d-lg-none" style="width:49%;">
-                                        <div class="task-icon-wrapper to-right" style="padding-right:0.5em;"> <!--width:100%;-->
+                                        <div class="task-icon-wrapper to-right" style="padding-right:0.5em;">
+                                            <!--width:100%;-->
                                             <img src="~/Content/images/calendario (1).png" />
-                                                <div style="display:inline; width:initial" class="truncate">@panelP.fecha</div>
+                                            <div style="display:inline; width:initial" class="truncate">@panelP.fecha</div>
                                         </div>
                                     </div>
 
@@ -429,7 +430,6 @@
                                     <!--<span>Se ve cuando es grande</span>-->
                                 </div>
                                 
-                                
                             </div>
                         </div>
                     </div>
@@ -441,9 +441,9 @@
             <div class="card">
                 <div class="container" style="padding-right:0px; padding-left:0px;">
                     <a href="@pathCatalogoH" download>
-                        <img class="d-none d-lg-block" src="/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
+                        <img class="d-none d-lg-block" src="~/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
                         <div class="d-block d-lg-none" style="width:100%; height:135px; background-color:gray;">
-                            <img src="/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
+                            <img src="~/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
                             <span style="color:white; font-weight:900; text-decoration:none;font-size: .8em;margin-left: 10px;margin-right: 10px;display: flex;">Catálogo completo</span>
                         </div>
                     </a>

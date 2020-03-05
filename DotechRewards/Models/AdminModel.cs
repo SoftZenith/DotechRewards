@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DotechRewards.Models
 {
@@ -91,7 +92,18 @@ namespace DotechRewards.Models
                         var fechaBefore = reader["fecha"].ToString();
                         var fecha3 = fechaBefore.Split(' ');
                         var descomponer = fecha3[1].Split(':');
-                        fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1]+ " "+ fecha3[2] + " " + fecha3[3];
+                        try
+                        {
+                            fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " " + fecha3[3];
+                        }
+                        catch (Exception ex) {
+                            fechaBefore = fecha3[0] + " " + descomponer[0] + ":" + descomponer[1] + " " + fecha3[2] + " ";// + fecha3[3];
+                            using (EventLog eventLog = new EventLog("Application"))
+                            {
+                                eventLog.Source = "Application";
+                                eventLog.WriteEntry("Error fechaBefore: " + ex.ToString()+" fecha3.length: "+fecha3.Length, EventLogEntryType.Information, 101, 1);
+                            }
+                        }
                         eventos.Add(new Evento()
                         {
                             idEvento = Convert.ToInt16(reader["idActividad"].ToString()),
@@ -107,13 +119,13 @@ namespace DotechRewards.Models
                             confirmados = Convert.ToInt32(reader["confirmados"].ToString()),
                             no_asistira = Convert.ToInt32(reader["no_asistira"].ToString()),
                             acompañantes = Convert.ToInt32(reader["acompañantes"])
-                        }); 
+                        });
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    System.Console.WriteLine(ex);
+                    
                 }
                 finally
                 {
