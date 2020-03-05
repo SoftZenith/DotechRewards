@@ -264,7 +264,7 @@
                 //fileData.append('username', ‘Manas’);
 
                 $.ajax({
-                    url: '/AdminCat/UploadPDFCatalogo',
+                    url: '/Rewards/AdminCat/UploadPDFCatalogo',
                     type: "POST",
                     contentType: false, // Not to set any content header  
                     processData: false, // Not to process data  

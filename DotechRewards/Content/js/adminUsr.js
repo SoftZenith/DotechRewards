@@ -24,7 +24,7 @@
                     '</tr>');
             }
         }).done(function () {
-            $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+            $.post("/Rewards/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
                 //console.log(json);
                 $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
             })
@@ -81,10 +81,10 @@ function numberWithCommas(x) {
             return;
         }
         var idUSur = $('#idUsuarioModal').val();
-        $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
+        $.post("/Rewards/AdminUsr/AsignarPuntos", { nUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
                 //Llenar tabla historial
-                $.post("/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
+                $.post("/Rewards/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
                     //console.log(json);
                     $("#historialTable").find("tr").remove();
                     for (var i = 0; i < json.length; i++) {
@@ -115,7 +115,7 @@ function numberWithCommas(x) {
             );
             return;
         }
-        $.post("/AdminUsr/CobrarPuntos", { idUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
+        $.post("/Rewards/AdminUsr/CobrarPuntos", { idUsuario: $('#idUsuarioModal').val(), descripcion: $('#descripcion').val(), puntos: $('#puntos').val() })
             .done(function (data) {
                 if (data == -1) {
                     Swal.fire(
@@ -141,7 +141,7 @@ function numberWithCommas(x) {
                 }
 
                 //Llenar tabla historial
-                $.post("/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
+                $.post("/Rewards/AdminUsr/getHistorialUsuario", { usuario: $('#usuarioModal').val() }, function (json) {
                     //console.log(json);
                     $("#historialTable").find("tr").remove();
                     for (var i = 0; i < json.length; i++) {
@@ -154,7 +154,7 @@ function numberWithCommas(x) {
                     }
                     //$('.selectpicker').selectpicker('refresh');
                 }).done(function () {
-                    $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+                    $.post("/Rewards/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
                         //console.log(json);
                         $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
                     })

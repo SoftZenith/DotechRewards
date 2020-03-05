@@ -85,7 +85,7 @@
             confirmButtonText: 'Eliminar',
         }).then((result) => {
             if (result.value) {
-                $.post("/AdminEven/DelEvento", { idEvento: $(this).data('id') })
+                $.post("/Rewards/AdminEven/DelEvento", { idEvento: $(this).data('id') })
                     .done(function (data) {
                         Swal.fire(
                             'Eliminado',
@@ -150,7 +150,7 @@
         $('#cantidadPersonas').val($(this).data(''))
         $('#Foto_Camp').val('')
         $('#previewImg').attr('src', 'Content/images/baner_producto.png');
-        $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=0');
+        $('#downloadLista').attr('href', '/Rewards/AdminEven/DescargarLista?idEvento=0');
         $('#descList').hide();
         $('#previewImg').hide();
         $('#Foto_Camp').attr('required', 'required');
@@ -189,7 +189,7 @@
     });
     //-------------------------
     $('#getLista').click(function () {
-        $.post("/AdminEven/DescargarLista", { idEvento: $('#idEventoM').val() })
+        $.post("/Rewards/AdminEven/DescargarLista", { idEvento: $('#idEventoM').val() })
             .done(function (data) {
 
             })
@@ -220,7 +220,7 @@
     });
 
     $('#subirLista').click(function () {
-        $.post("/AdminEven/SubirLista").done(function () {
+        $.post("/Rewards/AdminEven/SubirLista").done(function () {
             window.Location.href = "adminEven";
         });
     });

@@ -26,14 +26,14 @@ $(document).ready(function () {
     $('#btnGuardar').click(function () {
 
         if ($("#customRadio2").is(":checked")) {
-            $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
+            $.post("/Rewards/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
                 .done(function (data) {
                     //alert('Se asigno');
                     $('#mensaje').show();
                     selected = 0;
                 })
         } else {
-            $.post("/AdminUsr/AsignarPuntosE", { nUsuario: $('#txtInvitado').val(), idEvento: $('#selectedclick2').val(), puntos: $('#puntosEvt').val() })
+            $.post("/Rewards/AdminUsr/AsignarPuntosE", { nUsuario: $('#txtInvitado').val(), idEvento: $('#selectedclick2').val(), puntos: $('#puntosEvt').val() })
                 .done(function (data) {
                     //alert('Se asigno');
                     $('#mensaje').show();
@@ -60,7 +60,7 @@ $(document).ready(function () {
     //var targetDropdown = $("#selectedclick");
     //targetDropdown.empty();
 
-    $.get("/AdminPrin/getUsuarios", function (json) {
+    $.get("/Rewards/AdminPrin/getUsuarios", function (json) {
         //console.log(json);
         for (var i = 0; i < json.length; i++) {
             //$('#selectedclick').append('<option value="' + json[i].idUsuario + '">' + json[i].nombre + '</option>');
@@ -84,7 +84,7 @@ $(document).ready(function () {
     var targetDropdown2 = $("#selectedclick2");
     targetDropdown2.empty();
     //"/AdminPrin/getEventos"
-    $.get("/AdminPrin/getEventos", function (json) {
+    $.get("/Rewards/AdminPrin/getEventos", function (json) {
         //console.log(json);
         for (var i = 0; i < json.length; i++) {
             $('#selectedclick2').append('<option value="' + json[i].idEvento + '" data-puntos="' + json[i].puntos + '">' + json[i].nombre + '</option>');
