@@ -33,6 +33,6 @@ function olvideContrasena() {
         if (user == "") {
             return;
         }
-        swal("Te enviamos un correo", "Se envio un enlace a tu dirección de correo para poder reestablecer tu contraseña", "success");
+        swal("Te enviamos un correo", "Se envió un enlace a tu dirección de correo para poder reestablecer tu contraseña", "success");
     });
 }

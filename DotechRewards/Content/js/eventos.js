@@ -54,7 +54,7 @@
         }
 
         $('#cantidadPersonas').val($(this).data('asistentes'));
-        $('#downloadLista').attr('href', '/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
+        $('#downloadLista').attr('href', '/Rewards/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
         var fecha = $(this).data('fecha');
         var fecha3 = fecha.split(" ");
         if (fecha3[2] == "p.") {
@@ -211,7 +211,7 @@
             console.log("Error formato");
             Swal.fire(
                 'Error en la lista',
-                'Solo se permiten archivos de imágenes en formato xlsx.',
+                'Solo se permiten archivos en formato xlsx(Excel).',
                 'warning'
             );
             $('#btnListaGuardar').attr('disabled', true);
