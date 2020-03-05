@@ -239,7 +239,7 @@ function cambiarContra(event) {
             //alert('Usario y/o contraseña incorrectos')
             swal("Error", "Error al cambiar contraseña", "error");
         } else {
-            window.location.href = "../Home"
+            window.location.href = "../Rewards"
         }
     });
 }

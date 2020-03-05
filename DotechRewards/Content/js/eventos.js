@@ -221,7 +221,7 @@
 
     $('#subirLista').click(function () {
         $.post("/Rewards/AdminEven/SubirLista").done(function () {
-            window.Location.href = "adminEven";
+            window.Location.href = "/Rewards/adminEven";
         });
     });
 
