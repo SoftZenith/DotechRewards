@@ -55,7 +55,8 @@ namespace DotechRewards.Controllers
         {
             HomeModel home = new HomeModel();
             string pass = home.recuperarContrasena(user);
-            string UIDD_url = "http://localhost:58322/Password/ResetPassword?UUID=";
+            //string UIDD_url = "http://localhost:58322/Password/ResetPassword?UUID=";
+            string UIDD_url = "http://mydotech.com/Rewards/Password/ResetPassword?UUID=";
 
             if (pass == "")
             {
