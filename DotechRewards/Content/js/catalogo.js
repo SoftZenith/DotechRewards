@@ -3,7 +3,7 @@
         $('#Foto_Prd').val('');
         $('#edtFoto').val($(this).data('image'));
         $('#idPrdM').val($(this).data('idprd'));
-        $('#previewImg').attr('src', 'Content/images/' + $(this).data('image'));
+        $('#previewImg').attr('src', '/Rewards/Content/images/' + $(this).data('image'));
         $('#nombre').val($(this).data('nombre'));
         $('#descripcion').val($(this).data('desc'));
         $('#puntos').val($(this).data('puntos'));
@@ -21,7 +21,7 @@
             confirmButtonText: 'Eliminar'
         }).then((result) => {
             if (result.value) {
-                $.post("/AdminCat/DelProducto", { idProducto: $(this).data('idprd') })
+                $.post("/Rewards/AdminCat/DelProducto", { idProducto: $(this).data('idprd') })
                     .done(function (data) {
                         Swal.fire(
                             'Eliminado',
