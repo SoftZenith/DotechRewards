@@ -213,7 +213,7 @@
                     return;
                 }
 
-                $.post("/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
+                $.post("/Rewards/AdminUsr/AsignarPuntos", { nUsuario: $('#txtInvitado').val(), descripcion: $('#txtEvento').val(), puntos: $('#puntosEvt').val() })
                     .done(function (data) {
                         //alert('Se asigno');
                         $('#txtInvitado').val('');
@@ -221,7 +221,7 @@
                         selected = 0;
                     })
             } else {
-                $.post("/AdminUsr/AsignarPuntosE", { nUsuario: $('#txtInvitado').val(), idEvento: $('#selectedclick2').val(), puntos: $('#puntosEvt').val() })
+                $.post("/Rewards/AdminUsr/AsignarPuntosE", { nUsuario: $('#txtInvitado').val(), idEvento: $('#selectedclick2').val(), puntos: $('#puntosEvt').val() })
                     .done(function (data) {
                         //alert('Se asigno');
                         $('#txtInvitado').val('');
