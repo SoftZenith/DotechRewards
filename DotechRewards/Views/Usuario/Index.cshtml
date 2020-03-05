@@ -32,40 +32,8 @@
     catch (Exception ex)
     {
         //Mientras que no me jala
-        user = "Emelita Ponderosa Soto Gamma";
-        idUsr = "1";
-        admin = 1;
-        bannerP = new UsuarioModel();
-        /*new banner("mPlaceholder4.jpg", "La torre avalanz", "2020-02-28 10:00:00 a.m.", "Aquí", 1),*/
-        bannerP.banners = new List<banner> { new banner("mPlaceholder5.jpg", "La otra torre avalanz", "2020-02-28 10:00:00 a.m.", "Allá", 2) };
-
-        for (int i = 0; i < bannerP.banners.Count; i++)
-        {
-            string currentShortDate = bannerP.banners[i].fecha.Remove(10);
-            shortDate.Add(currentShortDate);
-        }
-
-        //new banner("mPlaceholder2.jpg", "El banner 2", "2020-02-28", "Allá", 1)
-        bannerP.puntos = 100;
-        bannerP.recompensas = new List<recompensa> {
-            new recompensa("Jenga", "El juego de apilar bloques", 100, "mPlaceholder1.jpg"),
-            new recompensa("Monopoly", "El juego de comprar propiedades", 1241, "mPlaceholder2.jpg"),
-            new recompensa("Buscaminas", "No es un juego de mesa pero que tiene", 39, "mPlaceholder3.jpg"),
-            new recompensa("Matatena", "La verdad no se qué sea", 76, "mPlaceholder4.jpg"),
-            //new recompensa("Mario Kart", "Un juego de carreras emocionante", 3201, "placeholder1.jpg")
-        };
-        res = bannerP.recompensas.Count;
-        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
-
-        bannerP.estatus = 0;
-        bannerP.eventos = new List<Evento> {
-            new Evento("2020-03-10", "Dotech Rewards 1", 100),
-            new Evento("2020-03-10", "Dotech Rewards 2", 120),
-            new Evento("2020-03-10", "Dotech Rewards 3", 130),
-            new Evento("2020-03-10", "Dotech Rewards 1", 100),
-            new Evento("2020-03-10", "Dotech Rewards 1", 100)
-        };
-        //{ Response.Redirect("~/"); }
+        
+        { Response.Redirect("~/"); }
     }
 }
 
@@ -428,7 +396,7 @@
 
         <div class="col-9 col-lg-10">
             <div class="row">
-                @foreach (recompensa recompensa in bannerP.recompensas)
+                @foreach (recompensa recompensa in bannerP.recompensas.Take(4))
                 {
                     aux++;
 
@@ -469,9 +437,9 @@
             <div class="card">
                 <div class="container" style="padding-right:0px; padding-left:0px;">
                     <a href="@pathCatalogoH" download>
-                        <img class="d-none d-lg-block" src="~/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
+                        <img class="d-none d-lg-block" src="/Rewards/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
                         <div class="d-block d-lg-none" style="width:100%; height:135px; background-color:gray;">
-                            <img src="~/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
+                            <img src="/Rewards/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
                             <span style="color:white; font-weight:900; text-decoration:none;font-size: .8em;margin-left: 10px;margin-right: 10px;display: flex;">Catálogo completo</span>
                         </div>
                     </a>
