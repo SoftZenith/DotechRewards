@@ -9,6 +9,7 @@
     //int index = 0;
     int res = 0;
     string pathCatalogoH = ViewBag.pathCatalogo;
+    List<string> shortDate = new List<string>();
     try
     {
         user = HttpContext.Current.Session["nombre"].ToString();
@@ -24,14 +25,47 @@
         res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
 
         for (int i = 0; i < bannerP.banners.Count; i++) {
-            //bannerP.banners[i].fecha = bannerP.banners[i].fecha.Remove(10);
+            string currentShortDate = bannerP.banners[i].fecha.Remove(10);
+            shortDate.Add(currentShortDate);
         }
     }
     catch (Exception ex)
     {
         //Mientras que no me jala
-        
-        { Response.Redirect("~/"); }
+        user = "Emelita Ponderosa Soto Gamma";
+        idUsr = "1";
+        admin = 1;
+        bannerP = new UsuarioModel();
+        /*new banner("mPlaceholder4.jpg", "La torre avalanz", "2020-02-28 10:00:00 a.m.", "Aquí", 1),*/
+        bannerP.banners = new List<banner> { new banner("mPlaceholder5.jpg", "La otra torre avalanz", "2020-02-28 10:00:00 a.m.", "Allá", 2) };
+
+        for (int i = 0; i < bannerP.banners.Count; i++)
+        {
+            string currentShortDate = bannerP.banners[i].fecha.Remove(10);
+            shortDate.Add(currentShortDate);
+        }
+
+        //new banner("mPlaceholder2.jpg", "El banner 2", "2020-02-28", "Allá", 1)
+        bannerP.puntos = 100;
+        bannerP.recompensas = new List<recompensa> {
+            new recompensa("Jenga", "El juego de apilar bloques", 100, "mPlaceholder1.jpg"),
+            new recompensa("Monopoly", "El juego de comprar propiedades", 1241, "mPlaceholder2.jpg"),
+            new recompensa("Buscaminas", "No es un juego de mesa pero que tiene", 39, "mPlaceholder3.jpg"),
+            new recompensa("Matatena", "La verdad no se qué sea", 76, "mPlaceholder4.jpg"),
+            //new recompensa("Mario Kart", "Un juego de carreras emocionante", 3201, "placeholder1.jpg")
+        };
+        res = bannerP.recompensas.Count;
+        res = res > 4 ? (bannerP.recompensas.Count / 4) + 1 : 1;
+
+        bannerP.estatus = 0;
+        bannerP.eventos = new List<Evento> {
+            new Evento("2020-03-10", "Dotech Rewards 1", 100),
+            new Evento("2020-03-10", "Dotech Rewards 2", 120),
+            new Evento("2020-03-10", "Dotech Rewards 3", 130),
+            new Evento("2020-03-10", "Dotech Rewards 1", 100),
+            new Evento("2020-03-10", "Dotech Rewards 1", 100)
+        };
+        //{ Response.Redirect("~/"); }
     }
 }
 
@@ -92,7 +126,7 @@
 </div>
 
 
-<div class="container-fluid" style="padding-right:50px; padding-left:50px;">
+<div class="container-fluid dynamic-padding">
     <div class="row justify-content-between" style="padding-top:1em; padding-bottom:1em;">
 
         <div class="col-12 col-lg-4 justify-content-lg-start justify-content-center" style="display:flex; flex-direction:row;">
@@ -110,8 +144,8 @@
             <div style="height:24px;"></div>
         </div>
 
-
-        <div class="col-12 col-lg-8 table-responsive" style="display:flex; flex-direction:column; justify-content:space-between; overflow-y:hidden">
+        <!--table-responsive class was removed-->
+        <div class="col-12 col-lg-8 " style="display:flex; flex-direction:column; justify-content:space-between; overflow-y:hidden; width:100%; ">
             <div class="form-group" style="display:none;">
                 <!--		Show Numbers Of Rows 		-->
                 <select class="form-control" name="state" id="maxRows" style="display: none;">
@@ -121,7 +155,7 @@
                 </select>
             </div>
 
-            <table class="table table-striped table-class" id="table-id" style="height:100%;">
+            <table class="table table-striped table-class" id="table-id" style="height:100%; table-layout:fixed;">
 
                 @if (bannerP.estatus == 1)
                 {
@@ -154,12 +188,12 @@
                     foreach (Evento evento in bannerP.eventos)
                     {
                         var puntos = (@evento.puntos == 0) ? " " : @evento.puntos + "";
-                        puntos = (@evento.puntos == 0 && @evento.nombre != "") ? "Confirmaste" : puntos;
+                        puntos = (@evento.puntos == 0 && @evento.nombre != "") ? "Con&shy;fir&shy;mas&shy;te" : puntos;
                         var estilo = (@evento.puntos == 0 && @evento.nombre != "") ? "color:gray!important; font-style: italic!important;" : puntos;
                         <tr style="@estilo">
                             <td style="text-align: center;">@evento.fecha</td>
                             <td style="text-align: start;">@evento.nombre</td>
-                            <td style="text-align: center;">&nbsp;@puntos</td>
+                            <td style="text-align: center;"><label class="hyphenate">@Html.Raw(puntos)</label></td>
                         </tr>
                     }
                     <tr dr-not="true" style="border-bottom: 2px solid #d4d4d4!important;">
@@ -212,6 +246,24 @@
     <div class="row justify-content-between" style="height:220px;">
         <div class="col-md-12">
             <style>
+                .dynamic-padding {
+                    padding-right:50px; 
+                    padding-left:50px;
+                }
+                @@media only screen and (max-width: 600px) {
+                  .dynamic-padding {
+                    padding-right:5px; 
+                    padding-left:5px;
+                }
+                }
+                .hyphenate {
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+
+                    -webkit-hyphens: auto;
+                    -moz-hyphens: auto;
+                    hyphens: auto;
+                }
                 .truncate {
                   width: 100%;
                   white-space: nowrap;
@@ -304,8 +356,11 @@
                 </a>
                 <div class="carousel-inner" style="background-color: green;">
                     <!-- Carousel Eventos -->
+                    @{ int myIndex = 0; }
+
                     @foreach (banner panelP in bannerP.getBanners())
                     {
+
 
                         <div class="carousel-item @(activo ? "active" : "")" style="background-color: blue;">
                             <img class="d-none d-lg-block" src="~/Content/images/@panelP.imagen" style="z-index:1!important; ">
@@ -330,7 +385,7 @@
                                         <div class="task-icon-wrapper to-right" style="padding-right:0.5em;">
                                             <!--width:100%;-->
                                             <img src="~/Content/images/calendario (1).png" />
-                                            <div style="display:inline; width:initial" class="truncate">@panelP.fecha</div>
+                                            <div style="display:inline; width:initial" class="truncate">@shortDate[myIndex]</div>
                                         </div>
                                     </div>
 
@@ -356,6 +411,7 @@
                             </div>
                         </div>
                         activo = false;
+                        myIndex++;
                     }
                 </div>
 
@@ -383,7 +439,7 @@
                                     <div class="text" style="width:74%; height:30%">@recompensa.descripcion</div>
                                 </div>
                                 <img class="cardo" style="width:100%;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">
-                                <!--<img class="d-lg-none" style="width:100%; height:auto;" src="~/Content/images/@@recompensa.imagen" alt="Card image cap">-->
+                                <!--<img class="d-lg-none" style="width:100%; height:auto;" src="~/Content/images/@recompensa.imagen" alt="Card image cap">-->
                                 <img class="banInfImg" src="~/Content/images/baner_producto.png" style="height:50px; width:100%; position:absolute; left:0px; bottom:0px; z-index: 2; opacity: 0.8;filter: alpha(opacity=80);" />
                                 
                                 <div class="d-lg-none" style="position:absolute;right:0px; bottom:0px; display:flex; flex-direction:row; justify-content: center; align-items:center; width:100%;">
@@ -413,9 +469,9 @@
             <div class="card">
                 <div class="container" style="padding-right:0px; padding-left:0px;">
                     <a href="@pathCatalogoH" download>
-                        <img class="d-none d-lg-block" src="/Rewards/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
+                        <img class="d-none d-lg-block" src="~/Content/images/catalogo.jpg" alt="Card image cap" style="width: 100%; height: 135px;" height="122">
                         <div class="d-block d-lg-none" style="width:100%; height:135px; background-color:gray;">
-                            <img src="/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
+                            <img src="~/Content/images/downArrow.png"  style="width: 50%;margin: 20%;"/>
                             <span style="color:white; font-weight:900; text-decoration:none;font-size: .8em;margin-left: 10px;margin-right: 10px;display: flex;">Catálogo completo</span>
                         </div>
                     </a>
