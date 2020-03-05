@@ -26,7 +26,7 @@ function olvideContrasena() {
         return;
     }
 
-    urlC = "/Rewards/SendEmail";
+    urlC = "/Rewards/Home/SendEmail";
     $.post(urlC, { user }, function (res) {
 
     }).done(function (res) {
