@@ -4,6 +4,7 @@ using DotechRewards.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Web;
 using System.Web.Configuration;
@@ -36,7 +37,7 @@ namespace DotechRewards.Controllers
             {
                 HttpPostedFileBase file = Request.Files[0];
                 file = Request.Files[0];
-                string ruta = Server.MapPath("~/Content/images/");
+                string ruta = Server.MapPath("~/Rewards/Content/images/");
                 ruta += file.FileName;
                 file.SaveAs(ruta);
                 imagen = file.FileName.Substring(0, file.FileName.Length);
@@ -44,6 +45,11 @@ namespace DotechRewards.Controllers
                 evento.imagen = imagen;
             }
             catch (Exception ex) {
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry("Error AdminEven linea 51: "+ex.ToString(), EventLogEntryType.Information, 101, 1);
+                }
                 imagen = evento.imagen;
             }
             AdminModel model = new AdminModel();
