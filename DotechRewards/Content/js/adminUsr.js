@@ -12,7 +12,7 @@
         $('#fecha_cumple').val(fecha_cumple);
         $("#asigPuntos").show();
         //Llenar tabla historial
-        $.post("/AdminUsr/getHistorialUsuario", { usuario: $(this).data('usuario')}, function (json) {
+        $.post("/Rewards/AdminUsr/getHistorialUsuario", { usuario: $(this).data('usuario')}, function (json) {
             //console.log(json);
             $("#historialTable").find("tr").remove();
             for (var i = 0; i < json.length; i++) {
@@ -46,7 +46,7 @@ function numberWithCommas(x) {
             confirmButtonText: 'Eliminar'
         }).then((result) => {
             if (result.value) {
-                $.post("/AdminUsr/DelUsuario", { idUsuario: $(this).data('id') })
+                $.post /Rewards/AdminUsr/DelUsuario", { idUsuario: $(this).data('id') })
                     .done(function (data) {
                         Swal.fire(
                             'Eliminado',
@@ -96,7 +96,7 @@ function numberWithCommas(x) {
                             '</tr>');
                     }
                 }).done(function () {
-                    $.post("/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
+                    $.post("/Rewards/AdminUsr/getPuntosTotales", { usuario: $('#usuarioModal').val() }, function (puntosUsr) {
                         //console.log(json);
                         $('#totalHistUsr').html('Total ' + numberWithCommas(puntosUsr));
                     })
