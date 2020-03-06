@@ -348,7 +348,7 @@
                                 <img src="~/Content/images/baner_inferior.png" style="z-index: 2; opacity: 0.95; padding:0px; filter: alpha(opacity=95);" />
                                 <div class="banner-info">
                                     <div class="d-lg-none" style="width:49%;"><div class="truncate" style="padding-left:0.5em;">@panelP.nombre</div></div>
-                                    
+
                                     <div class="d-lg-none" style="width:49%;">
                                         <div class="task-icon-wrapper to-right" style="padding-right:0.5em;">
                                             <!--width:100%;-->
@@ -365,16 +365,18 @@
                                             <div>@panelP.fecha</div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="task-icon-wrapper d-none d-lg-block"><img src="~/Content/images/localizador-de-lugar.png" /><span>@panelP.lugar</span></div>
-                                    
-                                    
-                                    <a class="aRegistro d-none d-lg-block" data-toggle="modal" data-target="#registroModal" 
-                                       data-url="@panelP.url" data-confirmacion="@panelP.registro" 
-                                       data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes" 
+
+                                    @if (panelP.url != "" || panelP.registro == 1)
+                                    {
+                                    <a class="aRegistro d-none d-lg-block" data-toggle="modal" data-target="#registroModal"
+                                       data-url="@panelP.url" data-confirmacion="@panelP.registro"
+                                       data-usrasistentes="@panelP.asistentesUsr" data-asistente="@panelP.asistentes"
                                        data-idevento="@panelP.idEvento" data-nombrevent="@panelP.nombre"
                                        data-idUsr="@idUsr"
                                        style="cursor: pointer;">Registrate aquí</a>
+                                    }
                                 </div>
                             </div>
                         </div>

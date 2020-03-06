@@ -53,8 +53,14 @@
             }
         }
 
-        $('#cantidadPersonas').val($(this).data('asistentes'));
-        $('#downloadLista').attr('href', '/Rewards/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
+
+        if ($(this).data('urle') != "" || $(this).data('confirmacion').toLowerCase() === 'true') {
+            $('#descList').show();
+            $('#cantidadPersonas').val($(this).data('asistentes'));
+            $('#downloadLista').attr('href', '/Rewards/AdminEven/DescargarLista?idEvento=' + $(this).data('id'));
+        } else {
+            $('#descList').hide();
+        }
         var fecha = $(this).data('fecha');
         var fecha3 = fecha.split(" ");
         if (fecha3[2] == "p.") {
