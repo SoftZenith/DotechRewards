@@ -185,7 +185,11 @@ namespace DotechRewards.Models
                 }
                 catch (Exception ex)
                 {
-                    System.Console.WriteLine(ex);
+                    using (EventLog eventLog = new EventLog("Application"))
+                    {
+                        eventLog.Source = "Application";
+                        eventLog.WriteEntry("AdminModel linea 191: " + ex.ToString(), EventLogEntryType.Information, 101, 1);
+                    }
                 }
                 finally
                 {
