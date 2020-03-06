@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+
+    var nuevo = "";
     $('.btnEditP').click(function () {
         $('#Foto_Prd').val('');
         $('#edtFoto').val($(this).data('image'));
@@ -8,6 +10,7 @@
         $('#descripcion').val($(this).data('desc'));
         $('#puntos').val($(this).data('puntos'));
         $('#Foto_Camp').show();
+        nuevo = "editar";
     });
 
     $('.btnDelP').click(function () {
@@ -41,6 +44,7 @@
         $('#descripcion').val('');
         $('#puntos').val('');
         $('#Foto_Prd').val(null);
+        nuevo = "nuevo";
         $('#previewImg').hide();
     });
 
@@ -198,7 +202,7 @@
             })
             return false;
         }
-        else if (productImage == "") {
+        else if (productImage == "" && nuevo != "editar") {
 
             Swal.fire(
                 'Error en imagen de producto.',
