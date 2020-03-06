@@ -46,7 +46,7 @@ function numberWithCommas(x) {
             confirmButtonText: 'Eliminar'
         }).then((result) => {
             if (result.value) {
-                $.post /Rewards/AdminUsr/DelUsuario", { idUsuario: $(this).data('id') })
+                $.post ("/Rewards/AdminUsr/DelUsuario", { idUsuario: $(this).data('id') })
                     .done(function (data) {
                         Swal.fire(
                             'Eliminado',
