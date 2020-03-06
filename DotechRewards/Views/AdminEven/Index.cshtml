@@ -140,31 +140,36 @@
         </div>
 
         <div class="row justify-content-start" style="margin: 5px">
-            
-                <div class="col-md-10">
-                    @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEventos", enctype = "multipart/form-data" }))
-                    {
-                        <div class="row justify-content-start" style="margin: 10px">
-                            <div class="col-md-6">
-                                @Html.TextBox("Lista_asis", "", new { @class = "form-control-file", type = "file", id = "Lista_asis" })
-                            </div>
-                            <div class="col-md-4" style="margin-left:0px;">
-                                <button id="btnListaGuardar" type="submit">Subir Lista</button>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div class="col-md-2">
-                    <div class="row justify-content-end" style="margin: 10px">
-                        <div class="col-md-4">
-                            <div style="float: right;">
-                                <button id="btnAddE" class="btn btn-link add-button" data-toggle="modal" data-target="#EventModal">
-                                    <i class="fas fa-plus-circle" style="font-size: 45px !important;color:green;float: right;" aria-hidden="true"></i>
-                                </button>
-                            </div>
+
+            <div class="col-md-10">
+                @using (Html.BeginForm("SubirLista", "AdminEven", FormMethod.Post, new { id = "AddEventos", enctype = "multipart/form-data" }))
+                {
+                <div class="row justify-content-start" style="margin: 10px">
+                    <div class="col-md-6">
+                        @Html.TextBox("Lista_asis", "", new { @class = "form-control-file", type = "file", id = "Lista_asis" })
+                    </div>
+                    <div class="col-md-4" style="margin-left:0px;">
+                        <button id="btnListaGuardar" type="submit">Subir Lista</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="float: left;">
+                            <samp>Cargar lista de confirmacion para eventos</samp>
                         </div>
                     </div>
                 </div>
+                }
+            </div>
+            <div class="col-md-2">
+                <div class="row justify-content-end" style="margin: 10px">
+                    <div class="col-md-4">
+                        <div style="float: right;">
+                            <button id="btnAddE" class="btn btn-link add-button" data-toggle="modal" data-target="#EventModal">
+                                <i class="fas fa-plus-circle" style="font-size: 45px !important;color:green;float: right;" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
