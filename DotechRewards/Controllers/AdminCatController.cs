@@ -23,7 +23,7 @@ namespace DotechRewards.Controllers
             try{
                     HttpPostedFileBase file = Request.Files[0];
                     file = Request.Files[0];
-                    string ruta = Server.MapPath("~/Content/images/");
+                    string ruta = Server.MapPath("/Rewards/Content/images/");
                     ruta += file.FileName;
                     file.SaveAs(ruta);
 
