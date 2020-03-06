@@ -12,9 +12,13 @@ namespace DotechRewards.Controllers
 {
     public class HomeController : Controller
     {
+
+        public int loginStatus = 2;
+
         public ActionResult Index()
         {
             Session.Abandon();
+            ViewBag.exitoso = loginStatus;
             return View();
         }
 
@@ -34,7 +38,9 @@ namespace DotechRewards.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                loginStatus = 0;
+                ViewBag.exitoso = 0;
+                return View("Index");
             }
         }
 

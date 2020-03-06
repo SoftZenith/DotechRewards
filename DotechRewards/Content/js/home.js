@@ -22,7 +22,11 @@ function olvideContrasena() {
     var user = document.getElementById("usuario").value;
 
     if (user == "") {
-        swal("Error", "Ingresa tu dirección de correo", "error");
+        Swal.fire(
+            'Ingresa tu dirección de correo',
+            'Ingresa tu dirección de correo',
+            'warning'
+        );
         return;
     }
 
@@ -33,6 +37,11 @@ function olvideContrasena() {
         if (user == "") {
             return;
         }
-        swal("Te enviamos un correo", "Se envió un enlace a tu dirección de correo para poder reestablecer tu contraseña", "success");
+        Swal.fire(
+            'Te enviamos un correo',
+            'Se envió un enlace a tu dirección de correo para poder reestablecer tu contraseña',
+            'success'
+        );
+        //swal("Te enviamos un correo", "Se envió un enlace a tu dirección de correo para poder reestablecer tu contraseña", "success");
     });
 }

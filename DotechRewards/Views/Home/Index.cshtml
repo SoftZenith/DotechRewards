@@ -2,10 +2,13 @@
 
 @{
     ViewBag.Title = "Home Page";
+    int exitos = ViewBag.exitoso;
     string contrasena = "";
 }
 <html>
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/Content/js/home.js"></script>
     <link href="~/Content/css/index.css" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -13,50 +16,62 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <!------ Include the above in your HEAD tag ---------->
 </head>
-    <body>
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <!-- Tabs Titles -->
-                <!-- Icon -->
-                <div class="fadeIn first">
-                    <img src="~/Content/images/login_reward.png" id="icon" alt="User Icon" height="125" style="margin-top:30px; margin-bottom: 20px;padding-left:18px;" />
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Content/images/login_reward.png" id="icon" alt="User Icon" height="125" style="margin-top:30px; margin-bottom: 20px;padding-left:18px;" />
+            </div>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "Login" }))
+            {
+                <div class="d-none d-lg-block">
+                    <div class="input-group mb-5">
+                        @Html.TextBoxFor(m => m.usuario, new { id = "usuario", @placeholder = "Usuario", @class = "form-control form-control-lg", @maxlength = "25", @style = "text-align: right; border-radius: 5px; background-color: white; height:38px; border: 1px solid gray;" })
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2" style="margin-top:5px; margin-right:3px; height:88%;">@@dotech.com.mx</span>
+                        </div>
+                    </div>
+                    @Html.TextBoxFor(m => m.contrasena, new { id = "contrasena", @placeholder = "Contraseña", @class = "form-control form-control-lg", @maxlength = "20", @type = "password", @style = "margin-left: 5px; width: 98%; text-align:center; margin-top:-37px; height:38px!important; border: 1px solid gray; font-size:1.03rem" })
+                    <button type="submit" class="btn btn-success" onclick="btnLogin()" style="margin-top:15px; margin-bottom:15px; width: 150px;"> Entrar </button>
                 </div>
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "Login" }))
-                {
-                    <div class="d-none d-lg-block">
-                        <div class="input-group mb-5">
-                            @Html.TextBoxFor(m => m.usuario, new { id = "usuario", @placeholder = "Usuario", @class = "form-control form-control-lg", @maxlength = "25", @style = "text-align: right; border-radius: 5px; background-color: white; height:38px; border: 1px solid gray;" })
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2" style="margin-top:5px; margin-right:3px; height:88%;">@@dotech.com.mx</span>
+                <div class="d-lg-none">
+                    <div class="stack" style="padding-right:5px;">
+                        <div class="tail" style="width:100%;">
+                            @Html.TextBoxFor(m => m.usuario, new { id = "usuario", @placeholder = "Usuario", @class = "form-control form-control-lg", @maxlength = "25", @style = "text-align: right; border-radius: 5px; background-color: white; height:38px; border: 1px solid gray; padding:0px; padding-top:5px; padding-bottom:5px; align-text:left; padding-left: 3px; padding-right:3px; width:calc(100% - 108px); font-size:12px;" })
+
+                            <div style="display:flex; flex-direction:column; justify-content: center; border: 1px solid #cfd4da; background-color:#e9ecef; border-radius:5px; height:38px;">
+                                <span class="input-group-append" id="basic-addon2" style="margin-top:5px; margin-right:3px; font-size:12px; padding-left:3px; color:#626970;">@@dotech.com.mx</span>
                             </div>
                         </div>
-                        @Html.TextBoxFor(m => m.contrasena, new { id = "contrasena", @placeholder = "Contraseña", @class = "form-control form-control-lg", @maxlength = "20", @type = "password", @style = "margin-left: 5px; width: 98%; text-align:center; margin-top:-37px; height:38px!important; border: 1px solid gray; font-size:1.03rem" })
+                        @Html.TextBoxFor(m => m.contrasena, new { id = "contrasena", @placeholder = "Contraseña", @class = "form-control form-control-lg", @maxlength = "20", @type = "password", @style = "margin-left: 5px; width: 98%; text-align:center; height:38px!important; border: 1px solid gray; font-size:12px;" })
                         <button type="submit" class="btn btn-success" onclick="btnLogin()" style="margin-top:15px; margin-bottom:15px; width: 150px;"> Entrar </button>
                     </div>
-                    <div class="d-lg-none">
-                        <div class="stack" style="padding-right:5px;">
-                            <div class="tail" style="width:100%;">
-                                @Html.TextBoxFor(m => m.usuario, new { id = "usuario", @placeholder = "Usuario", @class = "form-control form-control-lg", @maxlength = "25", @style = "text-align: right; border-radius: 5px; background-color: white; height:38px; border: 1px solid gray; padding:0px; padding-top:5px; padding-bottom:5px; align-text:left; padding-left: 3px; padding-right:3px; width:calc(100% - 108px); font-size:12px;" })
-                                
-                                <div  style="display:flex; flex-direction:column; justify-content: center; border: 1px solid #cfd4da; background-color:#e9ecef; border-radius:5px; height:38px;">
-                                    <span class="input-group-append" id="basic-addon2" style="margin-top:5px; margin-right:3px; font-size:12px; padding-left:3px; color:#626970;">@@dotech.com.mx</span>
-                                </div>
-                            </div>
-                            @Html.TextBoxFor(m => m.contrasena, new { id = "contrasena", @placeholder = "Contraseña", @class = "form-control form-control-lg", @maxlength = "20", @type = "password", @style = "margin-left: 5px; width: 98%; text-align:center; height:38px!important; border: 1px solid gray; font-size:12px;" })
-                            <button type="submit" class="btn btn-success" onclick="btnLogin()" style="margin-top:15px; margin-bottom:15px; width: 150px;"> Entrar </button>
-                        </div>
-                    </div>
-
-                }
-
-                <!-- Olvidar contraseña -->
-                <div id="formFooter" style="padding: 5px;">
-                    <a id="OlvideCon" class="underlineHover" href="#" onclick="olvideContrasena()">¿Olvidaste tu contraseña?</a>
                 </div>
 
+            }
+
+            <!-- Olvidar contraseña -->
+            <div id="formFooter" style="padding: 5px;">
+                <a id="OlvideCon" class="underlineHover" href="#" onclick="olvideContrasena()">¿Olvidaste tu contraseña?</a>
             </div>
+
         </div>
-    </body>
+    </div>
+    <script>
+        if('@exitos' === '0') {
+            Swal.fire(
+                'Usuario y/o contraseña incorrectos',
+                'Revisa tus credenciales',
+                'warning'
+            ).then((result) => {
+                window.location.href = "/Rewards/"
+            });
+        }
+    </script>
+</body>
 </html>
