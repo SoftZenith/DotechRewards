@@ -40,7 +40,7 @@
         var confPost = 0;
         if ($("#customRadio1").is(":checked")) {
             confPost = 1;
-            if (asist > $('#asistentesModal').attr('max')) {
+            if (asist > eventoAct.maximoAcompañantes) {
                 swal("Error", "Excede el maximo de acompañantes", "error");
                 $('#asistentesModal').val(0);
                 return
@@ -81,6 +81,7 @@
         $("#btnFinalizar").hide();
         var url = $(this).data("url");
         eventoAct.urlActual = url;
+        eventoAct.maximoAcompañantes = $(this).data("asistente");
         eventoAct.idEventoActual = $(this).data("idevento");
         var z = $(this).data("usrasistentes");
         if (url == "") { //verifica si tiene url, si no tiene hace todo lo de abajo
@@ -251,8 +252,9 @@ function cambiarContra(event) {
 }
 
 class eventoActual {
-    constructor(urlActual, idEventoActual) {
+    constructor(urlActual, idEventoActual, maximoAcompañantes) {
         this.urlActual = urlActual;
         this.idEventoActual = idEventoActual;
+        this.maximoAcompañantes = maximoAcompañantes;
     }
 }
