@@ -25,9 +25,6 @@
         $("#asistentesModal").prop("disabled", check);
     });
 
-    $("#asistentesModal").keypress(function (evt) {
-        evt.preventDefault();
-    });
 
     $('#btnGuardarRegistro').click(function () {
         
@@ -39,6 +36,10 @@
         var confPost = 0;
         if ($("#customRadio1").is(":checked")) {
             confPost = 1;
+            if (asist > $('#asistentesModal').attr('max')) {
+                swal("Error", "Solo es permitido un maximo de acompañantes de: " + $('#asistentesModal').attr('max'), "error");
+                return
+            }
         }
         if (eventoAct.urlActual != "") {
             asist = 0;
