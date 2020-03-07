@@ -40,10 +40,12 @@
         var confPost = 0;
         if ($("#customRadio1").is(":checked")) {
             confPost = 1;
-            if (asist > eventoAct.maximoAcompañantes) {
-                swal("Error", "Excede el maximo de acompañantes", "error");
-                $('#asistentesModal').val(0);
-                return
+            if (eventoAct.urlActual == "") {
+                if (asist > eventoAct.maximoAcompañantes) {
+                    swal("Error", "Excede el maximo de acompañantes", "error");
+                    $('#asistentesModal').val(0);
+                    return
+                }
             }
         }
         if (eventoAct.urlActual != "") {
