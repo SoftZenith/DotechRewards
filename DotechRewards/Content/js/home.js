@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     $("form").submit(function (event) {
-        debugger;
+        
         if ($('#password1').val() == "") {
             //swal("Error", "Ingresa tu nueva contraseña", "error");
             alert("Ingresa tu nueva contraseña");
