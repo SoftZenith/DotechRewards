@@ -99,7 +99,8 @@
             }
             $('#asistentesModal').val(z);
             if (z === 1) {
-                $('#asistentesModal').val($(this).data("asistente"));
+                $('#asistentesModal').val($(this).data("acompanantes"));
+                $('#asistentesModal').attr("max", $(this).data("asistente"));
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
             } else {

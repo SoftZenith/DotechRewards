@@ -151,6 +151,7 @@ namespace DotechRewards.Models
                         bannerPrincipal.Add(new banner(
                             Convert.ToInt32(reader["idUsuario"] is DBNull ? 0 : reader["idUsuario"]),
                             Convert.ToInt32(reader["asistencia"] is DBNull ? 0 : reader["asistencia"]),
+                            Convert.ToInt32(reader["acompanantes"] is DBNull ? 0 : reader["acompanantes"]),
                             Convert.ToInt16(reader["idActividad"].ToString()),
                             reader["imagen"].ToString(),
                             reader["nombre"].ToString(),
@@ -527,10 +528,11 @@ namespace DotechRewards.Models
             this.asistentes = asistentes;
             this.url = url;
         }
-        public banner(int idUsuario, int asistentesUsr, int idEvento, string imagen, string nombre, string fecha, string lugar, int registro, int asistentes)
+        public banner(int idUsuario, int asistentesUsr, int acompanantes, int idEvento, string imagen, string nombre, string fecha, string lugar, int registro, int asistentes)
         {
             this.idUsuario = idUsuario;
             this.asistentesUsr = asistentesUsr;
+            this.acompanantes = acompanantes;
             this.idEvento = idEvento;
             this.imagen = imagen;
             this.nombre = nombre;
@@ -539,12 +541,13 @@ namespace DotechRewards.Models
             this.registro = registro;
             this.asistentes = asistentes;
         }
-        public banner(int idUsuario, int asistentesUsr, int idEvento, string imagen, string nombre, string fecha, string lugar, int registro, int asistentes, string url) : this(idUsuario, asistentesUsr, idEvento, imagen, nombre, fecha, lugar, registro, asistentes)
+        public banner(int idUsuario, int asistentesUsr, int acompanantes, int idEvento, string imagen, string nombre, string fecha, string lugar, int registro, int asistentes, string url) : this(idUsuario, asistentesUsr, acompanantes, idEvento, imagen, nombre, fecha, lugar, registro, asistentes)
         {
             this.url = url;
         }
         public int idUsuario { get; set; }
         public int asistentesUsr { get; set; }
+        public int acompanantes { get; set; }
         public int idEvento { get; set; }
         public string imagen { get; set; }
         public string nombre { get; set; }
