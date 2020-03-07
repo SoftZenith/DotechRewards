@@ -64,6 +64,8 @@
                     $("#linkUrl").show();
                     $("#btnGuardarRegistro").hide();
                     $("#btnFinalizar").show();
+                } else {
+                    window.location.reload(true);
                 }
             } else {
                 $("#sinUrlSiNo").show();
