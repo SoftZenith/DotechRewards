@@ -98,8 +98,8 @@
                 $('#customRadio1').prop('checked', true);
             }
             $('#asistentesModal').val(z);
-            if ($(this).data("asistente") == 1) {
-                $('#asistentesModal').val(z);
+            if (z === 1) {
+                $('#asistentesModal').val($(this).data("asistente"));
                 $('#idEvent').val($(this).data("idevento"));
                 $('#ModalLabelConfirmar').text('Registro-' + $(this).data("nombrevent"));
             } else {
