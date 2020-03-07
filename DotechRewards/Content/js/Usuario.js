@@ -42,7 +42,7 @@
             confPost = 1;
             if (eventoAct.urlActual == "") {
                 if (asist > eventoAct.maximoAcompañantes) {
-                    swal("Error", "Excede el maximo de acompañantes", "error");
+                    swal("Error", "Excede el máximo de acompañantes", "error");
                     $('#asistentesModal').val(0);
                     return
                 }
