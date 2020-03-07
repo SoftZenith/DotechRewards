@@ -90,10 +90,10 @@
             $("#lblRegistroText").hide();
             $('#sinUrl').show();
             if (z === 0) {
-                $('#customRadio2').attr('checked', 'checked');
+                $('#customRadio2').prop('checked', true);
                 $("#asistentesModal").prop("disabled", true);
             } else {
-                $('#customRadio1').attr('checked', 'checked');
+                $('#customRadio1').prop('checked', true);
             }
             $('#asistentesModal').val(z);
             if ($(this).data("asistente") == 1) {
@@ -114,10 +114,10 @@
             $('#sinUrl').hide();
             var confirmacion = $(this).data("confirmacion");
             if (z === 0) {
-                $('#customRadio2').attr('checked', 'checked');
+                $('#customRadio2').prop('checked', true);
                 $("#asistentesModal").prop("disabled", true);
             } else {
-                $('#customRadio1').attr('checked', 'checked');
+                $('#customRadio1').prop('checked', true);
             }
             if (z === 0) {
                 $("#linkUrl").hide();
