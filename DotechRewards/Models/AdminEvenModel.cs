@@ -165,7 +165,7 @@ namespace DotechRewards.Models
             {
                 var nonEmptyDataRows = excelWorkbook.Worksheet(1).RowsUsed();
 
-                foreach (var dataRow in nonEmptyDataRows)
+                foreach (var dataRow in nonEmptyDataRows)//Primer for para validar todos los datos del excel
                 {
                     //for row number check
                     if (dataRow.RowNumber() > 1)
@@ -181,6 +181,42 @@ namespace DotechRewards.Models
                             AdminModel admin = new AdminModel();
                             int idUsuario = admin.getIdusuario(usuario);
                             if (idUsuario == 0) {
+                                return new Retorno()
+                                {
+                                    estatus = false,
+                                    mensaje = "Usuario no valido en renglon: " + dataRow.RowNumber()
+                                };
+                            }
+                            //admin.AsignarPuntosActividadExtra(idUsuario,actividad,puntos,fecha);
+                        }
+                        catch (Exception ex)
+                        {
+                            return new Retorno()
+                            {
+                                estatus = false,
+                                mensaje = "Archivo corrupto uno o más datos no estan en el formato correcto"
+                            };
+                        }
+                    }
+                }
+                //Si todos los datos del excel estan correctos, ahora inserta puntos
+                foreach (var dataRow in nonEmptyDataRows)
+                {
+                    //for row number check
+                    if (dataRow.RowNumber() > 1)
+                    {
+                        try
+                        {
+                            string usuario = dataRow.Cell(1).Value.ToString();
+                            string actividad = dataRow.Cell(2).Value.ToString();
+                            string fecha = dataRow.Cell(3).Value.ToString();
+                            int puntos = Convert.ToInt32(dataRow.Cell(4).Value);
+
+                            //Asignar puntos a usuario
+                            AdminModel admin = new AdminModel();
+                            int idUsuario = admin.getIdusuario(usuario);
+                            if (idUsuario == 0)
+                            {
                                 return new Retorno()
                                 {
                                     estatus = false,
